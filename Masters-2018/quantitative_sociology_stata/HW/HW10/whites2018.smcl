@@ -1,0 +1,156 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}\\toaster\homes\d\h\dhnsingh\nt\Spring 2018\Soci 631\HW\HW10\whites2018.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}11 Apr 2018, 12:08:55
+{txt}
+{com}. 
+. *1.1.
+. poisson ceb age educ rural
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-8338.2192}  
+Iteration 1:{space 3}log likelihood = {res:-8338.2062}  
+Iteration 2:{space 3}log likelihood = {res:-8338.2062}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     6,262
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}   2655.30
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-8338.2062{txt}{col 49}Pseudo R2{col 67}= {res}    0.1374
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         ceb{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0748674{col 26}{space 2} .0015761{col 37}{space 1}   47.50{col 46}{space 3}0.000{col 54}{space 4} .0717783{col 67}{space 3} .0779564
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}-.0771693{col 26}{space 2} .0044509{col 37}{space 1}  -17.34{col 46}{space 3}0.000{col 54}{space 4}-.0858928{col 67}{space 3}-.0684457
+{txt}{space 7}rural {c |}{col 14}{res}{space 2} .1282139{col 26}{space 2} .0282685{col 37}{space 1}    4.54{col 46}{space 3}0.000{col 54}{space 4} .0728088{col 67}{space 3} .1836191
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.284306{col 26}{space 2} .0763302{col 37}{space 1}  -16.83{col 46}{space 3}0.000{col 54}{space 4} -1.43391{col 67}{space 3}-1.134701
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. *1.2.
+. poisson ceb age educ rural poverty catholic momeduc
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-8230.3275}  
+Iteration 1:{space 3}log likelihood = {res:-8230.3015}  
+Iteration 2:{space 3}log likelihood = {res:-8230.3015}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     6,219
+{txt}{col 49}LR chi2({res}6{txt}){col 67}= {res}   2739.98
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-8230.3015{txt}{col 49}Pseudo R2{col 67}= {res}    0.1427
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         ceb{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0753604{col 26}{space 2} .0016415{col 37}{space 1}   45.91{col 46}{space 3}0.000{col 54}{space 4} .0721431{col 67}{space 3} .0785778
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}-.0651748{col 26}{space 2} .0048662{col 37}{space 1}  -13.39{col 46}{space 3}0.000{col 54}{space 4}-.0747125{col 67}{space 3}-.0556372
+{txt}{space 7}rural {c |}{col 14}{res}{space 2} .1170043{col 26}{space 2} .0287296{col 37}{space 1}    4.07{col 46}{space 3}0.000{col 54}{space 4} .0606953{col 67}{space 3} .1733132
+{txt}{space 5}poverty {c |}{col 14}{res}{space 2} .3540527{col 26}{space 2} .0368875{col 37}{space 1}    9.60{col 46}{space 3}0.000{col 54}{space 4} .2817545{col 67}{space 3} .4263509
+{txt}{space 4}catholic {c |}{col 14}{res}{space 2}  .013691{col 26}{space 2} .0256022{col 37}{space 1}    0.53{col 46}{space 3}0.593{col 54}{space 4}-.0364884{col 67}{space 3} .0638704
+{txt}{space 5}momeduc {c |}{col 14}{res}{space 2}-.0124948{col 26}{space 2} .0043389{col 37}{space 1}   -2.88{col 46}{space 3}0.004{col 54}{space 4}-.0209989{col 67}{space 3}-.0039906
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.346677{col 26}{space 2} .0901331{col 37}{space 1}  -14.94{col 46}{space 3}0.000{col 54}{space 4}-1.523335{col 67}{space 3} -1.17002
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\LOCAL_~1\Temp\STD00000000.tmp"
+{txt}
+{com}. listcoef
+{res}
+poisson (N=6219): Factor change in expected count 
+
+{txt}  Observed SD:  1.2850
+
+{res}{txt}{hline 13}{c TT}{hline 10}{hline 9}{hline 9}{hline 10}{hline 10}{hline 10}
+{col 14}{c |}         b{col 25}        z{col 34}    P>|z|{col 43}       e^b{col 53}   e^bStdX{col 63}     SDofX
+{hline 13}{c +}{hline 10}{hline 9}{hline 9}{hline 10}{hline 10}{hline 10}
+{space 9}age {c |}{col 14}{res}{space 1}   0.0754{col 25}{space 2} 45.909{col 34}{space 2}  0.000{col 43}{space 2}   1.078{col 53}{space 2}   1.882{col 63}{space 2}   8.392
+{txt}{space 8}educ {c |}{col 14}{res}{space 1}  -0.0652{col 25}{space 2}-13.393{col 34}{space 2}  0.000{col 43}{space 2}   0.937{col 53}{space 2}   0.844{col 63}{space 2}   2.603
+{txt}{space 7}rural {c |}{col 14}{res}{space 1}   0.1170{col 25}{space 2}  4.073{col 34}{space 2}  0.000{col 43}{space 2}   1.124{col 53}{space 2}   1.045{col 63}{space 2}   0.380
+{txt}{space 5}poverty {c |}{col 14}{res}{space 1}   0.3541{col 25}{space 2}  9.598{col 34}{space 2}  0.000{col 43}{space 2}   1.425{col 53}{space 2}   1.109{col 63}{space 2}   0.291
+{txt}{space 4}catholic {c |}{col 14}{res}{space 1}   0.0137{col 25}{space 2}  0.535{col 34}{space 2}  0.593{col 43}{space 2}   1.014{col 53}{space 2}   1.006{col 63}{space 2}   0.449
+{txt}{space 5}momeduc {c |}{col 14}{res}{space 1}  -0.0125{col 25}{space 2} -2.880{col 34}{space 2}  0.004{col 43}{space 2}   0.988{col 53}{space 2}   0.966{col 63}{space 2}   2.773
+{txt}{space 4}constant {c |}{col 14}{res}{space 1}  -1.3467{col 25}{space 2}-14.941{col 34}{space 2}  0.000{col 43}{space 2}       .{col 53}{space 2}       .{col 63}{space 2}       .
+{txt}{hline 13}{c BT}{hline 10}{hline 9}{hline 9}{hline 10}{hline 10}{hline 10}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\LOCAL_~1\Temp\STD00000000.tmp"
+{txt}
+{com}. zip ceb age educ rural poverty catholic momeduc, ///
+> inflate(age educ rural poverty catholic momeduc) ///
+> vuong 
+{err}{p}
+Vuong test is not appropriate for 
+testing {help j_vuong##_new:zero-inflation}.
+  Specify option {bf:forcevuong} to perform the test anyway.
+{p_end}
+{txt}{search r(498), local:r(498);}
+
+end of do-file
+
+{search r(498), local:r(498);}
+
+{com}. do "C:\Users\LOCAL_~1\Temp\STD00000000.tmp"
+{txt}
+{com}. zip ceb age educ rural poverty catholic momeduc, ///
+> inflate(age educ rural poverty catholic momeduc) ///
+> forcevuong 
+
+{txt}Fitting constant-only model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-10132.886}  
+Iteration 1:{space 3}log likelihood = {res:-8413.6997}  
+Iteration 2:{space 3}log likelihood = {res:-8000.4648}  
+Iteration 3:{space 3}log likelihood = {res:-7892.0064}  
+Iteration 4:{space 3}log likelihood = {res:-7875.7451}  
+Iteration 5:{space 3}log likelihood = {res:-7874.8716}  
+Iteration 6:{space 3}log likelihood = {res:-7874.8687}  
+Iteration 7:{space 3}log likelihood = {res:-7874.8687}  
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-7874.8687}  
+Iteration 1:{space 3}log likelihood = {res:-7675.3857}  
+Iteration 2:{space 3}log likelihood = {res:-7668.7569}  
+Iteration 3:{space 3}log likelihood = {res:-7668.6773}  
+Iteration 4:{space 3}log likelihood = {res:-7668.6772}  
+{res}
+{txt}Zero-inflated Poisson regression                Number of obs     = {res}     6,219
+                                                {txt}Nonzero obs       = {res}     3,700
+                                                {txt}Zero obs          = {res}     2,519
+
+{txt}Inflation model = {res}logit                         {txt}LR chi2({res}6{txt})        = {res}    412.38
+{txt}Log likelihood  = {res}-7668.677                     {txt}Prob > chi2       = {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         ceb{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}ceb          {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .0342642{col 26}{space 2} .0021683{col 37}{space 1}   15.80{col 46}{space 3}0.000{col 54}{space 4} .0300144{col 67}{space 3} .0385141
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}-.0577715{col 26}{space 2} .0053222{col 37}{space 1}  -10.85{col 46}{space 3}0.000{col 54}{space 4}-.0682027{col 67}{space 3}-.0473402
+{txt}{space 7}rural {c |}{col 14}{res}{space 2} .1017591{col 26}{space 2} .0292569{col 37}{space 1}    3.48{col 46}{space 3}0.001{col 54}{space 4} .0444165{col 67}{space 3} .1591016
+{txt}{space 5}poverty {c |}{col 14}{res}{space 2} .3221026{col 26}{space 2} .0383917{col 37}{space 1}    8.39{col 46}{space 3}0.000{col 54}{space 4} .2468562{col 67}{space 3} .3973491
+{txt}{space 4}catholic {c |}{col 14}{res}{space 2} .0367301{col 26}{space 2} .0263479{col 37}{space 1}    1.39{col 46}{space 3}0.163{col 54}{space 4}-.0149108{col 67}{space 3}  .088371
+{txt}{space 5}momeduc {c |}{col 14}{res}{space 2}-.0006804{col 26}{space 2} .0046037{col 37}{space 1}   -0.15{col 46}{space 3}0.883{col 54}{space 4}-.0097035{col 67}{space 3} .0083427
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.0002111{col 26}{space 2} .1022014{col 37}{space 1}   -0.00{col 46}{space 3}0.998{col 54}{space 4}-.2005221{col 67}{space 3} .2000999
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}inflate      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2}-.7403575{col 26}{space 2} .0514487{col 37}{space 1}  -14.39{col 46}{space 3}0.000{col 54}{space 4}-.8411951{col 67}{space 3}-.6395199
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .8314092{col 26}{space 2} .0693668{col 37}{space 1}   11.99{col 46}{space 3}0.000{col 54}{space 4} .6954527{col 67}{space 3} .9673657
+{txt}{space 7}rural {c |}{col 14}{res}{space 2}-.4301891{col 26}{space 2}  .216537{col 37}{space 1}   -1.99{col 46}{space 3}0.047{col 54}{space 4}-.8545938{col 67}{space 3}-.0057844
+{txt}{space 5}poverty {c |}{col 14}{res}{space 2}-.4208446{col 26}{space 2} .2390249{col 37}{space 1}   -1.76{col 46}{space 3}0.078{col 54}{space 4}-.8893249{col 67}{space 3} .0476356
+{txt}{space 4}catholic {c |}{col 14}{res}{space 2} .5611354{col 26}{space 2} .2104526{col 37}{space 1}    2.67{col 46}{space 3}0.008{col 54}{space 4} .1486558{col 67}{space 3}  .973615
+{txt}{space 5}momeduc {c |}{col 14}{res}{space 2}  .133507{col 26}{space 2} .0371574{col 37}{space 1}    3.59{col 46}{space 3}0.000{col 54}{space 4} .0606798{col 67}{space 3} .2063341
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 4.426621{col 26}{space 2} .6355067{col 37}{space 1}    6.97{col 46}{space 3}0.000{col 54}{space 4} 3.181051{col 67}{space 3} 5.672192
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+Vuong test of zip vs. standard Poisson:            z = {res}   19.54{txt}  Pr>z = {res}0.0000
+{txt}{p 0 4 2}Warning: The Vuong test is not appropriate for testing {help j_vuong##_new:zero-inflation}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. 
