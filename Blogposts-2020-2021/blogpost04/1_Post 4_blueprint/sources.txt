@@ -1,0 +1,30 @@
+Sources:
+
+Text and visual data:
+
+	- india constitution:constitute project, last amended 2015
+
+	- us constitution: constitution project
+
+	- caveat: pdf to txt conversion assumes it is faithful to text.
+
+
+Numeric data:
+
+	- economic freedom data: from heritage
+
+	- humnan freedom data: from cato
+
+	- freedom house: freedom indices, including internet adn democracy scores
+
+	- rsf: press freedom
+
+	- world population review: general freedom rankings
+
+
+
+
+
+
+
+

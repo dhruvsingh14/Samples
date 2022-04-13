@@ -1,0 +1,9 @@
+(i) step 1, rename files in folders. 
+
+(ii) step 2, write a macro to loop through every file/folder, patch together the csv files
+
+(iii) step 3, then retain the id variable columns, after aggregating the files by median, and mean
+
+(iv) step 4, subset columns to include a year, state, and determine other variables 
+
+(v) step 5, conclude with a few simple graphs

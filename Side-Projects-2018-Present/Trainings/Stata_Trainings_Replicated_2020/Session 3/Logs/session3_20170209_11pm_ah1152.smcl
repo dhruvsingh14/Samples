@@ -1,0 +1,2895 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ah1152\Box Sync\gui2de STATA Tutorials/Session 3/Logs/session3_20170209_11pm_ah1152.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 9 Feb 2017, 23:45:14
+{txt}
+{com}. 
+. *
+. 
+. 
+. 
+. 
+. *Approach 5 ( use capture, globals, c-class values AND local switch it turn it on/off)
+. local start_log "On"
+{txt}
+{com}. if "`start_log'" == "Off" {c -(}
+. capture log close //in case log is already open
+. *Use c class variables to automatically include date/time/username in the log file name
+. local date: di %tdCCYY.NN.DD date(c(current_date),"DMY")
+. local date: subinstr local date "." "", all
+. local time: di %tchham Clock(c(current_time),"hms")
+. local time: subinstr local time " " "", all
+. *defining log names using date and time 
+. global log "gui2de STATA Tutorials/Session 3/Logs/session3_`date'_`time'_`c(username)'.smcl"
+. 
+. log using "$log", replace
+. {c )-}
+{txt}
+{com}. *
+. 
+. 
+. *******************************************************************************
+. *Important resources on how to deal with date/time:
+. {c -(}
+. /*
+> http://www.stata.com/manuals13/u24.pdf
+> http://www.stata.com/manuals13/ddatetimetranslation.pdf#ddatetimetranslation
+> http://www.stata.com/manuals13/ddatetime.pdf#ddatetime
+> http://www.stata.com/manuals13/ddatetimebusinesscalendars.pdf#ddatetimebusinesscalendars
+> */
+. {c )-}
+{txt}
+{com}. *
+. 
+. ********************************************************************************
+. *2 STRING VARIABLES: Fuzzy Matching (and regexm)
+. ********************************************************************************
+. 
+. /*
+> regexm(s,re)
+> performs a match of a regular expression and evaluates to 1 if regular 
+> expression re is satisfied by the ASCII string s; otherwise, 0
+> */
+. 
+. 
+. *Example1:
+. global project_e "gui2de STATA Tutorials/Session 3/Data/project_u.dta"
+{txt}
+{com}. 
+. use "$project_e", clear
+{txt}
+{com}. 
+. *correct answer is 7:25 am for mq10
+. 
+. gen mq10_new =""
+{txt}(29,869 missing values generated)
+
+{com}. replace mq10_new = "7:25am" if regexm(mq10,"7:25")
+{txt}variable {bf}mq10_new{sf} was {bf}{res}str1{sf}{txt} now {bf}{res}str6{sf}
+{txt}(5,252 real changes made)
+
+{com}. replace mq10_new = "7:25am" if regexm(mq10,"7hrs")
+{txt}(3 real changes made)
+
+{com}. replace mq10_new = "7:25am" if regexm(mq10,"7.25") | regexm(mq10,"725")
+{txt}(663 real changes made)
+
+{com}. replace mq10_new = "" if regexm(mq10,"pm")
+{txt}(366 real changes made)
+
+{com}. replace mq10_new = "" if regexm(mq10,"p.m")
+{txt}(4 real changes made)
+
+{com}. *example:
+. 
+. 
+. *Example2:
+. global project_t "gui2de STATA Tutorials/Session 3/Data/project_t.dta" 
+{txt}
+{com}. use "$project_t", clear
+{txt}
+{com}. 
+. *registration number for vehicles registered in Tanzania should look like:
+. * regnum = T123ABC
+. gen correct_regnum = regexm(regnum,"^T[0-9][0-9][0-9][A-Z][A-Z][A-Z]$")
+{txt}
+{com}. 
+. 
+. *****************************
+. *Approximate String Matching: 
+. *****************************
+. 
+. 
+. /*
+> Approximate String Matching: 
+> Fuzzy String Matching is basically rephrasing the YES/NO “Are string A and 
+> string B the same?” as “How similar are string A and string B?”
+> */
+. 
+. *there are a lot of STATA commands for it: matchit, reclink, reclink2
+. *but you can get better results by some data cleaning + merge
+. 
+. *Example:
+. 
+.                 global popdensity "gui2de STATA Tutorials/Session 3/Data/CIV_populationdensity.dta"
+{txt}
+{com}.                 global section0  "gui2de STATA Tutorials/Session 3/Data/Section 0.dta" 
+{txt}
+{com}.                 global temp1 "gui2de STATA Tutorials/Session 3/Data/temp1.dta"
+{txt}
+{com}.                 
+.                 use "$popdensity", clear
+{txt}
+{com}. 
+.                 keep if regexm(NOMCIRCONSCRIPTION, "DEPARTEMENT")==1
+{txt}(556 observations deleted)
+
+{com}.                 //keeping only "Departement" names. I am assuming that all departments have 
+.                 //"departement" in their names. We have 108 such observations
+. 
+.                 local removechars " " " "DEPARTEMENT" "DE" "D'" " " "
+{txt}
+{com}.                 foreach i of local removechars  {c -(}
+{txt}  2{com}.                         replace NOMCIRCONSCRIPTION = subinstr(NOMCIRCONSCRIPTION,"`i'","",.)
+{txt}  3{com}.                 {c )-}
+{txt}(108 real changes made)
+(108 real changes made)
+(93 real changes made)
+(14 real changes made)
+(0 real changes made)
+
+{com}.                 //removing "departement, de, d' and spaces from departement's names
+. 
+.                 replace NOMCIRCONSCRIPTION=lower(NOMCIRCONSCRIPTION)
+{txt}(108 real changes made)
+
+{com}.                 //lower case to match ENV format
+.                 rename NOMCIRCONSCRIPTION departement
+{res}{txt}
+{com}. 
+.                 /*
+>                 NOTE: There are 108 distinct departements in pop_density files and 107 in 
+>                 ENV. Even after cleaning departement names, we can only match 104 names.
+> 
+>                 unmatched departements are due to different spellings, see below:
+> 
+>                 departement(ENV)    department (Pop_denssity)
+>                 arrha                           arrah
+>                 sandegue                        sangue
+>                 sassandra                       dusassandra
+>                                                         gbeleban    (NOT in ENV dataset, ignore it)
+> 
+>                 Changing the names of departements in pop-density file as we don't want to
+>                 make any changes in ENV dataset
+>                 */
+. 
+.                 replace departement="arrha" if departement=="arrah"
+{txt}(1 real change made)
+
+{com}.                 replace departement="sandegue" if departement=="sangue"
+{txt}(1 real change made)
+
+{com}.                 replace departement="sassandra" if departement=="dusassandra"
+{txt}(1 real change made)
+
+{com}. 
+.                 rename POPULATION population
+{res}{txt}
+{com}.                 rename SUPERFICIEKM2 areasqkm
+{res}{txt}
+{com}.                 rename DENSITEAUKM pop_density
+{res}{txt}
+{com}. 
+.                 save "$temp1", replace
+{txt}file gui2de STATA Tutorials/Session 3/Data/temp1.dta saved
+
+{com}. 
+.                 use "$section0", clear
+{txt}
+{com}. 
+.                 decode b06_departemen, gen(departement)
+{txt}
+{com}. 
+.                 merge m:1 departement using "$temp1"
+{res}{txt}{p 0 7 2}
+(note: variable
+departement was 
+str18, now str33 to accommodate using data's values)
+{p_end}
+
+{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               1
+{txt}{col 9}from master{col 30}{res}               0{txt}  (_merge==1)
+{col 9}from using{col 30}{res}               1{txt}  (_merge==2)
+
+{col 5}matched{col 30}{res}          12,899{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}.                 /*
+>                         Result                           # of obs.
+>                         -----------------------------------------
+>                         not matched                             1
+>                                 from master                         0  (_merge==1)
+>                                 from using                          1  (_merge==2)
+> 
+>                         matched                            12,899  (_merge==3)
+>                         -----------------------------------------
+>                 */
+.                 drop if _merge==2 //dropping the extra department from pop_density file
+{txt}(1 observation deleted)
+
+{com}. 
+.                 summ _merge
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}_merge {c |}{res}     12,899           3           0          3          3
+{txt}
+{com}.                 assert `r(N)'==12899 //Just to make sure we have the entire ENV dataset.
+{txt}
+{com}. 
+. *************
+. 
+. /*
+> Assert:
+> It verifies that exp is true.  If it is true, the command produces no output.  
+> If it is not true, assert informs you that the "assertion is false" and issues a
+> return code of 9
+> */
+. 
+. 
+. *****************************
+. *Approximate String Matching:
+. *****************************
+. *In a lot of cases we can't use merge/data cleaning and have to rely on 
+. *fuzzy matching.
+. 
+. *Example: Tanzania Election data:
+. *Issue: We have election data from 1995, 2000, 2005, 2010 and 2015. We want to 
+. *match politicians who ran in multiple elections.
+. 
+. global election "gui2de STATA Tutorials/Session 3/Data/Tanzania_Election.dta"
+{txt}
+{com}. global temp_95 "gui2de STATA Tutorials/Session 3/Data/temp_1995.dta"
+{txt}
+{com}. global temp_00 "gui2de STATA Tutorials/Session 3/Data/temp_2000.dta"
+{txt}
+{com}. 
+. use "$election", clear
+{txt}
+{com}. rename *, lower
+{res}{txt}
+{com}. gen serial=_n
+{txt}
+{com}. 
+. preserve
+{txt}
+{com}.         keep if year==1995
+{txt}(855 observations deleted)
+
+{com}.         keep serial candidate
+{txt}
+{com}.         save "$temp_95", replace //1222 obs
+{txt}(note: file gui2de STATA Tutorials/Session 3/Data/temp_1995.dta not found)
+file gui2de STATA Tutorials/Session 3/Data/temp_1995.dta saved
+
+{com}. restore
+{txt}
+{com}. 
+. preserve
+{txt}
+{com}.         keep if year==2000
+{txt}(1,222 observations deleted)
+
+{com}.         keep serial candidate
+{txt}
+{com}.         save "$temp_00", replace //1222 obs
+{txt}(note: file gui2de STATA Tutorials/Session 3/Data/temp_2000.dta not found)
+file gui2de STATA Tutorials/Session 3/Data/temp_2000.dta saved
+
+{com}. restore
+{txt}
+{com}. 
+. 
+. use "$temp_95", clear
+{txt}
+{com}. 
+. *match 2000 to 1995 data set
+. matchit serial candidate using "$temp_00", idusing(serial) txtusing(candidate)
+Matching current dataset with gui2de STATA Tutorials/Session 3/Data/temp_2000.dta
+Similarity function: bigram
+{res}Loading USING file: gui2de STATA Tutorials/Session 3/Data/temp_2000.dta
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(18%)
+{tab}40%{tab}{tab}  ...{tab}(18%)
+{tab}60%{tab}{tab}  ...{tab}(18%)
+{tab}80%{tab}{tab}  ...{tab}(18%)
+{tab}100%{tab}{tab}  ...{tab}(18%)
+{tab}Done!
+Total search space saved by index: 18%
+{txt}
+{com}. 
+. end
+{err}command {bf}end{sf} is unrecognized
+{txt}{search r(199), local:r(199);}
+
+end of do-file
+
+{search r(199), local:r(199);}
+
+{com}. do "C:\Users\ah1152\AppData\Local\Temp\STD14000000.tmp"
+{txt}
+{com}. *sort by 1995 serial number, keep only best match 
+. gsort serial -similscore
+{txt}
+{com}. duplicates drop serial, force
+
+{p 0 4}{txt}Duplicates in terms of {res} serial{p_end}
+
+{txt}(3,005 observations deleted)
+
+{com}. gsort -similscore
+{txt}
+{com}. *sort by 2000 serial number, keep only best match
+. gsort serial1 -similscore
+{txt}
+{com}. duplicates drop serial1, force
+
+{p 0 4}{txt}Duplicates in terms of {res} serial1{p_end}
+
+{txt}(262 observations deleted)
+
+{com}. gsort -similscore
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\ah1152\AppData\Local\Temp\STD14000000.tmp"
+{txt}
+{com}. 
+. 
+. *Example 2:
+. global endline_clean "gui2de STATA Tutorials/Session 3/Data/endline_clean.dta"
+{txt}
+{com}. global test_score_clean "gui2de STATA Tutorials/Session 3/Data/test_score_clean.dta"
+{txt}
+{com}. global merge_scores "gui2de STATA Tutorials/Session 3/Data/merged_scores.dta"
+{txt}
+{com}. 
+. clear
+{txt}
+{com}. gen temp=.
+{txt}
+{com}. save "$merge_scores", emptyok
+{txt}(note: dataset contains 0 observations)
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\ah1152\AppData\Local\Temp\STD14000000.tmp"
+{txt}
+{com}. 
+. levelsof schoolname, loc(schoolnames)
+{err}variable {bf}schoolname{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\ah1152\AppData\Local\Temp\STD14000000.tmp"
+{txt}
+{com}. 
+. *Example 2:
+. global endline_clean "gui2de STATA Tutorials/Session 3/Data/endline_clean.dta"
+{txt}
+{com}. global test_score_clean "gui2de STATA Tutorials/Session 3/Data/test_score_clean.dta"
+{txt}
+{com}. global merge_scores "gui2de STATA Tutorials/Session 3/Data/merged_scores.dta"
+{txt}
+{com}. 
+. clear
+{txt}
+{com}. gen temp=.
+{txt}
+{com}. save "$merge_scores", emptyok
+{txt}(note: dataset contains 0 observations)
+{err}{p 0 4 2}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta
+already exists
+{p_end}
+{txt}{search r(602), local:r(602);}
+
+end of do-file
+
+{search r(602), local:r(602);}
+
+{com}. do "C:\Users\ah1152\AppData\Local\Temp\STD14000000.tmp"
+{txt}
+{com}. global endline_clean "gui2de STATA Tutorials/Session 3/Data/endline_clean.dta"
+{txt}
+{com}. global test_score_clean "gui2de STATA Tutorials/Session 3/Data/test_score_clean.dta"
+{txt}
+{com}. global merge_scores "gui2de STATA Tutorials/Session 3/Data/merged_scores.dta"
+{txt}
+{com}. 
+. clear
+{txt}
+{com}. gen temp=.
+{txt}
+{com}. save "$merge_scores", emptyok replace
+{txt}(note: dataset contains 0 observations)
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+
+{com}. 
+. use "$endline_clean", clear
+{txt}
+{com}. levelsof schoolname, loc(schoolnames)
+{txt}`"AduongMonge"' `"Agai"' `"Aguthi"' `"Akado"' `"Anyanga"' `"Awanya"' `"Awasi"' `"Bahari"' `"Bahati"' `"BahatiDebSolioRanch"' `"Balagha"' `"Bandacho"' `"BarKawarinda"' `"BarUnion"' `"Bara"' `"Barani"' `"Birisha"' `"Bodoi"' `"Bogamachuko"' `"Bondeni"' `"Boyani"' `"BoyaniMagarini"' `"BunguKoraga"' `"Bungumeri"' `"Burangi"' `"CCMChaka"' `"Chanagande"' `"Chanjalo"' `"Charity"' `"Chasimba"' `"Cheptuiyet"' `"Cherwa"' `"Chieni"' `"Chiga"' `"Chilulu"' `"Chumani"' `"DEBIhiga"' `"DEBKihuti"' `"DEBMuslim"' `"Dindiri"' `"DrRobertOuko"' `"Eluhobe"' `"Endarasha"' `"Ezamoyo"' `"Fumbini"' `"Fundisa"' `"Gacuiro"' `"Gahaleni"' `"Gaikundo"' `"Gakanga"' `"Gandani"' `"Garashi"' `"Gathanji"' `"Gathinga"' `"Gathirathiru"' `"Gathitu"' `"Gathungo"' `"Gatiko"' `"Gatuamba"' `"Gatugi"' `"Gatumbiro"' `"Gaturiri"' `"Gaturuturu"' `"Gichiche"' `"Gikororo"' `"Githakwa"' `"Githi"' `"Gitugi"' `"Gondo"' `"Gongoni"' `"GulMaembe"' `"Guu"' `"Highway"' `"HillFarm"' `"Hiriga"' `"HoloOrucho"' `"HongoRadhiang"' `"Honi"' `"HuhoIni"' `"Igathu"' `"Ihururu"' `"Ikanga"' `"Imani"' `"InnisEducationalCentre"' `"IsaacNyondo"' `"Ithenguri"' `"JagirSingh"' `"Jila"' `"Jilore"' `"JimbaGede"' `"Kabiboni"' `"KabiruIni"' `"Kachan"' `"Kadiju"' `"Kadzinuni"' `"Kadzonzo"' `"Kagombani"' `"Kagongo"' `"Kagonye"' `"Kagwathi"' `"Kagwel"' `"Kahuho"' `"Kaigonde"' `"Kaini"' `"Kakomani"' `"Kamagore"' `"Kamale"' `"Kamburaini"' `"Kamiruri"' `"Kamoko"' `"Kamtudi"' `"Kamuyu"' `"Kangocho"' `"Kanyakwar"' `"Kanyamedha"' `"Kanyamony"' `"KanyangOro"' `"Kaoyeni"' `"Karaguririo"' `"Karanda"' `"Kariko"' `"Karima"' `"Karindi"' `"Karindundu"' `"KarugaPrimary"' `"Karundas"' `"Karunyalalo"' `"Kasunda"' `"Katendewa"' `"Katikirieni"' `"Kiahuria"' `"Kiamabara"' `"Kiambuiri"' `"Kiamurathe"' `"Kiamuyu"' `"Kiangurwe"' `"Kianjau"' `"Kianjeneni"' `"Kianjogu"' `"KiarithaIni"' `"Kiawaithanji"' `"Kiawamururu"' `"Kibaokiche"' `"KibaraniBoarding"' `"Kibwayi"' `"Kiganjo"' `"Kigoche"' `"Kihome"' `"Kihugiru"' `"Kilodi"' `"Kinagoni"' `"Kinarani"' `"KingOngO"' `"Kireme"' `"KiriIni"' `"Kirigu"' `"Kirindo"' `"Kirinyaga"' `"Kiriti"' `"Kisure"' `"Kitare"' `"Kitsoeni"' `"Kiwandani"' `"Kodhiambo"' `"Kokulo"' `"Kore"' `"Kowalla"' `"Kowuar"' `"Kudho"' `"Kuoyo"' `"KurawaKanagoni"' `"KwaUpanga"' `"Kwanderi"' `"LuoraAyweyo"' `"Lusoi"' `"Lwanda"' `"Maandani"' `"Macharia"' `"Madunguni"' `"Maganjo"' `"Magutu"' `"Magwar"' `"Mairwe"' `"Majenjeni"' `"MajiLangobaya"' `"Makumba"' `"Malanga"' `"Malau"' `"Maliera"' `"MalindiHgm"' `"Mangudho"' `"Manyatta"' `"Marafa"' `"Maragima"' `"Marera"' `"Marere"' `"Mariani"' `"Marikebuni"' `"Marua"' `"Maryango"' `"Masara"' `"Masheheni"' `"Matiraini"' `"Matsangoni"' `"Mayieka"' `"Mayowe"' `"Mbega"' `"Mbeka"' `"Mbirithi"' `"Mbugra"' `"Mbugwa"' `"Mdzongoloni"' `"Migundini"' `"Miiriini"' `"Mijomboni"' `"Mikamini"' `"Mikingirini"' `"Milugo"' `"Miricho"' `"Mirieri"' `"Mitero"' `"Miyani"' `"Mkaomoto"' `"MkendwaMuslim"' `"Mkongani"' `"MlunguWaMawe"' `"MoiGirlsBoarding"' `"Mongitini"' `"Mtsarawatsatsu"' `"Mtwapa"' `"Mugunda"' `"Muleji"' `"Munyu"' `"Mureru"' `"Muryachakwe"' `"Mutathini"' `"MuyuWakae"' `"Mwangatini"' `"Mwangaza"' `"Mwangutwa"' `"Mwareni"' `"Mwihoka"' `"Naki"' `"Nanyuki"' `"NaromoruTownship"' `"Ndigiria"' `"NgAndu"' `"Ngangarithi"' `"NgereKagoro"' `"Ngerenyi"' `"Njatheini"' `"Nyaduong"' `"Nyakoko"' `"Nyakwere"' `"Nyalunya"' `"Nyarombe"' `"Nyatigo"' `"Nyawara"' `"Nyomwaro"' `"Obago"' `"Obino"' `"Obola"' `"Obwolo"' `"Obwon"' `"OchokKadongo"' `"Odhong"' `"Odienya"' `"Ogango"' `"Ogen"' `"Ogongo"' `"Ogwodo"' `"Okago"' `"Omore"' `"Onego"' `"Ongadi"' `"Ongalo"' `"OnjikoKobongo"' `"Orenge"' `"Orinde"' `"OthoAbwao"' `"Otwero"' `"Oyani"' `"Pangani"' `"PapLisana"' `"Pingilikani"' `"Rachier"' `"Rae"' `"RagenAIC"' `"RamulaOdowa"' `"Ranjira"' `"RariedaKaloo"' `"RariedaKokech"' `"ReruRC"' `"Rilwakwe"' `"RogenMHM"' `"Roka"' `"RokaMaweni"' `"Ruai"' `"Runda"' `"Sauset"' `"Shaurimoyo"' `"Sianda"' `"Sinyolo"' `"Sokoke"' `"Talau"' `"Tamu"' `"Tandi"' `"TempleRoad"' `"Thaithi"' `"Thangathi"' `"Thuti"' `"Tido"' `"Timboni"' `"Tsagwa"' `"Tsunguni"' `"Tumutumu"' `"UrudiRatta"' `"Usari"' `"Uyombo"' `"Wachara"' `"Wachee"' `"Wamagana"' `"Waradho"' `"Waresa"' `"Watamu"' `"Watuka"' `"Witima"' `"Yago"' `"Yathrateng"' `"Ziani"'
+
+{com}. foreach school in `schoolnames' {c -(}
+{txt}  2{com}.                 *saving endline students scores for that school
+.                 use "$endline_clean", clear
+{txt}  3{com}.                 keep if schoolname=="`school'"
+{txt}  4{com}.                 tempfile endline_`school'
+{txt}  5{com}.                 save `endline_`school''
+{txt}  6{com}.                         
+.                 *saving admin students scores for that school   
+.                 use "$test_score_clean", clear
+{txt}  7{com}.                 keep if schoolname=="`school'"
+{txt}  8{com}.                 tempfile admin_`school'
+{txt}  9{com}.                 save `admin_`school''
+{txt} 10{com}.                         
+.                 *matching admin and endline
+.                 use `endline_`school'', clear
+{txt} 11{com}.                 matchit id_endline childname using `admin_`school'', idusing(id_test) txtusing(childname)
+{txt} 12{com}.                 gen schoolname="`school'"
+{txt} 13{com}.                 append using "$merge_scores"
+{txt} 14{com}.                         
+.                 save "$merge_scores", replace
+{txt} 15{com}.         {c )-}       
+{txt}(3,838 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000001.tmp saved
+(70,363 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000002.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000002.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000002.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(14%)
+{tab}40%{tab}{tab}  ...{tab}(16%)
+{tab}60%{tab}{tab}  ...{tab}(18%)
+{tab}80%{tab}{tab}  ...{tab}(16%)
+{tab}Done!
+Total search space saved by index: 16%
+{txt}file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,833 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000003.tmp saved
+(70,279 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000004.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000004.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000004.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(22%)
+{tab}40%{tab}{tab}  ...{tab}(23%)
+{tab}60%{tab}{tab}  ...{tab}(24%)
+{tab}80%{tab}{tab}  ...{tab}(23%)
+{tab}Done!
+Total search space saved by index: 22%
+{txt}{p 0 7 2}
+(note: variable
+childname was 
+str19, now str23 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str26 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str4, now str11 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,844 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000005.tmp saved
+(70,344 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000006.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000006.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000006.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(30%)
+{tab}60%{tab}{tab}  ...{tab}(27%)
+{tab}80%{tab}{tab}  ...{tab}(25%)
+{tab}100%{tab}{tab}  ...{tab}(29%)
+{tab}Done!
+Total search space saved by index: 27%
+{txt}{p 0 7 2}
+(note: variable
+childname was 
+str16, now str23 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str26 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str6, now str11 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,842 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000007.tmp saved
+(70,325 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000008.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000008.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000008.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(31%)
+{tab}40%{tab}{tab}  ...{tab}(29%)
+{tab}60%{tab}{tab}  ...{tab}(24%)
+{tab}80%{tab}{tab}  ...{tab}(25%)
+{tab}Done!
+Total search space saved by index: 24%
+{txt}{p 0 7 2}
+(note: variable
+childname1 was 
+str24, now str26 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str5, now str11 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,841 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000009.tmp saved
+(70,371 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000a.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000a.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000a.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(7%)
+{tab}40%{tab}{tab}  ...{tab}(14%)
+{tab}60%{tab}{tab}  ...{tab}(16%)
+{tab}80%{tab}{tab}  ...{tab}(17%)
+{tab}Done!
+Total search space saved by index: 15%
+{txt}{p 0 7 2}
+(note: variable
+childname was 
+str17, now str23 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str26 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str11 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,840 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000b.tmp saved
+(70,370 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000c.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000c.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000c.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(23%)
+{tab}40%{tab}{tab}  ...{tab}(18%)
+{tab}60%{tab}{tab}  ...{tab}(23%)
+{tab}80%{tab}{tab}  ...{tab}(21%)
+{tab}Done!
+Total search space saved by index: 21%
+{txt}{p 0 7 2}
+(note: variable
+childname1 was 
+str21, now str26 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str6, now str11 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,827 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000d.tmp saved
+(70,329 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000e.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000e.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000e.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(18%)
+{tab}40%{tab}{tab}  ...{tab}(19%)
+{tab}60%{tab}{tab}  ...{tab}(17%)
+{tab}80%{tab}{tab}  ...{tab}(18%)
+{tab}Done!
+Total search space saved by index: 18%
+{txt}{p 0 7 2}
+(note: variable
+childname1 was 
+str25, now str26 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str5, now str11 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,846 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000f.tmp saved
+(70,345 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000g.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000g.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000g.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(22%)
+{tab}60%{tab}{tab}  ...{tab}(26%)
+{tab}60%{tab}{tab}  ...{tab}(27%)
+{tab}80%{tab}{tab}  ...{tab}(31%)
+{tab}Done!
+Total search space saved by index: 36%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+byte, now int to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str14, now str24 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now long to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str25, now str26 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str6, now str11 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,844 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000h.tmp saved
+(70,242 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000i.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000i.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000i.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(22%)
+{tab}60%{tab}{tab}  ...{tab}(23%)
+{tab}80%{tab}{tab}  ...{tab}(24%)
+{tab}100%{tab}{tab}  ...{tab}(24%)
+{tab}Done!
+Total search space saved by index: 26%
+{txt}{p 0 7 2}
+(note: variable
+childname was 
+str17, now str24 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now long to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str26 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str6, now str11 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,850 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000j.tmp saved
+(70,355 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000k.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000k.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000k.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(33%)
+{tab}60%{tab}{tab}  ...{tab}(26%)
+{tab}80%{tab}{tab}  ...{tab}(22%)
+{tab}100%{tab}{tab}  ...{tab}(21%)
+{tab}Done!
+Total search space saved by index: 21%
+{txt}{p 0 7 2}
+(note: variable
+childname was 
+str20, now str24 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str21, now str26 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,853 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000l.tmp saved
+(70,386 observations deleted)
+(note: dataset contains 0 observations)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000m.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000m.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000m.tmp
+Indexing USING file.
+0%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}100%{tab}{tab}  ...{tab}(.%)
+{tab}Done!
+Total search space saved by index: .%
+{txt}{p 0 7 2}
+(note: variable
+schoolname was 
+str1, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,839 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000n.tmp saved
+(70,302 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000o.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000o.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000o.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(49%)
+{tab}40%{tab}{tab}  ...{tab}(43%)
+{tab}60%{tab}{tab}  ...{tab}(36%)
+{tab}80%{tab}{tab}  ...{tab}(31%)
+{tab}Done!
+Total search space saved by index: 30%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str21, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str24, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str8, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,840 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000p.tmp saved
+(70,365 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000q.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000q.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000q.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(37%)
+{tab}40%{tab}{tab}  ...{tab}(35%)
+{tab}60%{tab}{tab}  ...{tab}(33%)
+{tab}80%{tab}{tab}  ...{tab}(29%)
+{tab}Done!
+Total search space saved by index: 27%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str20, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str12, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,838 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000r.tmp saved
+(70,331 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000s.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000s.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000s.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(24%)
+{tab}40%{tab}{tab}  ...{tab}(28%)
+{tab}60%{tab}{tab}  ...{tab}(27%)
+{tab}80%{tab}{tab}  ...{tab}(28%)
+{tab}Done!
+Total search space saved by index: 26%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str15, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str8, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,848 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000t.tmp saved
+(70,370 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000u.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000u.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000u.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(32%)
+{tab}60%{tab}{tab}  ...{tab}(36%)
+{tab}60%{tab}{tab}  ...{tab}(32%)
+{tab}80%{tab}{tab}  ...{tab}(38%)
+{tab}Done!
+Total search space saved by index: 40%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str18, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str4, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,848 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000v.tmp saved
+(70,266 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000w.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400000w.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400000w.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(39%)
+{tab}60%{tab}{tab}  ...{tab}(39%)
+{tab}60%{tab}{tab}  ...{tab}(33%)
+{tab}80%{tab}{tab}  ...{tab}(32%)
+{tab}Done!
+Total search space saved by index: 35%
+{txt}{p 0 7 2}
+(note: variable
+schoolname was 
+str1, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,849 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400000x.tmp saved
+(70,352 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000010.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000010.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000010.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(11%)
+{tab}60%{tab}{tab}  ...{tab}(11%)
+{tab}80%{tab}{tab}  ...{tab}(14%)
+{tab}100%{tab}{tab}  ...{tab}(17%)
+{tab}Done!
+Total search space saved by index: 17%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,846 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000011.tmp saved
+(70,325 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000012.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000012.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000012.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(34%)
+{tab}60%{tab}{tab}  ...{tab}(31%)
+{tab}60%{tab}{tab}  ...{tab}(31%)
+{tab}80%{tab}{tab}  ...{tab}(28%)
+{tab}Done!
+Total search space saved by index: 30%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+byte, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str13, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str24, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str5, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,839 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000013.tmp saved
+(70,329 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000014.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000014.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000014.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(36%)
+{tab}40%{tab}{tab}  ...{tab}(29%)
+{tab}60%{tab}{tab}  ...{tab}(27%)
+{tab}80%{tab}{tab}  ...{tab}(23%)
+{tab}Done!
+Total search space saved by index: 24%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str18, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str11, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,840 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000015.tmp saved
+(70,343 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000016.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000016.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000016.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(18%)
+{tab}40%{tab}{tab}  ...{tab}(14%)
+{tab}60%{tab}{tab}  ...{tab}(15%)
+{tab}80%{tab}{tab}  ...{tab}(16%)
+{tab}Done!
+Total search space saved by index: 15%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str17, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str26, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,849 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000017.tmp saved
+(70,307 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000018.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000018.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000018.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(18%)
+{tab}60%{tab}{tab}  ...{tab}(31%)
+{tab}80%{tab}{tab}  ...{tab}(30%)
+{tab}100%{tab}{tab}  ...{tab}(32%)
+{tab}Done!
+Total search space saved by index: 32%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+byte, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str20, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str6, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,846 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000019.tmp saved
+(70,343 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001a.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001a.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001a.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(20%)
+{tab}60%{tab}{tab}  ...{tab}(27%)
+{tab}60%{tab}{tab}  ...{tab}(29%)
+{tab}80%{tab}{tab}  ...{tab}(22%)
+{tab}Done!
+Total search space saved by index: 24%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+byte, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str13, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str20, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str14, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,843 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001b.tmp saved
+(70,363 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001c.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001c.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001c.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(9%)
+{tab}40%{tab}{tab}  ...{tab}(14%)
+{tab}60%{tab}{tab}  ...{tab}(17%)
+{tab}80%{tab}{tab}  ...{tab}(16%)
+{tab}100%{tab}{tab}  ...{tab}(15%)
+{tab}Done!
+Total search space saved by index: 15%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str20, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str11, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,843 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001d.tmp saved
+(70,373 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001e.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001e.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001e.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(26%)
+{tab}40%{tab}{tab}  ...{tab}(33%)
+{tab}60%{tab}{tab}  ...{tab}(32%)
+{tab}80%{tab}{tab}  ...{tab}(30%)
+{tab}100%{tab}{tab}  ...{tab}(29%)
+{tab}Done!
+Total search space saved by index: 29%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str15, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str14, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str9, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,834 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001f.tmp saved
+(70,321 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001g.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001g.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001g.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(19%)
+{tab}40%{tab}{tab}  ...{tab}(23%)
+{tab}60%{tab}{tab}  ...{tab}(22%)
+{tab}80%{tab}{tab}  ...{tab}(28%)
+{tab}Done!
+Total search space saved by index: 26%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str19, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,828 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001h.tmp saved
+(70,295 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001i.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001i.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001i.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+100%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(21%)
+{tab}40%{tab}{tab}  ...{tab}(19%)
+{tab}60%{tab}{tab}  ...{tab}(16%)
+{tab}80%{tab}{tab}  ...{tab}(15%)
+{tab}Done!
+Total search space saved by index: 18%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str24, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str28, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str8, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,833 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001j.tmp saved
+(70,279 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001k.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001k.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001k.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(8%)
+{tab}40%{tab}{tab}  ...{tab}(17%)
+{tab}60%{tab}{tab}  ...{tab}(18%)
+{tab}80%{tab}{tab}  ...{tab}(17%)
+{tab}Done!
+Total search space saved by index: 17%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str26, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str10, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,850 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001l.tmp saved
+(70,386 observations deleted)
+(note: dataset contains 0 observations)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001m.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001m.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001m.tmp
+Indexing USING file.
+0%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(.%)
+{tab}60%{tab}{tab}  ...{tab}(.%)
+{tab}80%{tab}{tab}  ...{tab}(.%)
+{tab}100%{tab}{tab}  ...{tab}(.%)
+{tab}Done!
+Total search space saved by index: .%
+{txt}{p 0 7 2}
+(note: variable
+schoolname was 
+str1, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,849 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001n.tmp saved
+(70,318 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001o.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001o.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001o.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(16%)
+{tab}60%{tab}{tab}  ...{tab}(13%)
+{tab}80%{tab}{tab}  ...{tab}(12%)
+{tab}100%{tab}{tab}  ...{tab}(15%)
+{tab}Done!
+Total search space saved by index: 15%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str24, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str24, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,846 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001p.tmp saved
+(70,329 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001q.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001q.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001q.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(13%)
+{tab}60%{tab}{tab}  ...{tab}(12%)
+{tab}60%{tab}{tab}  ...{tab}(12%)
+{tab}80%{tab}{tab}  ...{tab}(14%)
+{tab}Done!
+Total search space saved by index: 17%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str21, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str18, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str8, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,842 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001r.tmp saved
+(70,364 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001s.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001s.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001s.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+100%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(19%)
+{tab}40%{tab}{tab}  ...{tab}(22%)
+{tab}60%{tab}{tab}  ...{tab}(27%)
+{tab}80%{tab}{tab}  ...{tab}(30%)
+{tab}Done!
+Total search space saved by index: 29%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str19, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str10, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,837 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001t.tmp saved
+(70,359 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001u.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001u.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001u.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(10%)
+{tab}40%{tab}{tab}  ...{tab}(14%)
+{tab}60%{tab}{tab}  ...{tab}(12%)
+{tab}80%{tab}{tab}  ...{tab}(16%)
+{tab}Done!
+Total search space saved by index: 14%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str6, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,850 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001v.tmp saved
+(70,357 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001w.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400001w.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400001w.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(35%)
+{tab}60%{tab}{tab}  ...{tab}(26%)
+{tab}80%{tab}{tab}  ...{tab}(37%)
+{tab}100%{tab}{tab}  ...{tab}(32%)
+{tab}Done!
+Total search space saved by index: 32%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str15, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str22, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str6, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,847 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400001x.tmp saved
+(70,354 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000020.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000020.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000020.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(18%)
+{tab}40%{tab}{tab}  ...{tab}(21%)
+{tab}80%{tab}{tab}  ...{tab}(16%)
+{tab}80%{tab}{tab}  ...{tab}(17%)
+{tab}Done!
+Total search space saved by index: 16%
+{txt}{p 0 7 2}
+(note: variable
+schoolname was 
+str1, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,833 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000021.tmp saved
+(70,285 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000022.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000022.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000022.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(17%)
+{tab}40%{tab}{tab}  ...{tab}(21%)
+{tab}60%{tab}{tab}  ...{tab}(20%)
+{tab}80%{tab}{tab}  ...{tab}(19%)
+{tab}Done!
+Total search space saved by index: 21%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,839 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000023.tmp saved
+(70,280 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000024.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000024.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000024.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(25%)
+{tab}40%{tab}{tab}  ...{tab}(27%)
+{tab}60%{tab}{tab}  ...{tab}(33%)
+{tab}80%{tab}{tab}  ...{tab}(30%)
+{tab}Done!
+Total search space saved by index: 29%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str21, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str24, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,848 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000025.tmp saved
+(70,358 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000026.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000026.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000026.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(9%)
+{tab}60%{tab}{tab}  ...{tab}(25%)
+{tab}60%{tab}{tab}  ...{tab}(30%)
+{tab}80%{tab}{tab}  ...{tab}(24%)
+{tab}Done!
+Total search space saved by index: 22%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str17, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str24, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str8, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,845 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000027.tmp saved
+(70,290 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000028.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_14000028.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_14000028.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(24%)
+{tab}40%{tab}{tab}  ...{tab}(29%)
+{tab}60%{tab}{tab}  ...{tab}(28%)
+{tab}80%{tab}{tab}  ...{tab}(27%)
+{tab}Done!
+Total search space saved by index: 25%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str19, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str9, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,852 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_14000029.tmp saved
+(70,386 observations deleted)
+(note: dataset contains 0 observations)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002a.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002a.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002a.tmp
+Indexing USING file.
+0%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}60%{tab}{tab}  ...{tab}(.%)
+{tab}100%{tab}{tab}  ...{tab}(.%)
+{tab}Done!
+Total search space saved by index: .%
+{txt}{p 0 7 2}
+(note: variable
+schoolname was 
+str1, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,848 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002b.tmp saved
+(70,356 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002c.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002c.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002c.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(32%)
+{tab}60%{tab}{tab}  ...{tab}(35%)
+{tab}60%{tab}{tab}  ...{tab}(31%)
+{tab}80%{tab}{tab}  ...{tab}(26%)
+{tab}Done!
+Total search space saved by index: 25%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+byte, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str18, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str17, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,851 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002d.tmp saved
+(70,350 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002e.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002e.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002e.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}40%{tab}{tab}  ...{tab}(17%)
+{tab}60%{tab}{tab}  ...{tab}(12%)
+{tab}100%{tab}{tab}  ...{tab}(21%)
+{tab}Done!
+Total search space saved by index: 21%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str14, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str12, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,829 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002f.tmp saved
+(70,329 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002g.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002g.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002g.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(23%)
+{tab}40%{tab}{tab}  ...{tab}(25%)
+{tab}60%{tab}{tab}  ...{tab}(25%)
+{tab}80%{tab}{tab}  ...{tab}(24%)
+{tab}Done!
+Total search space saved by index: 27%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str19, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str25, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,847 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002h.tmp saved
+(70,323 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002i.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002i.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002i.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(15%)
+{tab}40%{tab}{tab}  ...{tab}(18%)
+{tab}80%{tab}{tab}  ...{tab}(21%)
+{tab}80%{tab}{tab}  ...{tab}(20%)
+{tab}Done!
+Total search space saved by index: 19%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str17, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+long, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str9, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,841 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002j.tmp saved
+(70,258 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002k.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002k.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002k.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(20%)
+{tab}40%{tab}{tab}  ...{tab}(16%)
+{tab}60%{tab}{tab}  ...{tab}(15%)
+{tab}80%{tab}{tab}  ...{tab}(20%)
+{tab}Done!
+Total search space saved by index: 21%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,850 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002l.tmp saved
+(70,297 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002m.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002m.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002m.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(24%)
+{tab}60%{tab}{tab}  ...{tab}(23%)
+{tab}80%{tab}{tab}  ...{tab}(26%)
+{tab}100%{tab}{tab}  ...{tab}(23%)
+{tab}Done!
+Total search space saved by index: 23%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str15, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str21, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,820 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002n.tmp saved
+(70,314 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002o.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002o.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002o.tmp
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{tab}20%{tab}{tab}  ...{tab}(27%)
+{tab}40%{tab}{tab}  ...{tab}(21%)
+{tab}60%{tab}{tab}  ...{tab}(21%)
+{tab}80%{tab}{tab}  ...{tab}(21%)
+{tab}Done!
+Total search space saved by index: 22%
+{txt}{p 0 7 2}
+(note: variable
+id_endline was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname was 
+str20, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+id_test was 
+int, now double to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+childname1 was 
+str23, now str244 to accommodate using data's values)
+{p_end}
+{p 0 7 2}
+(note: variable
+schoolname was 
+str7, now str19 to accommodate using data's values)
+{p_end}
+file gui2de STATA Tutorials/Session 3/Data/merged_scores.dta saved
+(3,843 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002p.tmp saved
+(70,343 observations deleted)
+file C:\Users\ah1152\AppData\Local\Temp\ST_1400002q.tmp saved
+Matching current dataset with C:\Users\ah1152\AppData\Local\Temp\ST_1400002q.tmp
+Similarity function: bigram
+{res}Loading USING file: C:\Users\ah1152\AppData\Local\Temp\ST_1400002q.tmp
+Indexing USING file.
+0%
+{err}{hline 2}Break{hline 2}
+{txt}{search r(1), local:r(1);}
+
+end of do-file
+
+{err}{hline 2}Break{hline 2}
+{txt}{search r(1), local:r(1);}
+
+{com}. do "C:\Users\ah1152\AppData\Local\Temp\STD14000000.tmp"
+{txt}
+{com}. set more off
+{txt}
+{com}. clear
+{txt}
+{com}. 
+. /******************************************************************************
+> 
+> * gui2de STATA Tutorial: Session 2
+> * Ali Hamza
+> * Feb 10th, 2017
+> 
+> Topics:
+> 
+> 1.      Interoperability: c-class values.
+> 
+> 2.      String Variables: fuzzy matching (matchit, reclink, reclink2), string cleaning (regexm) 
+> 
+> 3.      Misc STATA Commands: preserve/restore, capture, assert
+> 
+> 4.      User written commands: IPA github page, ado files and other useful user-written commands (orth_out, randomize etc) 
+> 
+> 5.      Best Data Practices 2.0
+> 
+> *******************************************************************************/
+. 
+. ********************************************************************************
+. *1 INTEROPERABILITY: c-class variables
+. ********************************************************************************
+. 
+. /*
+> c-class values:
+> they are designed to provide one all-encompassing way to access system parameters
+> and settings, including system directories, system limits etc
+> */
+. 
+. *Example
+. creturn list
+{txt}
+{title:System values}
+
+    {hline}
+        c(current_date) = "{res}10 Feb 2017{txt}"
+        c(current_time) = "{res}00:02:46{txt}"
+           c(rmsg_time) = {res}0{txt}{col 54}(seconds, from {help rmsg:set rmsg})
+    {hline}
+       c(stata_version) = {res}14.2
+             {txt}c(version) = {res}14.2{txt}{col 54}({help version})
+         c(userversion) = {res}14.2{txt}{col 54}({help version})
+    {hline}
+           c(born_date) = "{res}14 Sep 2016{txt}"
+              c(flavor) = "{res}IC{txt}"
+                 c(bit) = {res}64
+                  {txt}c(SE) = {res}1
+                  {txt}c(MP) = {res}0
+          {txt}c(processors) = {res}1{txt}{col 54}({help stata/mp:Stata/MP}, {help set processors})
+      c(processors_lic) = {res}1
+     {txt}c(processors_mach) = {res}4
+      {txt}c(processors_max) = {res}1
+                {txt}c(mode) = "{res}{txt}"
+             c(console) = "{res}{txt}"
+    {hline}
+                  c(os) = "{res}Windows{txt}"
+               c(osdtl) = "{res}64-bit{txt}"
+            c(hostname) = "{res}MSPP-SD-2YDHL72{txt}"
+        c(machine_type) = "{res}PC (64-bit x86-64){txt}"
+           c(byteorder) = "{res}lohi{txt}"
+            c(username) = "{res}ah1152{txt}"
+    {hline}
+
+{title:Directories and paths}
+
+    {hline}
+        c(sysdir_stata) = "{res}C:\Program Files ..{txt}"{col 54}({help sysdir})
+         c(sysdir_base) = "{res}C:\Program Files ..{txt}"{col 54}({help sysdir})
+         c(sysdir_site) = "{res}C:\Program Files ..{txt}"{col 54}({help sysdir})
+         c(sysdir_plus) = "{res}c:\ado\plus/{txt}"{col 54}({help sysdir})
+     c(sysdir_personal) = "{res}c:\ado\personal/{txt}"{col 54}({help sysdir})
+     c(sysdir_oldplace) = "{res}c:\ado/{txt}"{col 54}({help sysdir})
+              c(tmpdir) = "{res}C:\Users\ah1152\A..{txt}"
+    {hline}
+             c(adopath) = "{res}BASE;SITE;.;PERSO..{txt}"{col 54}({help adopath})
+                 c(pwd) = "{res}C:\Users\ah1152\B..{txt}"{col 54}({help cd})
+              c(dirsep) = "{res}/{txt}"
+    {hline}
+
+{title:System limits}
+
+    {hline}
+        c(max_N_theory) = {res}2147483620
+        {txt}c(max_k_theory) = {res}15000{txt}{col 54}({help maxvar:set maxvar})
+    c(max_width_theory) = {res}1048576{txt}{col 54}({help maxvar:set maxvar})
+    {hline}
+         c(max_matsize) = {res}11000
+         {txt}c(min_matsize) = {res}10
+{txt}    {hline}
+        c(max_macrolen) = {res}4227143
+            {txt}c(macrolen) = {res}1935200{txt}{col 54}({help maxvar:set maxvar})
+             c(charlen) = {res}67783
+          {txt}c(max_cmdlen) = {res}4227159
+              {txt}c(cmdlen) = {res}1935216{txt}{col 54}({help maxvar:set maxvar})
+         c(namelenbyte) = {res}128
+         {txt}c(namelenchar) = {res}32
+               {txt}c(eqlen) = {res}1337
+{txt}    {hline}
+
+{title:Numerical and string limits}
+
+    {hline}
+           c(mindouble) = {res}-8.9884656743e+307
+           {txt}c(maxdouble) = {res}8.9884656743e+307
+           {txt}c(epsdouble) = {res}2.22044604925e-16
+      {txt}c(smallestdouble) = {res}2.2250738585e-308
+{txt}    {hline}
+            c(minfloat) = {res}-1.70141173319e+38
+            {txt}c(maxfloat) = {res}1.70141173319e+38
+            {txt}c(epsfloat) = {res}1.19209289551e-07
+{txt}    {hline}
+             c(minlong) = {res}-2147483647
+             {txt}c(maxlong) = {res}2147483620
+{txt}    {hline}
+              c(minint) = {res}-32767
+              {txt}c(maxint) = {res}32740
+{txt}    {hline}
+             c(minbyte) = {res}-127
+             {txt}c(maxbyte) = {res}100
+{txt}    {hline}
+        c(maxstrvarlen) = {res}2045
+       {txt}c(maxstrlvarlen) = {res}2000000000
+        {txt}c(maxvlabellen) = {res}32000
+{txt}    {hline}
+
+{title:Current dataset}
+
+    {hline}
+                   c(N) = {res}0
+                   {txt}c(k) = {res}0
+               {txt}c(width) = {res}0
+             {txt}c(changed) = {res}0
+            {txt}c(filename) = "{res}{txt}"
+            c(filedate) = "{res}{txt}"
+    {hline}
+
+{title:Memory settings}
+
+    {hline}
+              c(memory) = {res}33554432
+              {txt}c(maxvar) = {res}15000{txt}{col 54}({help maxvar:set maxvar})
+             c(matsize) = {res}400{txt}{col 54}({help matsize:set matsize})
+            c(niceness) = {res}5{txt}{col 54}({help memory:set min_memory})
+          c(min_memory) = {res}0{txt}{col 54}({help memory:set min_memory})
+          c(max_memory) = {res}.{txt}{col 54}({help memory:set max_memory})
+         c(segmentsize) = {res}33554432{txt}{col 54}({help memory:set segmentsize})
+    {hline}
+
+{title:Output settings}
+
+    {hline}
+                c(more) = "{res}off{txt}"{col 54}({help more:set more})
+                c(rmsg) = "{res}off{txt}"{col 54}({help rmsg:set rmsg})
+                  c(dp) = "{res}period{txt}"{col 54}({help dp:set dp})
+            c(linesize) = {res}106{txt}{col 54}({help linesize:set linesize})
+            c(pagesize) = {res}27{txt}{col 54}({help pagesize:set pagesize})
+             c(logtype) = "{res}smcl{txt}"{col 54}({help logtype:set logtype})
+             c(noisily) = {res}1
+{txt}    {hline}
+               c(level) = {res}95{txt}{col 54}({help level:set level})
+              c(clevel) = {res}95{txt}{col 54}({help clevel:set clevel})
+    {hline}
+      c(showbaselevels) = "{res}{txt}"{col 54}({help set showbaselevels})
+      c(showemptycells) = "{res}{txt}"{col 54}({help set showemptycells})
+         c(showomitted) = "{res}{txt}"{col 54}({help set showomitted})
+             c(fvlabel) = "{res}on{txt}"{col 54}({help set fvlabel})
+              c(fvwrap) = {res}1{txt}{col 54}({help set fvwrap})
+            c(fvwrapon) = "{res}word{txt}"{col 54}({help set fvwrapon})
+            c(lstretch) = "{res}{txt}"{col 54}({help set lstretch})
+    {hline}
+             c(cformat) = "{res}{txt}"{col 54}({help set cformat})
+             c(sformat) = "{res}{txt}"{col 54}({help set sformat})
+             c(pformat) = "{res}{txt}"{col 54}({help set pformat})
+    {hline}
+      c(coeftabresults) = "{res}on{txt}"{col 54}({help coeftabresults:set coeftabresults})
+
+{title:Interface settings}
+
+    {hline}
+            c(dockable) = "{res}on{txt}"{col 54}({help dockable:set dockable})
+       c(dockingguides) = "{res}on{txt}"{col 54}({help dockingguides:set dockingguides})
+       c(locksplitters) = "{res}off{txt}"{col 54}({help locksplitters:set locksplitters})
+            c(pinnable) = "{res}on{txt}"{col 54}({help pinnable:set pinnable})
+        c(doublebuffer) = "{res}on{txt}"{col 54}({help doublebuffer:set doublebuffer})
+          c(reventries) = {res}5000{txt}{col 54}({help reventries:set reventries})
+          c(fastscroll) = "{res}on{txt}"{col 54}({help fastscroll:set fastscroll})
+             c(linegap) = {res}1{txt}{col 54}({help linegap:set linegap})
+       c(scrollbufsize) = {res}204800{txt}{col 54}({help scrollbufsize:set scrollbufsize})
+               c(maxdb) = {res}50{txt}{col 54}({help maxdb:set maxdb})
+    {hline}
+
+{title:Graphics settings}
+
+    {hline}
+            c(graphics) = "{res}on{txt}"{col 54}({help set_graphics:set graphics})
+       c(autotabgraphs) = "{res}off{txt}"{col 54}({help autotabgraphs:set autotabgraphs})
+              c(scheme) = "{res}s2color{txt}"{col 54}({help set_scheme:set scheme})
+          c(printcolor) = "{res}automatic{txt}"{col 54}({help set_printcolor:set printcolor})
+           c(copycolor) = "{res}automatic{txt}"{col 54}({help set_printcolor:set copycolor})
+    {hline}
+
+{title:Efficiency settings}
+
+    {hline}
+             c(adosize) = {res}1000{txt}{col 54}({help adosize:set adosize})
+    {hline}
+
+{title:Network settings}
+
+    {hline}
+            c(checksum) = "{res}off{txt}"{col 54}({help checksum:set checksum})
+            c(timeout1) = {res}30{txt}{col 54}({help timeout1:set timeout1})
+            c(timeout2) = {res}180{txt}{col 54}({help timeout2:set timeout2})
+    {hline}
+           c(httpproxy) = "{res}off{txt}"{col 54}({help httpproxy:set httpproxy})
+       c(httpproxyhost) = "{res}{txt}"{col 54}({help httpproxyhost:set httpproxyhost})
+       c(httpproxyport) = {res}80{txt}{col 54}({help httpproxyport:set httpproxyport})
+    {hline}
+       c(httpproxyauth) = "{res}off{txt}"{col 54}({help httpproxyauth:set httpproxyauth})
+       c(httpproxyuser) = "{res}{txt}"{col 54}({help httpproxyuser:set httpproxyuser})
+         c(httpproxypw) = "{res}{txt}"{col 54}({help httpproxypw:set httpproxypw})
+    {hline}
+
+{title:Update settings}
+
+    {hline}
+        c(update_query) = "{res}on{txt}"{col 54}({help update_query:set update_query})
+     c(update_interval) = {res}7{txt}{col 54}({help update_interval:set update_interval})
+       c(update_prompt) = "{res}on{txt}"{col 54}({help update_prompt:set update_prompt})
+    {hline}
+
+{title:Trace (program debugging) settings}
+
+    {hline}
+               c(trace) = "{res}off{txt}"{col 54}({help trace:set trace})
+          c(tracedepth) = {res}32000{txt}{col 54}({help trace:set tracedepth})
+            c(tracesep) = "{res}on{txt}"{col 54}({help trace:set tracesep})
+         c(traceindent) = "{res}on{txt}"{col 54}({help trace:set traceindent})
+         c(traceexpand) = "{res}on{txt}"{col 54}({help trace:set traceexpand})
+         c(tracenumber) = "{res}off{txt}"{col 54}({help trace:set tracenumber})
+         c(tracehilite) = "{res}{txt}"{col 54}({help trace:set tracehilite})
+    {hline}
+
+{title:Mata settings}
+
+    {hline}
+          c(matastrict) = "{res}off{txt}"{col 54}({help mata_set:set matastrict})
+            c(matalnum) = "{res}off{txt}"{col 54}({help mata_set:set matalnum})
+        c(mataoptimize) = "{res}on{txt}"{col 54}({help mata_set:set mataoptimize})
+           c(matafavor) = "{res}space{txt}"{col 54}({help mata_set:set matafavor})
+           c(matacache) = {res}2000{txt}{col 54}({help mata_set:set matacache})
+            c(matalibs) = "{res}lmatabase;lmataad..{txt}"{col 54}({help mata_set:set matalibs})
+         c(matamofirst) = "{res}off{txt}"{col 54}({help mata_set:set matamofirst})
+    {hline}
+
+{title:Unicode settings}
+
+    {hline}
+           c(locale_ui) = "{res}en_US{txt}"{col 54}({help set locale_ui:set locale_ui})
+    c(locale_functions) = "{res}en_US{txt}"{col 54}({help set locale_functions:set locale_functions})
+      c(locale_icudflt) = "{res}en_US{txt}"{col 54}({help unicode_locale:unicode locale})
+    {hline}
+
+{title:Other settings}
+
+    {hline}
+                c(type) = "{res}float{txt}"{col 54}({help generate:set type})
+             c(maxiter) = {res}16000{txt}{col 54}({help maxiter:set maxiter})
+       c(searchdefault) = "{res}all{txt}"{col 54}({help searchdefault:set searchdefault})
+                 c(rng) = "{res}default{txt}"{col 54}({help rng:set rng})
+         c(rng_current) = "{res}mt64{txt}"
+            c(rngstate) = "{res}XAA00000000000000..{txt}"{col 54}({help rngstate:set rngstate})
+           c(varabbrev) = "{res}on{txt}"{col 54}({help varabbrev:set varabbrev})
+          c(emptycells) = "{res}keep{txt}"{col 54}({help emptycells:set emptycells})
+          c(odbcdriver) = "{res}unicode{txt}"{col 54}({help odbc:set odbcdriver})
+            c(haverdir) = "{res}{txt}"{col 54}({help import haver:set haverdir})
+    {hline}
+
+{title:Other}
+
+    {hline}
+                  c(pi) = {res}3.141592653589793
+               {txt}c(alpha) = "{res}a b c d e f g h i..{txt}"
+               c(ALPHA) = "{res}A B C D E F G H I..{txt}"
+                c(Mons) = "{res}Jan Feb Mar Apr M..{txt}"
+              c(Months) = "{res}January February ..{txt}"
+               c(Wdays) = "{res}Sun Mon Tue Wed T..{txt}"
+            c(Weekdays) = "{res}Sunday Monday Tue..{txt}"
+                  c(rc) = {res}0{txt}{col 54}({help capture})
+    {hline}
+
+{com}. 
+. *Objective: You should be able to run my do file without changing a single line 
+. *                       of code
+. 
+. *Solution: You can do this using c(username) & if/else statements:
+. 
+. ********************Setting Working Directory**********************************
+. 
+. /*
+> IMPORTANT: ALWAYS use forward slash in folder/file paths becasue:
+> 1) windows can read both forward/back slash in file paths but Mac can only
+>    process forward slash.
+> 2) "Beware the backstabbing backslash" (http://www.stata-journal.com/sjpdf.html?articlenum=pr0042)
+>    ___^^Read it after the tutorial_____
+> */
+. 
+. 
+. 
+. *Approach 1
+. 
+. *Ali Hamza 1 (Windows)
+. if c(username)=="ah1152" {c -(}
+.         global user "C:/Users/ah1152/Box Sync/"
+. {c )-}
+{txt}
+{com}. 
+. * Ali Hamza 2 (MacOS)
+. else if c(username)=="Zambeel" {c -(}
+.         global user "/Users/Zambeel/Box Sync/"
+. {c )-}
+{txt}
+{com}. 
+. * Beatrice Leydier
+. else if c(username)=="Pytha" {c -(}
+.         global user "C:/Users/Pytha/Box Sync"
+. {c )-}
+{txt}
+{com}. 
+. * Grady Killeen
+. else if c(username)=="Grady" {c -(}
+.         global user "C:/Users/Grady/Box Sync"
+. {c )-}
+{txt}
+{com}. 
+. * Andreas Niederwieser
+. else if c(username)=="Andreas" {c -(}
+.         global user "C:/Users/Andreas/Box Sync"
+. {c )-}
+{txt}
+{com}. 
+. 
+. * Shashank Rai (MacOS)
+. else if c(username)=="shashankrai" {c -(}
+.         global user "/Users/shashankrai/Box Sync"
+. {c )-}
+{txt}
+{com}. 
+. * Jessica Hickle
+. else if c(username)=="JEHickle" {c -(}
+.         global user "/Users/JEHickle/Box Sync"
+. {c )-}
+{txt}
+{com}. * Chris Gray
+. else if c(username)=="Chris" {c -(}
+.         global user "C:/Users/Chris/Box Sync"
+. {c )-}
+{txt}
+{com}. 
+. *       Kaitlyn Turner
+. else if c(username)=="kaitlynturner" {c -(}
+.         global user "/Users/kaitlynturner/Box Sync"
+. {c )-}
+{txt}
+{com}. 
+. *Zachary Scherer
+. else if c(username)=="zach" {c -(}
+.         global user "C:/Users/zach/Box Sync"
+. {c )-}
+{txt}
+{com}.         
+. * everyone else who didn't send me their username and folder path
+. else {c -(}
+.         global user "Enter_Sync_Folder_Address_here"
+.         {c )-}
+{txt}
+{com}. **
+. 
+. cd "$user"
+{res}C:\Users\ah1152\Box Sync
+{txt}
+{com}. 
+. 
+. 
+. 
+. 
+. *Alt-Approach
+. 
+. if c(os)=="Windows" {c -(}
+.         global user "C:/Users/`c(username)'/Box Sync"
+.         {c )-}
+{txt}
+{com}. 
+. else {c -(}
+.         global user "/Users/`c(username)'/Box Sync"
+.         {c )-}
+{txt}
+{com}. 
+. cd "$user"
+{res}C:\Users\ah1152\Box Sync
+{txt}
+{com}. 
+. /*Issues with this code:
+>  This code is based on following two assumptions which might not always be true:
+>         1)We only have Windows or MacOS machines
+>         2)Everyone's Box Sync folder is names exactly the same.
+> */
+. 
+. 
+. ******************************Log Files*****************************************
+. 
+. * How to name log file
+. * Example: [do file name]_[date]_[your initials] => session3_20170210_AH
+. 
+. *Approach 1
+. log using "gui2de STATA Tutorials/Session 3/Logs/session3_20170210_AH", replace
+{err}log file already open
+{txt}{search r(604), local:r(604);}
+
+end of do-file
+
+{search r(604), local:r(604);}
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ah1152\Box Sync\gui2de STATA Tutorials/Session 3/Logs/session3_20170209_11pm_ah1152.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}10 Feb 2017, 00:02:51
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

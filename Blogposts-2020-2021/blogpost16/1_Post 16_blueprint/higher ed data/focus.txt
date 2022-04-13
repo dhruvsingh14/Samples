@@ -1,0 +1,28 @@
+for this weeks analysis, i will focus on the following.
+
+now, with the codes locked down.
+
+we can cut the data by state.
+
+then aggregate for each year. or select lowest and highest values to display spreads.
+
+or just select mean and median for each state.
+
+the measures we can focus on are:
+
+
+-- offerings
+
+-- admissions test scores, enrollment
+
+-- completions
+
+-- financial aid
+
+-- staff employed, pay
+
+we will limit our attention to the years 2004 onward, totalling 15 years worth of data.
+
+
+
+

@@ -1,0 +1,75 @@
+link: https://learning.oreilly.com/videos/python-for-finance/9781789618976
+
+go through, 
+
+and make a note of all modules / videos that show you how to calculate aspects of a portfolio
+
+then go through and categorize them under chapter labels or headers
+
+final markoff ones you've already done, and keep it moving
+
+# Returns:
+
+- Calculating a security's rate of return (skip)
+- Calculating a Security’s Rate of Return in Python – Simple Returns – Part I (check)
+- Calculating a Security’s Rate of Return in Python – Simple Returns – Part II (check)
+- Calculating a Security’s Return in Python – Logarithmic Returns (check)
+- Calculating the Rate of Return of a Portfolio of Securities (check)
+- Calculating the Rate of Return of Indices (skip)
+
+# Risk:
+
+- Calculating a Security’s Risk in Python (check)
+- Calculating the covariance between securities (check)
+- Calculating Covariance and Correlation (check)
+- Calculating Portfolio Risk (check)
+- Calculating Diversifiable and Non-Diversifiable Risk of a Portfolio (skip)
+
+# Allocation/ optimization:
+
+- Obtaining the Efficient Frontier in Python – Part I (check)
+- Obtaining the Efficient Frontier in Python – Part II (check)
+- Obtaining the Efficient Frontier in Python – Part III (check)
+
+# CAPM:
+
+- Calculating the Beta of a Stock (check)
+- Calculating the Expected Return of a Stock (CAPM) (check)
+- Obtaining the Sharpe ratio in Python (check)
+
+# Simulations:
+
+- Monte Carlo: Predicting Gross Profit – Part I (check)
+- Monte Carlo: Predicting Gross Profit – Part II (check)
+
+- Monte Carlo: Forecasting Stock Prices - Part I (check)
+- Monte Carlo: Forecasting Stock Prices - Part II (check)
+- Monte Carlo: Forecasting Stock Prices - Part III (check)
+
+- Monte Carlo: Black-Scholes-Merton (in progress)
+- Monte Carlo: Euler Discretization - Part I
+- Monte Carlo: Euler Discretization - Part II
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1002 @@
+﻿Variable Type,Indicator.Name
+% educated at level,Barro-Lee: Percentage of female population age 15-19 with no education
+% educated at level,Barro-Lee: Percentage of female population age 15-19 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 15-19 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 15-19 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 15-19 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 15-19 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 15-19 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 15+ with no education
+% educated at level,Barro-Lee: Percentage of female population age 15+ with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 15+ with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 15+ with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 15+ with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 15+ with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 15+ with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 20-24 with no education
+% educated at level,Barro-Lee: Percentage of female population age 20-24 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 20-24 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 20-24 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 20-24 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 20-24 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 20-24 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 25-29 with no education
+% educated at level,Barro-Lee: Percentage of female population age 25-29 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 25-29 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 25-29 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 25-29 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 25-29 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 25-29 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 25+ with no education
+% educated at level,Barro-Lee: Percentage of female population age 25+ with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 25+ with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 25+ with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 25+ with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 25+ with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 25+ with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 30-34 with no education
+% educated at level,Barro-Lee: Percentage of female population age 30-34 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 30-34 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 30-34 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 30-34 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 30-34 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 30-34 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 35-39 with no education
+% educated at level,Barro-Lee: Percentage of female population age 35-39 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 35-39 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 35-39 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 35-39 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 35-39 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 35-39 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 40-44 with no education
+% educated at level,Barro-Lee: Percentage of female population age 40-44 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 40-44 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 40-44 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 40-44 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 40-44 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 40-44 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 45-49 with no education
+% educated at level,Barro-Lee: Percentage of female population age 45-49 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 45-49 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 45-49 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 45-49 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 45-49 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 45-49 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 50-54 with no education
+% educated at level,Barro-Lee: Percentage of female population age 50-54 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 50-54 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 50-54 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 50-54 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 50-54 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 50-54 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 55-59 with no education
+% educated at level,Barro-Lee: Percentage of female population age 55-59 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 55-59 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 55-59 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 55-59 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 55-59 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 55-59 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 60-64 with no education
+% educated at level,Barro-Lee: Percentage of female population age 60-64 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 60-64 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 60-64 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 60-64 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 60-64 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 60-64 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 65-69 with no education
+% educated at level,Barro-Lee: Percentage of female population age 65-69 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 65-69 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 65-69 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 65-69 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 65-69 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 65-69 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 70-74 with no education
+% educated at level,Barro-Lee: Percentage of female population age 70-74 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 70-74 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 70-74 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 70-74 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 70-74 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 70-74 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of female population age 75+ with no education
+% educated at level,Barro-Lee: Percentage of female population age 75+ with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of female population age 75+ with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of female population age 75+ with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of female population age 75+ with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of female population age 75+ with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of female population age 75+ with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 15-19 with no education
+% educated at level,Barro-Lee: Percentage of population age 15-19 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 15-19 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 15-19 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 15-19 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 15-19 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 15-19 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 15+ with no education
+% educated at level,Barro-Lee: Percentage of population age 15+ with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 15+ with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 15+ with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 15+ with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 15+ with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 15+ with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 20-24 with no education
+% educated at level,Barro-Lee: Percentage of population age 20-24 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 20-24 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 20-24 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 20-24 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 20-24 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 20-24 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 25-29 with no education
+% educated at level,Barro-Lee: Percentage of population age 25-29 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 25-29 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 25-29 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 25-29 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 25-29 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 25-29 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 25+ with no education
+% educated at level,Barro-Lee: Percentage of population age 25+ with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 25+ with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 25+ with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 25+ with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 25+ with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 25+ with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 30-34 with no education
+% educated at level,Barro-Lee: Percentage of population age 30-34 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 30-34 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 30-34 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 30-34 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 30-34 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 30-34 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 35-39 with no education
+% educated at level,Barro-Lee: Percentage of population age 35-39 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 35-39 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 35-39 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 35-39 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 35-39 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 35-39 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 40-44 with no education
+% educated at level,Barro-Lee: Percentage of population age 40-44 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 40-44 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 40-44 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 40-44 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 40-44 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 40-44 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 45-49 with no education
+% educated at level,Barro-Lee: Percentage of population age 45-49 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 45-49 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 45-49 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 45-49 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 45-49 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 45-49 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 50-54 with no education
+% educated at level,Barro-Lee: Percentage of population age 50-54 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 50-54 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 50-54 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 50-54 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 50-54 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 50-54 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 55-59 with no education
+% educated at level,Barro-Lee: Percentage of population age 55-59 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 55-59 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 55-59 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 55-59 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 55-59 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 55-59 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 60-64 with no education
+% educated at level,Barro-Lee: Percentage of population age 60-64 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 60-64 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 60-64 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 60-64 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 60-64 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 60-64 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 65-69 with no education
+% educated at level,Barro-Lee: Percentage of population age 65-69 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 65-69 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 65-69 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 65-69 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 65-69 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 65-69 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 70-74 with no education
+% educated at level,Barro-Lee: Percentage of population age 70-74 with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 70-74 with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 70-74 with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 70-74 with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 70-74 with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 70-74 with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated at level,Barro-Lee: Percentage of population age 75+ with no education
+% educated at level,Barro-Lee: Percentage of population age 75+ with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 75+ with primary schooling. Total (Incomplete and Completed Primary)
+% educated at level,Barro-Lee: Percentage of population age 75+ with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 75+ with secondary schooling. Total (Incomplete and Completed Secondary)
+% educated at level,Barro-Lee: Percentage of population age 75+ with tertiary schooling. Completed Tertiary
+% educated at level,Barro-Lee: Percentage of population age 75+ with tertiary schooling. Total (Incomplete and Completed Tertiary)
+% educated level,UIS: Percentage of population age 25+ with at least a completed bachelor's or equivalent degree (ISCED 6 or higher). Female
+% educated level,UIS: Percentage of population age 25+ with at least a completed bachelor's or equivalent degree (ISCED 6 or higher). Male
+% educated level,UIS: Percentage of population age 25+ with at least a completed bachelor's or equivalent degree (ISCED 6 or higher). Total
+% educated level,UIS: Percentage of population age 25+ with at least a completed short-cycle tertiary degree (ISCED 5 or higher). Female
+% educated level,UIS: Percentage of population age 25+ with at least a completed short-cycle tertiary degree (ISCED 5 or higher). Male
+% educated level,UIS: Percentage of population age 25+ with at least a completed short-cycle tertiary degree (ISCED 5 or higher). Total
+% educated level,UIS: Percentage of population age 25+ with at least completed lower secondary education (ISCED 2 or higher). Female
+% educated level,UIS: Percentage of population age 25+ with at least completed lower secondary education (ISCED 2 or higher). Male
+% educated level,UIS: Percentage of population age 25+ with at least completed lower secondary education (ISCED 2 or higher). Total
+% educated level,UIS: Percentage of population age 25+ with at least completed post-secondary education (ISCED 4 or higher). Female
+% educated level,UIS: Percentage of population age 25+ with at least completed post-secondary education (ISCED 4 or higher). Male
+% educated level,UIS: Percentage of population age 25+ with at least completed post-secondary education (ISCED 4 or higher). Total
+% educated level,UIS: Percentage of population age 25+ with at least completed primary education (ISCED 1 or higher). Female
+% educated level,UIS: Percentage of population age 25+ with at least completed primary education (ISCED 1 or higher). Male
+% educated level,UIS: Percentage of population age 25+ with at least completed primary education (ISCED 1 or higher). Total
+% educated level,UIS: Percentage of population age 25+ with at least completed upper secondary education (ISCED 3 or higher). Female
+% educated level,UIS: Percentage of population age 25+ with at least completed upper secondary education (ISCED 3 or higher). Male
+% educated level,UIS: Percentage of population age 25+ with at least completed upper secondary education (ISCED 3 or higher). Total
+% enrolled,"Percentage of all students in tertiary education enrolled in ISCED 6, both sexes (%)"
+% enrolled,"Percentage of all students in tertiary education enrolled in ISCED 7, both sexes (%)"
+% enrolled,"Percentage of all students in tertiary education enrolled in ISCED 8, both sexes (%)"
+% enrolled,Percentage of enrolment in early childhood education programmes in private institutions (%)
+% enrolled,"Percentage of female students enrolled in primary education who are over-age, female (%)"
+% enrolled,"Percentage of female students in lower secondary education enrolled in general programmes, female (%)"
+% enrolled,"Percentage of female students in post-secondary non-tertiary education enrolled in vocational programmes, female (%)"
+% enrolled,"Percentage of female students in secondary education enrolled in general programmes, female (%)"
+% enrolled,Percentage of female students in tertiary education enrolled in ISCED 6
+% enrolled,Percentage of female students in tertiary education enrolled in ISCED 7
+% enrolled,Percentage of female students in tertiary education enrolled in ISCED 8
+% enrolled,"Percentage of female students in upper secondary education enrolled in general programmes, female (%)"
+% enrolled,Percentage of graduates from tertiary education who are female (%)
+% enrolled,Percentage of graduates from tertiary ISCED 6 programmes who are female (%)
+% enrolled,Percentage of graduates from tertiary ISCED 7 programmes who are female (%)
+% enrolled,Percentage of graduates from tertiary ISCED 8 programmes who are female (%)
+% enrolled,"Percentage of male students enrolled in primary education who are over-age, male (%)"
+% enrolled,"Percentage of male students in lower secondary education enrolled in general programmes, male (%)"
+% enrolled,"Percentage of male students in post-secondary non-tertiary education enrolled in vocational programmes, male (%)"
+% enrolled,"Percentage of male students in secondary education enrolled in general programmes, male (%)"
+% enrolled,Percentage of male students in tertiary education enrolled in ISCED 6
+% enrolled,Percentage of male students in tertiary education enrolled in ISCED 7
+% enrolled,Percentage of male students in tertiary education enrolled in ISCED 8
+Compensation,All staff compensation as % of total expenditure in lower secondary public institutions (%)
+Compensation,All staff compensation as % of total expenditure in pre-primary public institutions (%)
+Compensation,All staff compensation as % of total expenditure in primary public institutions (%)
+Compensation,All staff compensation as % of total expenditure in public institutions (%)
+Compensation,All staff compensation as % of total expenditure in secondary public institutions (%)
+Compensation,All staff compensation as % of total expenditure in tertiary public institutions (%)
+Compensation,All staff compensation as % of total expenditure in upper secondary public institutions (%)
+Compensation,Annual statutory teacher salaries in public institutions in USD. Lower Secondary. 15 years of experience
+Compensation,Annual statutory teacher salaries in public institutions in USD. Lower Secondary. Starting salary
+Compensation,Annual statutory teacher salaries in public institutions in USD. Lower Secondary. Top of scale
+Compensation,Annual statutory teacher salaries in public institutions in USD. Primary. 15 years of experience
+Compensation,Annual statutory teacher salaries in public institutions in USD. Primary. Starting salary
+Compensation,Annual statutory teacher salaries in public institutions in USD. Primary. Top of scale
+Compensation,Annual statutory teacher salaries in public institutions in USD. Upper Secondary. 15 years of experience
+Compensation,Annual statutory teacher salaries in public institutions in USD. Upper Secondary. Starting salary
+Compensation,Annual statutory teacher salaries in public institutions in USD. Upper Secondary. Top of scale
+Compulsory Education,Duration of compulsory education (years)
+Compulsory Education,"Population of compulsory school age, both sexes (number)"
+Compulsory Education,"Population of compulsory school age, female (number)"
+Compulsory Education,"Population of compulsory school age, male (number)"
+computers,Personal computers (per 100 people)
+Duration,Theoretical duration of lower secondary education (years)
+Duration,Theoretical duration of post-secondary non-tertiary education (years)
+Duration,Theoretical duration of pre-primary education (years)
+Duration,Theoretical duration of primary education (years)
+Duration,Theoretical duration of secondary education (years)
+Duration,Theoretical duration of upper secondary education (years)
+enrolled segments,"Percentage of male students in upper secondary education enrolled in general programmes, male (%)"
+enrolled segments,"Percentage of students enrolled in primary education who are over-age, both sexes (%)"
+enrolled segments,Percentage of students in early childhood education who are female (%)
+enrolled segments,"Percentage of students in lower secondary education enrolled in general programmes, both sexes (%)"
+enrolled segments,Percentage of students in lower secondary education who are female (%)
+enrolled segments,Percentage of students in lower secondary general education who are female (%)
+enrolled segments,"Percentage of students in post-secondary non-tertiary education enrolled in vocational programmes, both sexes (%)"
+enrolled segments,Percentage of students in post-secondary non-tertiary education who are female (%)
+enrolled segments,Percentage of students in post-secondary non-tertiary vocational education who are female (%)
+enrolled segments,Percentage of students in pre-primary education who are female (%)
+enrolled segments,Percentage of students in primary education who are female (%)
+enrolled segments,"Percentage of students in secondary education enrolled in general programmes, both sexes (%)"
+enrolled segments,Percentage of students in secondary education who are female (%)
+enrolled segments,Percentage of students in secondary general education who are female (%)
+enrolled segments,Percentage of students in tertiary education who are female (%)
+enrolled segments,Percentage of students in tertiary ISCED 6 programmes who are female (%)
+enrolled segments,Percentage of students in tertiary ISCED 7 programmes who are female (%)
+enrolled segments,Percentage of students in tertiary ISCED 8 programmes who are female (%)
+enrolled segments,"Percentage of students in upper secondary education enrolled in general programmes, both sexes (%)"
+enrolled segments,Percentage of students in upper secondary education who are female (%)
+enrolled segments,Percentage of students in upper secondary general education who are female (%)
+Enrolment,"Adjusted net enrolment rate, primary, gender parity index (GPI)"
+Enrolment,"Enrolment in early childhood education, both sexes (number)"
+Enrolment,"Enrolment in early childhood education, female (number)"
+Enrolment,"Enrolment in early childhood education, private institutions, both sexes (number)"
+Enrolment,"Enrolment in early childhood education, private institutions, female (number)"
+Enrolment,"Enrolment in early childhood education, public institutions, both sexes (number)"
+Enrolment,"Enrolment in early childhood education, public institutions, female (number)"
+Enrolment,"Enrolment in Grade 1 of lower secondary general education, both sexes (number)"
+Enrolment,"Enrolment in Grade 1 of lower secondary general education, female (number)"
+Enrolment,"Enrolment in Grade 1 of primary education, both sexes (number)"
+Enrolment,"Enrolment in Grade 1 of primary education, female (number)"
+Enrolment,"Enrolment in Grade 2 of lower secondary general education, both sexes (number)"
+Enrolment,"Enrolment in Grade 2 of lower secondary general education, female (number)"
+Enrolment,"Enrolment in Grade 2 of primary education, both sexes (number)"
+Enrolment,"Enrolment in Grade 2 of primary education, female (number)"
+Enrolment,"Enrolment in Grade 3 of lower secondary general education, both sexes (number)"
+Enrolment,"Enrolment in Grade 3 of lower secondary general education, female (number)"
+Enrolment,"Enrolment in Grade 3 of primary education, both sexes (number)"
+Enrolment,"Enrolment in Grade 3 of primary education, female (number)"
+Enrolment,"Enrolment in Grade 4 of primary education, both sexes (number)"
+Enrolment,"Enrolment in Grade 4 of primary education, female (number)"
+Enrolment,"Enrolment in Grade 5 of primary education, both sexes (number)"
+Enrolment,"Enrolment in Grade 5 of primary education, female (number)"
+Enrolment,"Enrolment in lower secondary education, both sexes (number)"
+Enrolment,"Enrolment in lower secondary education, female (number)"
+Enrolment,"Enrolment in lower secondary education, private institutions, both sexes (number)"
+Enrolment,"Enrolment in lower secondary education, private institutions, female (number)"
+Enrolment,"Enrolment in lower secondary education, public institutions, both sexes (number)"
+Enrolment,"Enrolment in lower secondary education, public institutions, female (number)"
+Enrolment,"Enrolment in lower secondary general, both sexes (number)"
+Enrolment,"Enrolment in lower secondary general, female (number)"
+Enrolment,"Enrolment in post-secondary non-tertiary education, both sexes (number)"
+Enrolment,"Enrolment in post-secondary non-tertiary education, female (number)"
+Enrolment,"Enrolment in post-secondary non-tertiary education, private institutions, both sexes (number)"
+Enrolment,"Enrolment in post-secondary non-tertiary education, private institutions, female (number)"
+Enrolment,"Enrolment in post-secondary non-tertiary education, public institutions, both sexes (number)"
+Enrolment,"Enrolment in post-secondary non-tertiary education, public institutions, female (number)"
+Enrolment,"Enrolment in pre-primary education, both sexes (number)"
+Enrolment,"Enrolment in pre-primary education, female (number)"
+Enrolment,"Enrolment in pre-primary education, private institutions, both sexes (number)"
+Enrolment,"Enrolment in pre-primary education, private institutions, female (number)"
+Enrolment,"Enrolment in pre-primary education, public institutions, both sexes (number)"
+Enrolment,"Enrolment in pre-primary education, public institutions, female (number)"
+Enrolment,"Enrolment in primary education, both sexes (number)"
+Enrolment,"Enrolment in primary education, female (number)"
+Enrolment,"Enrolment in primary education, private institutions, both sexes (number)"
+Enrolment,"Enrolment in primary education, private institutions, female (number)"
+Enrolment,"Enrolment in primary education, public institutions, both sexes (number)"
+Enrolment,"Enrolment in primary education, public institutions, female (number)"
+Enrolment,"Enrolment in secondary education, both sexes (number)"
+Enrolment,"Enrolment in secondary education, female (number)"
+Enrolment,"Enrolment in secondary education, private institutions, both sexes (number)"
+Enrolment,"Enrolment in secondary education, private institutions, female (number)"
+Enrolment,"Enrolment in secondary education, public institutions, both sexes (number)"
+Enrolment,"Enrolment in secondary education, public institutions, female (number)"
+Enrolment,"Enrolment in secondary general, both sexes (number)"
+Enrolment,"Enrolment in secondary general, female (number)"
+Enrolment,"Enrolment in tertiary education per 100,000 inhabitants, both sexes"
+Enrolment,"Enrolment in tertiary education per 100,000 inhabitants, female"
+Enrolment,"Enrolment in tertiary education per 100,000 inhabitants, male"
+Enrolment,"Enrolment in tertiary education, all programmes, both sexes (number)"
+Enrolment,"Enrolment in tertiary education, all programmes, female (number)"
+Enrolment,"Enrolment in tertiary education, ISCED 6 programmes, both sexes (number)"
+Enrolment,"Enrolment in tertiary education, ISCED 6 programmes, female (number)"
+Enrolment,"Enrolment in tertiary education, ISCED 7 programmes, both sexes (number)"
+Enrolment,"Enrolment in tertiary education, ISCED 7 programmes, female (number)"
+Enrolment,"Enrolment in tertiary education, ISCED 8 programmes, both sexes (number)"
+Enrolment,"Enrolment in tertiary education, ISCED 8 programmes, female (number)"
+Enrolment,"Enrolment in upper secondary education, both sexes (number)"
+Enrolment,"Enrolment in upper secondary education, female (number)"
+Enrolment,"Enrolment in upper secondary education, private institutions, both sexes (number)"
+Enrolment,"Enrolment in upper secondary education, private institutions, female (number)"
+Enrolment,"Enrolment in upper secondary education, public institutions, both sexes (number)"
+Enrolment,"Enrolment in upper secondary education, public institutions, female (number)"
+Enrolment,"Enrolment in upper secondary general, both sexes (number)"
+Enrolment,"Enrolment in upper secondary general, female (number)"
+Enrolment,"Net enrolment rate, primary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, lower secondary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, lower secondary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, lower secondary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, lower secondary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, post-secondary non-tertiary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, post-secondary non-tertiary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, post-secondary non-tertiary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, post-secondary non-tertiary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, pre-primary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, pre-primary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, pre-primary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, pre-primary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary and lower secondary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary and lower secondary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary and lower secondary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, primary and lower secondary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary and secondary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary and secondary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary and secondary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, primary and secondary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary to tertiary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary to tertiary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary to tertiary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, primary to tertiary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, primary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, primary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, secondary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, secondary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, secondary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, secondary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, tertiary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, tertiary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, tertiary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, tertiary, male (%)"
+Enrolment Ratio,"Gross enrolment ratio, upper secondary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, upper secondary, female (%)"
+Enrolment Ratio,"Gross enrolment ratio, upper secondary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, upper secondary, male (%)"
+Enrolment Ratio,"Gross graduation ratio from first degree programmes (ISCED 6 and 7) in tertiary education, both sexes (%)"
+Enrolment Ratio,"Gross graduation ratio from first degree programmes (ISCED 6 and 7) in tertiary education, female (%)"
+Enrolment Ratio,"Gross graduation ratio from first degree programmes (ISCED 6 and 7) in tertiary education, male (%)"
+Enrolment Ratio,"Gross intake ratio to Grade 1 of primary education, both sexes (%)"
+Enrolment Ratio,"Gross intake ratio to Grade 1 of primary education, female (%)"
+Enrolment Ratio,"Gross intake ratio to Grade 1 of primary education, gender parity index (GPI)"
+Enrolment Ratio,"Gross intake ratio to Grade 1 of primary education, male (%)"
+Enrolment Ratio,"Gross outbound enrolment ratio, all regions, both sexes (%)"
+Expenditure,Capital expenditure as % of total expenditure in lower secondary public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in pre-primary public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in primary public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in secondary public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in tertiary public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in upper-secondary public institutions (%)
+Expenditure,Current expenditure as % of total expenditure in lower secondary public institutions (%)
+Expenditure,Current expenditure as % of total expenditure in pre-primary public institutions (%)
+Expenditure,Current expenditure as % of total expenditure in primary public institutions (%)
+Expenditure,Current expenditure as % of total expenditure in public institutions (%)
+Expenditure,Current expenditure as % of total expenditure in secondary public institutions (%)
+Expenditure,Current expenditure as % of total expenditure in tertiary public institutions (%)
+Expenditure,Current expenditure as % of total expenditure in upper-secondary public institutions (%)
+Expenditure,Current expenditure other than staff compensation as % of total expenditure in lower secondary public institutions (%)
+Expenditure,Current expenditure other than staff compensation as % of total expenditure in pre-primary public institutions (%)
+Expenditure,Current expenditure other than staff compensation as % of total expenditure in primary public institutions (%)
+Expenditure,Current expenditure other than staff compensation as % of total expenditure in public institutions (%)
+Expenditure,Current expenditure other than staff compensation as % of total expenditure in secondary public institutions (%)
+Expenditure,Current expenditure other than staff compensation as % of total expenditure in tertiary public institutions (%)
+Expenditure,Current expenditure other than staff compensation as % of total expenditure in upper secondary public institutions (%)
+"GDP, GNI",GDP at market prices (constant 2005 US$)
+"GDP, GNI",GDP at market prices (current US$)
+"GDP, GNI",GDP per capita (constant 2005 US$)
+"GDP, GNI",GDP per capita (current US$)
+"GDP, GNI","GDP per capita, PPP (constant 2011 international $)"
+"GDP, GNI","GDP per capita, PPP (current international $)"
+"GDP, GNI","GDP, PPP (constant 2011 international $)"
+"GDP, GNI","GDP, PPP (current international $)"
+"GDP, GNI",GNI (current US$)
+"GDP, GNI","GNI per capita, Atlas method (current US$)"
+"GDP, GNI","GNI per capita, PPP (current international $)"
+"GDP, GNI","GNI, PPP (current international $)"
+Government Expenditure,Expenditure on education as % of total government expenditure (%)
+Government Expenditure,Expenditure on lower secondary as % of government expenditure on education (%)
+Government Expenditure,Expenditure on lower secondary as % of total government expenditure (%)
+Government Expenditure,Expenditure on pre-primary as % of government expenditure on education (%)
+Government Expenditure,Expenditure on pre-primary as % of total government expenditure (%)
+Government Expenditure,Expenditure on primary as % of government expenditure on education (%)
+Government Expenditure,Expenditure on primary as % of total government expenditure (%)
+Government Expenditure,Expenditure on secondary as % of government expenditure on education (%)
+Government Expenditure,Expenditure on secondary as % of total government expenditure (%)
+Government Expenditure,Expenditure on tertiary as % of government expenditure on education (%)
+Government Expenditure,Expenditure on tertiary as % of total government expenditure (%)
+Government Expenditure,Expenditure on upper secondary as % of government expenditure on education (%)
+Government Expenditure,Expenditure on upper secondary as % of total government expenditure (%)
+Government Expenditure,Government expenditure in educational institutions as % of GDP (%)
+Government Expenditure,Government expenditure in pre-primary institutions as % of GDP (%)
+Government Expenditure,Government expenditure in primary institutions as % of GDP (%)
+Government Expenditure,Government expenditure in secondary institutions education as % of GDP (%)
+Government Expenditure,Government expenditure in tertiary institutions as % of GDP (%)
+Government Expenditure,Government expenditure on education as % of GDP (%)
+Government Expenditure,Government expenditure on pre-primary education as % of GDP (%)
+Government Expenditure,Government expenditure on primary education as % of GDP (%)
+Government Expenditure,Government expenditure on secondary education as % of GDP (%)
+Government Expenditure,Government expenditure on tertiary education as % of GDP (%)
+Government Expenditure,Government expenditure per lower secondary student (constant PPP$)
+Government Expenditure,Government expenditure per lower secondary student (constant US$)
+Government Expenditure,Government expenditure per lower secondary student (PPP$)
+Government Expenditure,Government expenditure per lower secondary student (US$)
+Government Expenditure,Government expenditure per lower secondary student as % of GDP per capita (%)
+Government Expenditure,Government expenditure per primary student (constant PPP$)
+Government Expenditure,Government expenditure per primary student (constant US$)
+Government Expenditure,Government expenditure per primary student (PPP$)
+Government Expenditure,Government expenditure per primary student (US$)
+Government Expenditure,Government expenditure per primary student as % of GDP per capita (%)
+Government Expenditure,Government expenditure per secondary student (constant PPP$)
+Government Expenditure,Government expenditure per secondary student (constant US$)
+Government Expenditure,Government expenditure per secondary student (PPP$)
+Government Expenditure,Government expenditure per secondary student (US$)
+Government Expenditure,Government expenditure per secondary student as % of GDP per capita (%)
+Government Expenditure,Government expenditure per tertiary student (constant PPP$)
+Government Expenditure,Government expenditure per tertiary student (constant US$)
+Government Expenditure,Government expenditure per tertiary student (PPP$)
+Government Expenditure,Government expenditure per tertiary student (US$)
+Government Expenditure,Government expenditure per tertiary student as % of GDP per capita (%)
+Government Expenditure,Government expenditure per upper secondary student (constant PPP$)
+Government Expenditure,Government expenditure per upper secondary student (constant US$)
+Government Expenditure,Government expenditure per upper secondary student (PPP$)
+Government Expenditure,Government expenditure per upper secondary student (US$)
+Government Expenditure,Government expenditure per upper secondary student as % of GDP per capita (%)
+Graduates,"Graduates from ISCED 6 programmes in tertiary education, both sexes (number)"
+Graduates,"Graduates from ISCED 6 programmes in tertiary education, female (number)"
+Graduates,"Graduates from ISCED 7 programmes in tertiary education, both sexes (number)"
+Graduates,"Graduates from ISCED 7 programmes in tertiary education, female (number)"
+Graduates,"Graduates from ISCED 8 programmes in tertiary education, both sexes (number)"
+Graduates,"Graduates from ISCED 8 programmes in tertiary education, female (number)"
+Graduates,"Graduates from tertiary education, both sexes (number)"
+Graduates,"Graduates from tertiary education, female (number)"
+Intake,"Adjusted net intake rate to Grade 1 of primary education, both sexes (%)"
+Intake,"Adjusted net intake rate to Grade 1 of primary education, female (%)"
+Intake,"Adjusted net intake rate to Grade 1 of primary education, gender parity index (GPI)"
+Intake,"Adjusted net intake rate to Grade 1 of primary education, male (%)"
+Intake,"Net intake rate to Grade 1 of primary education, both sexes (%)"
+Intake,"Net intake rate to Grade 1 of primary education, female (%)"
+Intake,"Net intake rate to Grade 1 of primary education, male (%)"
+Internet Users,Internet users (per 100 people)
+Labor,"Labor force, female (% of total labor force)"
+Labor,"Labor force, total"
+Mobility,"Inbound mobility rate, both sexes (%)"
+Mobility,"Inbound mobility rate, female (%)"
+Mobility,"Inbound mobility rate, male (%)"
+Mobility,"Net flow of internationally mobile students (inbound - outbound), both sexes (number)"
+Mobility,"Net flow ratio of internationally mobile students (inbound - outbound), both sexes (%)"
+Mobility,"Outbound mobility ratio, all regions, both sexes (%)"
+Mobility,"Percentage of all inbound internationally mobile students in tertiary education in the host country who are female, (%)"
+Mobility,"Total inbound internationally mobile students, both sexes (number)"
+Mobility,"Total inbound internationally mobile students, female (number)"
+Mobility,"Total outbound internationally mobile tertiary students studying abroad, all countries, both sexes (number)"
+Mortality,"Mortality rate, under-5 (per 1,000)"
+Net Enrolment Rate,"Total net enrolment rate, primary, both sexes (%)"
+Net Enrolment Rate,"Total net enrolment rate, primary, female (%)"
+Net Enrolment Rate,"Total net enrolment rate, primary, gender parity index (GPI)"
+Net Enrolment Rate,"Total net enrolment rate, primary, male (%)"
+New Enrollees,"New entrants to Grade 1 of primary education, both sexes (number)"
+New Enrollees,"New entrants to Grade 1 of primary education, female (number)"
+New Enrollees,"New entrants to Grade 1 of primary education, percentage female (%)"
+Over-Age Primary,"Over-age enrolment ratio in primary education, both sexes (%)"
+Over-Age Primary,"Over-age enrolment ratio in primary education, female (%)"
+Over-Age Primary,"Over-age enrolment ratio in primary education, male (%)"
+Population,"Barro-Lee: Population in thousands, age 15-19, female"
+Population,"Barro-Lee: Population in thousands, age 15-19, total"
+Population,"Barro-Lee: Population in thousands, age 15+, female"
+Population,"Barro-Lee: Population in thousands, age 15+, total"
+Population,"Barro-Lee: Population in thousands, age 20-24, female"
+Population,"Barro-Lee: Population in thousands, age 20-24, total"
+Population,"Barro-Lee: Population in thousands, age 25-29, female"
+Population,"Barro-Lee: Population in thousands, age 25-29, total"
+Population,"Barro-Lee: Population in thousands, age 25+, female"
+Population,"Barro-Lee: Population in thousands, age 25+, total"
+Population,"Barro-Lee: Population in thousands, age 30-34, female"
+Population,"Barro-Lee: Population in thousands, age 30-34, total"
+Population,"Barro-Lee: Population in thousands, age 35-39, female"
+Population,"Barro-Lee: Population in thousands, age 35-39, total"
+Population,"Barro-Lee: Population in thousands, age 40-44, female"
+Population,"Barro-Lee: Population in thousands, age 40-44, total"
+Population,"Barro-Lee: Population in thousands, age 45-49, female"
+Population,"Barro-Lee: Population in thousands, age 45-49, total"
+Population,"Barro-Lee: Population in thousands, age 50-54, female"
+Population,"Barro-Lee: Population in thousands, age 50-54, total"
+Population,"Barro-Lee: Population in thousands, age 55-59, female"
+Population,"Barro-Lee: Population in thousands, age 55-59, total"
+Population,"Barro-Lee: Population in thousands, age 60-64, female"
+Population,"Barro-Lee: Population in thousands, age 60-64, total"
+Population,"Barro-Lee: Population in thousands, age 65-69, female"
+Population,"Barro-Lee: Population in thousands, age 65-69, total"
+Population,"Barro-Lee: Population in thousands, age 70-74, female"
+Population,"Barro-Lee: Population in thousands, age 70-74, total"
+Population,"Barro-Lee: Population in thousands, age 75+, female"
+Population,"Barro-Lee: Population in thousands, age 75+, total"
+population,Population growth (annual %)
+population,"Population of the official age for lower secondary education, both sexes (number)"
+population,"Population of the official age for lower secondary education, female (number)"
+population,"Population of the official age for lower secondary education, male (number)"
+population,"Population of the official age for post-secondary non-tertiary education, both sexes (number)"
+population,"Population of the official age for post-secondary non-tertiary education, female (number)"
+population,"Population of the official age for post-secondary non-tertiary education, male (number)"
+population,"Population of the official age for pre-primary education, both sexes (number)"
+population,"Population of the official age for pre-primary education, female (number)"
+population,"Population of the official age for pre-primary education, male (number)"
+population,"Population of the official age for primary education, both sexes (number)"
+population,"Population of the official age for primary education, female (number)"
+population,"Population of the official age for primary education, male (number)"
+population,"Population of the official age for secondary education, both sexes (number)"
+population,"Population of the official age for secondary education, female (number)"
+population,"Population of the official age for secondary education, male (number)"
+population,"Population of the official age for tertiary education, both sexes (number)"
+population,"Population of the official age for tertiary education, female (number)"
+population,"Population of the official age for tertiary education, male (number)"
+population,"Population of the official age for the last grade of primary education, both sexes (number)"
+population,"Population of the official age for the last grade of primary education, female (number)"
+population,"Population of the official age for the last grade of primary education, male (number)"
+population,"Population of the official age for upper secondary education, both sexes (number)"
+population,"Population of the official age for upper secondary education, female (number)"
+population,"Population of the official age for upper secondary education, male (number)"
+population,"Population of the official entrance age to primary education, both sexes (number)"
+population,"Population of the official entrance age to primary education, female (number)"
+population,"Population of the official entrance age to primary education, male (number)"
+population,"Population of the official entrance age to secondary general education, both sexes (number)"
+population,"Population of the official entrance age to secondary general education, female (number)"
+population,"Population of the official entrance age to secondary general education, male (number)"
+population,"Population, age 0, female"
+population,"Population, age 0, male"
+population,"Population, age 0, total"
+population,"Population, age 1, female"
+population,"Population, age 1, male"
+population,"Population, age 1, total"
+population,"Population, age 10, female"
+population,"Population, age 10, male"
+population,"Population, age 10, total"
+population,"Population, age 11, female"
+population,"Population, age 11, male"
+population,"Population, age 11, total"
+population,"Population, age 12, female"
+population,"Population, age 12, male"
+population,"Population, age 12, total"
+population,"Population, age 13, female"
+population,"Population, age 13, male"
+population,"Population, age 13, total"
+population,"Population, age 14, female"
+population,"Population, age 14, male"
+population,"Population, age 14, total"
+population,"Population, age 15, female"
+population,"Population, age 15, male"
+population,"Population, age 15, total"
+population,"Population, age 16, female"
+population,"Population, age 16, male"
+population,"Population, age 16, total"
+population,"Population, age 17, female"
+population,"Population, age 17, male"
+population,"Population, age 17, total"
+population,"Population, age 18, female"
+population,"Population, age 18, male"
+population,"Population, age 18, total"
+population,"Population, age 19, female"
+population,"Population, age 19, male"
+population,"Population, age 19, total"
+population,"Population, age 2, female"
+population,"Population, age 2, male"
+population,"Population, age 2, total"
+population,"Population, age 20, female"
+population,"Population, age 20, male"
+population,"Population, age 20, total"
+population,"Population, age 21, female"
+population,"Population, age 21, male"
+population,"Population, age 21, total"
+population,"Population, age 22, female"
+population,"Population, age 22, male"
+population,"Population, age 22, total"
+population,"Population, age 23, female"
+population,"Population, age 23, male"
+population,"Population, age 23, total"
+population,"Population, age 24, female"
+population,"Population, age 24, male"
+population,"Population, age 24, total"
+population,"Population, age 25, female"
+population,"Population, age 25, male"
+population,"Population, age 25, total"
+population,"Population, age 3, female"
+population,"Population, age 3, male"
+population,"Population, age 3, total"
+population,"Population, age 4, female"
+population,"Population, age 4, male"
+population,"Population, age 4, total"
+population,"Population, age 5, female"
+population,"Population, age 5, male"
+population,"Population, age 5, total"
+population,"Population, age 6, female"
+population,"Population, age 6, male"
+population,"Population, age 6, total"
+population,"Population, age 7, female"
+population,"Population, age 7, male"
+population,"Population, age 7, total"
+population,"Population, age 8, female"
+population,"Population, age 8, male"
+population,"Population, age 8, total"
+population,"Population, age 9, female"
+population,"Population, age 9, male"
+population,"Population, age 9, total"
+population,"Population, ages 0-14 (% of total)"
+population,"Population, ages 0-14, female"
+population,"Population, ages 0-14, male"
+population,"Population, ages 0-14, total"
+population,"Population, ages 10-14, female"
+population,"Population, ages 10-14, male"
+population,"Population, ages 10-14, total"
+population,"Population, ages 10-15, female"
+population,"Population, ages 10-15, male"
+population,"Population, ages 10-15, total"
+population,"Population, ages 10-16, female"
+population,"Population, ages 10-16, male"
+population,"Population, ages 10-16, total"
+population,"Population, ages 10-17, female"
+population,"Population, ages 10-17, male"
+population,"Population, ages 10-17, total"
+population,"Population, ages 10-18, female"
+population,"Population, ages 10-18, male"
+population,"Population, ages 10-18, total"
+population,"Population, ages 11-15, female"
+population,"Population, ages 11-15, male"
+population,"Population, ages 11-15, total"
+population,"Population, ages 11-16, female"
+population,"Population, ages 11-16, male"
+population,"Population, ages 11-16, total"
+population,"Population, ages 11-17, female"
+population,"Population, ages 11-17, male"
+population,"Population, ages 11-17, total"
+population,"Population, ages 11-18, female"
+population,"Population, ages 11-18, male"
+population,"Population, ages 11-18, total"
+population,"Population, ages 12-15, female"
+population,"Population, ages 12-15, male"
+population,"Population, ages 12-15, total"
+population,"Population, ages 12-16, female"
+population,"Population, ages 12-16, male"
+population,"Population, ages 12-16, total"
+population,"Population, ages 12-17, female"
+population,"Population, ages 12-17, male"
+population,"Population, ages 12-17, total"
+population,"Population, ages 12-18, female"
+population,"Population, ages 12-18, male"
+population,"Population, ages 12-18, total"
+population,"Population, ages 13-16, female"
+population,"Population, ages 13-16, male"
+population,"Population, ages 13-16, total"
+population,"Population, ages 13-17, female"
+population,"Population, ages 13-17, male"
+population,"Population, ages 13-17, total"
+population,"Population, ages 13-18, female"
+population,"Population, ages 13-18, male"
+population,"Population, ages 13-18, total"
+population,"Population, ages 13-19, female"
+population,"Population, ages 13-19, male"
+population,"Population, ages 13-19, total"
+population,"Population, ages 14-18, female"
+population,"Population, ages 14-18, male"
+population,"Population, ages 14-18, total"
+population,"Population, ages 14-19, female"
+population,"Population, ages 14-19, male"
+population,"Population, ages 14-19, total"
+population,"Population, ages 15-24, female"
+population,"Population, ages 15-24, male"
+population,"Population, ages 15-24, total"
+population,"Population, ages 15-64 (% of total)"
+population,"Population, ages 15-64, female"
+population,"Population, ages 15-64, male"
+population,"Population, ages 15-64, total"
+population,"Population, ages 3-5, female"
+population,"Population, ages 3-5, male"
+population,"Population, ages 3-5, total"
+population,"Population, ages 4-6, female"
+population,"Population, ages 4-6, male"
+population,"Population, ages 4-6, total"
+population,"Population, ages 5-10, female"
+population,"Population, ages 5-10, male"
+population,"Population, ages 5-10, total"
+population,"Population, ages 5-11, female"
+population,"Population, ages 5-11, male"
+population,"Population, ages 5-11, total"
+population,"Population, ages 5-9, female"
+population,"Population, ages 5-9, male"
+population,"Population, ages 5-9, total"
+population,"Population, ages 6-10, female"
+population,"Population, ages 6-10, male"
+population,"Population, ages 6-10, total"
+population,"Population, ages 6-11, female"
+population,"Population, ages 6-11, male"
+population,"Population, ages 6-11, total"
+population,"Population, ages 6-12, female"
+population,"Population, ages 6-12, male"
+population,"Population, ages 6-12, total"
+population,"Population, ages 6-9, female"
+population,"Population, ages 6-9, male"
+population,"Population, ages 6-9, total"
+population,"Population, ages 7-10, female"
+population,"Population, ages 7-10, male"
+population,"Population, ages 7-10, total"
+population,"Population, ages 7-11, female"
+population,"Population, ages 7-11, male"
+population,"Population, ages 7-11, total"
+population,"Population, ages 7-12, female"
+population,"Population, ages 7-12, male"
+population,"Population, ages 7-12, total"
+population,"Population, ages 7-13, female"
+population,"Population, ages 7-13, male"
+population,"Population, ages 7-13, total"
+population,"Population, ages 7-9, female"
+population,"Population, ages 7-9, male"
+population,"Population, ages 7-9, total"
+population,"Population, female"
+population,"Population, female (% of total)"
+population,"Population, male"
+population,"Population, male (% of total)"
+population,"Population, total"
+public-private,Percentage of enrolment in lower secondary education in private institutions (%)
+public-private,Percentage of enrolment in post-secondary non-tertiary education in private institutions (%)
+public-private,Percentage of enrolment in pre-primary education in private institutions (%)
+public-private,Percentage of enrolment in primary education in private institutions (%)
+public-private,Percentage of enrolment in secondary education in private institutions (%)
+public-private,Percentage of enrolment in tertiary education in private institutions (%)
+public-private,Percentage of enrolment in upper secondary education in private institutions (%)
+School Life Expectancy,"School life expectancy, post-secondary non-tertiary, both sexes (years)"
+School Life Expectancy,"School life expectancy, post-secondary non-tertiary, female (years)"
+School Life Expectancy,"School life expectancy, post-secondary non-tertiary, gender parity index (GPI)"
+School Life Expectancy,"School life expectancy, post-secondary non-tertiary, male (years)"
+School Life Expectancy,"School life expectancy, pre-primary, both sexes (years)"
+School Life Expectancy,"School life expectancy, pre-primary, female (years)"
+School Life Expectancy,"School life expectancy, pre-primary, gender parity index (GPI)"
+School Life Expectancy,"School life expectancy, pre-primary, male (years)"
+School Life Expectancy,"School life expectancy, primary and lower secondary, both sexes (years)"
+School Life Expectancy,"School life expectancy, primary and lower secondary, female (years)"
+School Life Expectancy,"School life expectancy, primary and lower secondary, male (years)"
+School Life Expectancy,"School life expectancy, primary and secondary, both sexes (years)"
+School Life Expectancy,"School life expectancy, primary and secondary, female (years)"
+School Life Expectancy,"School life expectancy, primary and secondary, gender parity index (GPI)"
+School Life Expectancy,"School life expectancy, primary and secondary, male (years)"
+School Life Expectancy,"School life expectancy, primary to tertiary, both sexes (years)"
+School Life Expectancy,"School life expectancy, primary to tertiary, female (years)"
+School Life Expectancy,"School life expectancy, primary to tertiary, gender parity index (GPI)"
+School Life Expectancy,"School life expectancy, primary to tertiary, male (years)"
+School Life Expectancy,"School life expectancy, primary, both sexes (years)"
+School Life Expectancy,"School life expectancy, primary, female (years)"
+School Life Expectancy,"School life expectancy, primary, gender parity index (GPI)"
+School Life Expectancy,"School life expectancy, primary, male (years)"
+School Life Expectancy,"School life expectancy, secondary, both sexes (years)"
+School Life Expectancy,"School life expectancy, secondary, female (years)"
+School Life Expectancy,"School life expectancy, secondary, gender parity index (GPI)"
+School Life Expectancy,"School life expectancy, secondary, male (years)"
+School Life Expectancy,"School life expectancy, tertiary, both sexes (years)"
+School Life Expectancy,"School life expectancy, tertiary, female (years)"
+School Life Expectancy,"School life expectancy, tertiary, gender parity index (GPI)"
+School Life Expectancy,"School life expectancy, tertiary, male (years)"
+Starting Age,Official entrance age to compulsory education (years)
+Starting Age,Official entrance age to lower secondary education (years)
+Starting Age,Official entrance age to post-secondary non-tertiary education (years)
+Starting Age,Official entrance age to pre-primary education (years)
+Starting Age,Official entrance age to primary education (years)
+Starting Age,Official entrance age to upper secondary education (years)
+student teacher ratio,Pupil-teacher ratio in lower secondary education (headcount basis)
+student teacher ratio,Pupil-teacher ratio in pre-primary education (headcount basis)
+student teacher ratio,Pupil-teacher ratio in primary education (headcount basis)
+student teacher ratio,Pupil-teacher ratio in secondary education (headcount basis)
+student teacher ratio,Pupil-teacher ratio in tertiary education (headcount basis)
+student teacher ratio,Pupil-teacher ratio in upper secondary education (headcount basis)
+Teacher Count,"Teachers in lower secondary education, both sexes (number)"
+Teacher Count,"Teachers in lower secondary education, female (number)"
+Teacher Count,"Teachers in post-secondary non-tertiary education, both sexes (number)"
+Teacher Count,"Teachers in post-secondary non-tertiary education, female (number)"
+Teacher Count,"Teachers in pre-primary education, both sexes (number)"
+Teacher Count,"Teachers in pre-primary education, female (number)"
+Teacher Count,"Teachers in primary education, both sexes (number)"
+Teacher Count,"Teachers in primary education, female (number)"
+Teacher Count,"Teachers in secondary education, both sexes (number)"
+Teacher Count,"Teachers in secondary education, female (number)"
+Teacher Count,"Teachers in secondary general education, both sexes (number)"
+Teacher Count,"Teachers in secondary general education, female (number)"
+Teacher Count,"Teachers in tertiary education programmes, both sexes (number)"
+Teacher Count,"Teachers in tertiary education programmes, female (number)"
+Teacher Count,"Teachers in upper secondary education, both sexes (number)"
+Teacher Count,"Teachers in upper secondary education, female (number)"
+teacher segments,Percentage of teachers in lower secondary education who are female (%)
+teacher segments,Percentage of teachers in post-secondary non-tertiary education who are female (%)
+teacher segments,Percentage of teachers in pre-primary education who are female (%)
+teacher segments,Percentage of teachers in primary education who are female (%)
+teacher segments,Percentage of teachers in secondary education who are female (%)
+teacher segments,Percentage of teachers in tertiary education who are female (%)
+teacher segments,Percentage of teachers in upper secondary education who are female (%)
+Unemployment,"Unemployment, female (% of female labor force)"
+Unemployment,"Unemployment, male (% of male labor force)"
+Unemployment,"Unemployment, total (% of total labor force)"
+Unschooled,"Out-of-school children of primary school age, both sexes (number)"
+Unschooled,"Out-of-school children of primary school age, female (number)"
+Unschooled,"Out-of-school children of primary school age, male (number)"
+Unschooled,"Out-of-school children of primary school age, percentage female (%)"
+Unschooled,"Rate of out-of-school children of primary school age, both sexes (%)"
+Unschooled,"Rate of out-of-school children of primary school age, female (%)"
+Unschooled,"Rate of out-of-school children of primary school age, male (%)"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 15-19, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 15-19, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 15+, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 15+, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 20-24, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 20-24, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 25-29, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 25-29, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 25+, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 25+, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 30-34, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 30-34, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 35-39, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 35-39, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 40-44, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 40-44, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 45-49, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 45-49, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 50-54, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 50-54, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 55-59, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 55-59, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 60-64, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 60-64, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 65-69, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 65-69, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 70-74, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 70-74, total"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 75+, female"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 75+, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 15-19, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 15-19, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 15+, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 15+, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 20-24, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 20-24, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 25-29, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 25-29, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 25+, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 25+, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 30-34, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 30-34, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 35-39, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 35-39, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 40-44, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 40-44, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 45-49, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 45-49, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 50-54, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 50-54, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 55-59, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 55-59, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 60-64, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 60-64, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 65-69, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 65-69, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 70-74, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 70-74, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 75+, female"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 75+, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 15-19, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 15-19, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 15+, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 15+, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 20-24, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 20-24, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 25-29, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 25-29, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 25+, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 25+, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 30-34, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 30-34, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 35-39, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 35-39, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 40-44, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 40-44, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 45-49, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 45-49, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 50-54, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 50-54, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 55-59, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 55-59, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 60-64, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 60-64, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 65-69, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 65-69, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 70-74, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 70-74, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 75+, female"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 75+, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 15-19, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 15-19, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 15+, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 15+, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 20-24, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 20-24, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 25-29, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 25-29, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 25+, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 25+, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 30-34, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 30-34, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 35-39, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 35-39, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 40-44, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 40-44, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 45-49, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 45-49, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 50-54, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 50-54, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 55-59, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 55-59, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 60-64, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 60-64, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 65-69, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 65-69, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 70-74, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 70-74, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 75+, female"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 75+, total"

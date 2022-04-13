@@ -1,0 +1,44 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\dhnsingh\Documents\stata_quick_guide\dsx.log
+  log type:  text
+ opened on:   5 Oct 2019, 19:38:22
+
+. 
+. version 15.1
+
+. 
+. set linesize 80
+
+. set scheme s2color
+
+. 
+. clear all
+
+. macro drop _all
+
+. 
+. 
+end of do-file
+
+. do "C:\Users\dhnsingh\AppData\Local\Temp\STD7d8_000000.tmp"
+
+. edit
+
+. 
+end of do-file
+
+. *(1 variable, 0 observation pasted into data editor)
+
+. *(14 variables, 30 observations pasted into data editor)
+
+. do "C:\Users\dhnsingh\AppData\Local\Temp\STD7d8_000000.tmp"
+
+. save student, replace
+(note: file student.dta not found)
+file student.dta saved
+
+. 
+end of do-file
+
+. exit, clear

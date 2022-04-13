@@ -1,0 +1,25 @@
+year
+
+patent_applications
+
+GDP_current_USD (1960-present)
+GDP_per_person_employed_2017_PPP_usd (1991-present)
+
+population_total
+
+agriculture_perc_GDP (1960-present)
+industry_perc_GDP (1960-present)
+services_perc_GDP (1960-present)
+
+emp_agriculture_perc (1991-present)
+emp_industry_perc (1991-present)
+emp_services_perc (1991-present)
+
+aid_current_usd
+
+businesses_registered_number
+
+FDI_net_inflows_current_usd
+
+doing_business_index
+

@@ -1,0 +1,946 @@
+{smcl}
+{com}{sf}{ul off}{txt}
+{com}. 
+. * Reading in Data
+. import delim using "inequality_survey.csv" , clear
+{res}{text}(9 vars, 2,210 obs)
+
+{com}. 
+. ********************************************************************************
+. * Question 1: checking for outliers
+. ********************************************************************************
+. sort participantid
+{txt}
+{com}. 
+. * converting string to category
+. encode question, gen(ques_num)
+{txt}
+{com}. 
+. drop customreportid responsemethod question receivedatcst
+{txt}
+{com}. 
+. * reshape long to wide
+. reshape wide response polltype, i(participantid) j(ques_num)
+{txt}(note: j = 1 2 3 4 5 6 7 8 9 10)
+
+Data{col 36}long{col 43}->{col 48}wide
+{hline 77}
+Number of obs.                 {res}    2210   {txt}->{res}     227
+{txt}Number of variables            {res}       6   {txt}->{res}      23
+{txt}j variable (10 values)         {res}ques_num   {txt}->   (dropped)
+xij variables:
+                               {res}response   {txt}->   {res}response1 response2 ... response10
+                               polltype   {txt}->   {res}polltype1 polltype2 ... polltype10
+{txt}{hline 77}
+
+{com}. 
+. 
+. * tabulating and cleaning free text responses
+. tab response1
+
+                             {txt}1 response {c |}      Freq.     Percent        Cum.
+{hline 40}{c +}{hline 35}
+                                    0.5 {c |}{res}          1        0.49        0.49
+{txt}                                    1.5 {c |}{res}          5        2.44        2.93
+{txt}                              1.5 times {c |}{res}          8        3.90        6.83
+{txt}                                     10 {c |}{res}          6        2.93        9.76
+{txt}                               10 times {c |}{res}         19        9.27       19.02
+{txt}                          10 times more {c |}{res}          1        0.49       19.51
+{txt}                                 10,000 {c |}{res}          1        0.49       20.00
+{txt}                                    100 {c |}{res}          2        0.98       20.98
+{txt}                                  1000x {c |}{res}          1        0.49       21.46
+{txt}                                    10x {c |}{res}          3        1.46       22.93
+{txt}                                     12 {c |}{res}          1        0.49       23.41
+{txt}                               12 times {c |}{res}          1        0.49       23.90
+{txt}                               14 times {c |}{res}          1        0.49       24.39
+{txt}                                     15 {c |}{res}          2        0.98       25.37
+{txt}                               15 times {c |}{res}          1        0.49       25.85
+{txt}                                      2 {c |}{res}          9        4.39       30.24
+{txt}                                2 times {c |}{res}         18        8.78       39.02
+{txt}                           2 times more {c |}{res}          1        0.49       39.51
+{txt}                                    2.2 {c |}{res}          1        0.49       40.00
+{txt}                                    2.5 {c |}{res}          5        2.44       42.44
+{txt}                              2.5 times {c |}{res}          4        1.95       44.39
+{txt}                                     20 {c |}{res}          3        1.46       45.85
+{txt}                               20 times {c |}{res}          5        2.44       48.29
+{txt}                                     25 {c |}{res}          1        0.49       48.78
+{txt}                                     2X {c |}{res}          1        0.49       49.27
+{txt}                                      3 {c |}{res}         13        6.34       55.61
+{txt}                                3 Times {c |}{res}          1        0.49       56.10
+{txt}                                3 times {c |}{res}         35       17.07       73.17
+{txt}                               30 times {c |}{res}          1        0.49       73.66
+{txt}                                    30x {c |}{res}          1        0.49       74.15
+{txt}                                     3x {c |}{res}          2        0.98       75.12
+{txt}                                      4 {c |}{res}          3        1.46       76.59
+{txt}                                4 times {c |}{res}          6        2.93       79.51
+{txt}                           4 times more {c |}{res}          1        0.49       80.00
+{txt}                               40 times {c |}{res}          1        0.49       80.49
+{txt}                                     4x {c |}{res}          1        0.49       80.98
+{txt}                                      5 {c |}{res}          8        3.90       84.88
+{txt}                                5 timed {c |}{res}          1        0.49       85.37
+{txt}                                5 times {c |}{res}         15        7.32       92.68
+{txt}                                    500 {c |}{res}          1        0.49       93.17
+{txt}                                    50x {c |}{res}          1        0.49       93.66
+{txt}                                     5x {c |}{res}          4        1.95       95.61
+{txt}                                      6 {c |}{res}          1        0.49       96.10
+{txt}                                6 times {c |}{res}          1        0.49       96.59
+{txt}                                     6x {c |}{res}          1        0.49       97.07
+{txt}                                      7 {c |}{res}          1        0.49       97.56
+{txt}                              7.5 times {c |}{res}          1        0.49       98.05
+{txt}                                     7x {c |}{res}          1        0.49       98.54
+{txt}                                8 times {c |}{res}          1        0.49       99.02
+{txt}                                      9 {c |}{res}          1        0.49       99.51
+{txt}Middle is 60k bottom is 20k so let's .. {c |}{res}          1        0.49      100.00
+{txt}{hline 40}{c +}{hline 35}
+                                  Total {c |}{res}        205      100.00
+{txt}
+{com}. replace response1 = subinstr(response1, "times", "",.)
+{txt}(122 real changes made)
+
+{com}. replace response1 = subinstr(response1, " ", "",.)
+{txt}(124 real changes made)
+
+{com}. replace response1 = subinstr(response1, ",", "",.)
+{txt}(1 real change made)
+
+{com}. replace response1 = subinstr(response1, "x", "",.)
+{txt}(15 real changes made)
+
+{com}. replace response1 = subinstr(response1, "more", "",.)
+{txt}(3 real changes made)
+
+{com}. replace response1 = subinstr(response1, "X", "",.)
+{txt}(1 real change made)
+
+{com}. replace response1 = subinstr(response1, "timed", "",.)
+{txt}(1 real change made)
+
+{com}. replace response1 = subinstr(response1, "Times", "",.)
+{txt}(1 real change made)
+
+{com}. replace response1 = subinstr(response1, "Middleis60kbottomis20ksolet'ssayabout3-4", "",.)
+{txt}(1 real change made)
+
+{com}. tab response1
+
+                             {txt}1 response {c |}      Freq.     Percent        Cum.
+{hline 40}{c +}{hline 35}
+                                    0.5 {c |}{res}          1        0.49        0.49
+{txt}                                    1.5 {c |}{res}         13        6.37        6.86
+{txt}                                     10 {c |}{res}         29       14.22       21.08
+{txt}                                    100 {c |}{res}          2        0.98       22.06
+{txt}                                   1000 {c |}{res}          1        0.49       22.55
+{txt}                                  10000 {c |}{res}          1        0.49       23.04
+{txt}                                     12 {c |}{res}          2        0.98       24.02
+{txt}                                     14 {c |}{res}          1        0.49       24.51
+{txt}                                     15 {c |}{res}          3        1.47       25.98
+{txt}                                      2 {c |}{res}         29       14.22       40.20
+{txt}                                    2.2 {c |}{res}          1        0.49       40.69
+{txt}                                    2.5 {c |}{res}          9        4.41       45.10
+{txt}                                     20 {c |}{res}          8        3.92       49.02
+{txt}                                     25 {c |}{res}          1        0.49       49.51
+{txt}                                      3 {c |}{res}         51       25.00       74.51
+{txt}                                     30 {c |}{res}          2        0.98       75.49
+{txt}                                      4 {c |}{res}         11        5.39       80.88
+{txt}                                     40 {c |}{res}          1        0.49       81.37
+{txt}                                      5 {c |}{res}         28       13.73       95.10
+{txt}                                     50 {c |}{res}          1        0.49       95.59
+{txt}                                    500 {c |}{res}          1        0.49       96.08
+{txt}                                      6 {c |}{res}          3        1.47       97.55
+{txt}                                      7 {c |}{res}          2        0.98       98.53
+{txt}                                    7.5 {c |}{res}          1        0.49       99.02
+{txt}                                      8 {c |}{res}          1        0.49       99.51
+{txt}                                      9 {c |}{res}          1        0.49      100.00
+{txt}{hline 40}{c +}{hline 35}
+                                  Total {c |}{res}        204      100.00
+{txt}
+{com}. 
+. destring response1 , gen(response1_new)
+{txt}response1: all characters numeric; response1_new {res}generated {txt}as {res}double
+{txt}(23 missing values generated)
+{res}{txt}
+{com}. sum response1_new,d
+
+                         {txt}1 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}      1.5             .5
+{txt} 5%    {res}      1.5            1.5
+{txt}10%    {res}        2            1.5       {txt}Obs         {res}        204
+{txt}25%    {res}      2.5            1.5       {txt}Sum of Wgt. {res}        204
+
+{txt}50%    {res}        3                      {txt}Mean          {res} 63.25588
+                        {txt}Largest       Std. Dev.     {res}  703.508
+{txt}75%    {res}       10            100
+{txt}90%    {res}       15            500       {txt}Variance      {res} 494923.5
+{txt}95%    {res}       20           1000       {txt}Skewness      {res} 13.92771
+{txt}99%    {res}      500          10000       {txt}Kurtosis      {res} 197.0491
+{txt}
+{com}. tab response1
+
+                             {txt}1 response {c |}      Freq.     Percent        Cum.
+{hline 40}{c +}{hline 35}
+                                    0.5 {c |}{res}          1        0.49        0.49
+{txt}                                    1.5 {c |}{res}         13        6.37        6.86
+{txt}                                     10 {c |}{res}         29       14.22       21.08
+{txt}                                    100 {c |}{res}          2        0.98       22.06
+{txt}                                   1000 {c |}{res}          1        0.49       22.55
+{txt}                                  10000 {c |}{res}          1        0.49       23.04
+{txt}                                     12 {c |}{res}          2        0.98       24.02
+{txt}                                     14 {c |}{res}          1        0.49       24.51
+{txt}                                     15 {c |}{res}          3        1.47       25.98
+{txt}                                      2 {c |}{res}         29       14.22       40.20
+{txt}                                    2.2 {c |}{res}          1        0.49       40.69
+{txt}                                    2.5 {c |}{res}          9        4.41       45.10
+{txt}                                     20 {c |}{res}          8        3.92       49.02
+{txt}                                     25 {c |}{res}          1        0.49       49.51
+{txt}                                      3 {c |}{res}         51       25.00       74.51
+{txt}                                     30 {c |}{res}          2        0.98       75.49
+{txt}                                      4 {c |}{res}         11        5.39       80.88
+{txt}                                     40 {c |}{res}          1        0.49       81.37
+{txt}                                      5 {c |}{res}         28       13.73       95.10
+{txt}                                     50 {c |}{res}          1        0.49       95.59
+{txt}                                    500 {c |}{res}          1        0.49       96.08
+{txt}                                      6 {c |}{res}          3        1.47       97.55
+{txt}                                      7 {c |}{res}          2        0.98       98.53
+{txt}                                    7.5 {c |}{res}          1        0.49       99.02
+{txt}                                      8 {c |}{res}          1        0.49       99.51
+{txt}                                      9 {c |}{res}          1        0.49      100.00
+{txt}{hline 40}{c +}{hline 35}
+                                  Total {c |}{res}        204      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. hist response1_new if response1_new <= 20, d
+{txt}(start={res}.5{txt}, width={res}.20000005{txt})
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. hist response1_new if response1_new <= 20
+{txt}(bin={res}13{txt}, start={res}.5{txt}, width={res}1.5{txt})
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. 
+. tab response2
+
+                             {txt}2 response {c |}      Freq.     Percent        Cum.
+{hline 40}{c +}{hline 35}
+                                  1.25x {c |}{res}          1        0.46        0.46
+{txt}                                    1.4 {c |}{res}          1        0.46        0.92
+{txt}                                    1.5 {c |}{res}          2        0.92        1.84
+{txt}                                     10 {c |}{res}         10        4.61        6.45
+{txt}                               10 times {c |}{res}         32       14.75       21.20
+{txt}                          10 times more {c |}{res}          2        0.92       22.12
+{txt}                                    10% {c |}{res}          1        0.46       22.58
+{txt}                                    100 {c |}{res}          2        0.92       23.50
+{txt}                              100 times {c |}{res}          2        0.92       24.42
+{txt}                                   1000 {c |}{res}          3        1.38       25.81
+{txt}                                    10x {c |}{res}          3        1.38       27.19
+{txt}                                    11x {c |}{res}          1        0.46       27.65
+{txt}                                     12 {c |}{res}          1        0.46       28.11
+{txt}                                     15 {c |}{res}          1        0.46       28.57
+{txt}                               15 times {c |}{res}          1        0.46       29.03
+{txt}                                    15x {c |}{res}          2        0.92       29.95
+{txt}                                      2 {c |}{res}          7        3.23       33.18
+{txt}                                2 times {c |}{res}          9        4.15       37.33
+{txt}                                    2.5 {c |}{res}          5        2.30       39.63
+{txt}                              2.5 times {c |}{res}          2        0.92       40.55
+{txt}                                     20 {c |}{res}          5        2.30       42.86
+{txt}                               20 times {c |}{res}         10        4.61       47.47
+{txt}                                    20x {c |}{res}          2        0.92       48.39
+{txt}                                     25 {c |}{res}          1        0.46       48.85
+{txt}                                    25X {c |}{res}          1        0.46       49.31
+{txt}                                    25x {c |}{res}          1        0.46       49.77
+{txt}                                     2x {c |}{res}          1        0.46       50.23
+{txt}                                      3 {c |}{res}         12        5.53       55.76
+{txt}                                3 Times {c |}{res}          1        0.46       56.22
+{txt}                                3 times {c |}{res}         16        7.37       63.59
+{txt}                               30 times {c |}{res}          1        0.46       64.06
+{txt}                                    30% {c |}{res}          1        0.46       64.52
+{txt}                              300 times {c |}{res}          1        0.46       64.98
+{txt}                                     3x {c |}{res}          2        0.92       65.90
+{txt}                                      4 {c |}{res}          2        0.92       66.82
+{txt}                                4 times {c |}{res}          4        1.84       68.66
+{txt}                                     40 {c |}{res}          1        0.46       69.12
+{txt}                                     4x {c |}{res}          3        1.38       70.51
+{txt}                                      5 {c |}{res}          9        4.15       74.65
+{txt}                                5 times {c |}{res}         22       10.14       84.79
+{txt}                                     50 {c |}{res}          4        1.84       86.64
+{txt}                               50 times {c |}{res}          1        0.46       87.10
+{txt}                                    50% {c |}{res}          1        0.46       87.56
+{txt}                                    50x {c |}{res}          1        0.46       88.02
+{txt}                                 5times {c |}{res}          1        0.46       88.48
+{txt}                                     5x {c |}{res}          3        1.38       89.86
+{txt}                                      6 {c |}{res}          3        1.38       91.24
+{txt}                                7 times {c |}{res}          4        1.84       93.09
+{txt}                           7 times more {c |}{res}          1        0.46       93.55
+{txt}                              7.5 times {c |}{res}          1        0.46       94.01
+{txt}                                   700% {c |}{res}          1        0.46       94.47
+{txt}                                      8 {c |}{res}          4        1.84       96.31
+{txt}                                8 times {c |}{res}          5        2.30       98.62
+{txt}                               80 times {c |}{res}          1        0.46       99.08
+{txt}                                     No {c |}{res}          1        0.46       99.54
+{txt}Top percent control most of our econo.. {c |}{res}          1        0.46      100.00
+{txt}{hline 40}{c +}{hline 35}
+                                  Total {c |}{res}        217      100.00
+{txt}
+{com}. replace response2 = subinstr(response2, "%", "",.)
+{txt}(5 real changes made)
+
+{com}. replace response2 = subinstr(response2, " ", "",.)
+{txt}(117 real changes made)
+
+{com}. replace response2 = subinstr(response2, "times", "",.)
+{txt}(117 real changes made)
+
+{com}. replace response2 = subinstr(response2, "x", "",.)
+{txt}(21 real changes made)
+
+{com}. replace response2 = subinstr(response2, "more", "",.)
+{txt}(4 real changes made)
+
+{com}. replace response2 = subinstr(response2, "X", "",.)
+{txt}(1 real change made)
+
+{com}. replace response2 = subinstr(response2, "Times", "",.)
+{txt}(1 real change made)
+
+{com}. replace response2 = subinstr(response2, "No", "",.)
+{txt}(1 real change made)
+
+{com}. replace response2="" if participantid==341098
+{txt}(1 real change made)
+
+{com}. 
+. * summary response 2
+. tab response2
+
+                             {txt}2 response {c |}      Freq.     Percent        Cum.
+{hline 40}{c +}{hline 35}
+                                   1.25 {c |}{res}          1        0.47        0.47
+{txt}                                    1.4 {c |}{res}          1        0.47        0.93
+{txt}                                    1.5 {c |}{res}          2        0.93        1.86
+{txt}                                     10 {c |}{res}         48       22.33       24.19
+{txt}                                    100 {c |}{res}          4        1.86       26.05
+{txt}                                   1000 {c |}{res}          3        1.40       27.44
+{txt}                                     11 {c |}{res}          1        0.47       27.91
+{txt}                                     12 {c |}{res}          1        0.47       28.37
+{txt}                                     15 {c |}{res}          4        1.86       30.23
+{txt}                                      2 {c |}{res}         17        7.91       38.14
+{txt}                                    2.5 {c |}{res}          7        3.26       41.40
+{txt}                                     20 {c |}{res}         17        7.91       49.30
+{txt}                                     25 {c |}{res}          3        1.40       50.70
+{txt}                                      3 {c |}{res}         31       14.42       65.12
+{txt}                                     30 {c |}{res}          2        0.93       66.05
+{txt}                                    300 {c |}{res}          1        0.47       66.51
+{txt}                                      4 {c |}{res}          9        4.19       70.70
+{txt}                                     40 {c |}{res}          1        0.47       71.16
+{txt}                                      5 {c |}{res}         35       16.28       87.44
+{txt}                                     50 {c |}{res}          7        3.26       90.70
+{txt}                                      6 {c |}{res}          3        1.40       92.09
+{txt}                                      7 {c |}{res}          5        2.33       94.42
+{txt}                                    7.5 {c |}{res}          1        0.47       94.88
+{txt}                                    700 {c |}{res}          1        0.47       95.35
+{txt}                                      8 {c |}{res}          9        4.19       99.53
+{txt}                                     80 {c |}{res}          1        0.47      100.00
+{txt}{hline 40}{c +}{hline 35}
+                                  Total {c |}{res}        215      100.00
+{txt}
+{com}. destring response2, gen(response2_new)
+{txt}response2: all characters numeric; response2_new {res}generated {txt}as {res}double
+{txt}(12 missing values generated)
+{res}{txt}
+{com}. sum response2_new,d
+
+                         {txt}2 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}      1.5           1.25
+{txt} 5%    {res}        2            1.4
+{txt}10%    {res}      2.5            1.5       {txt}Obs         {res}        215
+{txt}25%    {res}        3            1.5       {txt}Sum of Wgt. {res}        215
+
+{txt}50%    {res}        7                      {txt}Mean          {res} 29.77512
+                        {txt}Largest       Std. Dev.     {res} 127.4064
+{txt}75%    {res}       10            700
+{txt}90%    {res}       25           1000       {txt}Variance      {res}  16232.4
+{txt}95%    {res}       50           1000       {txt}Skewness      {res} 6.929746
+{txt}99%    {res}     1000           1000       {txt}Kurtosis      {res}  51.0581
+{txt}
+{com}. hist response2_new if response2_new <= 50
+{txt}(bin={res}14{txt}, start={res}1.25{txt}, width={res}3.4821429{txt})
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. tab response7
+
+                             {txt}7 response {c |}      Freq.     Percent        Cum.
+{hline 40}{c +}{hline 35}
+                                   0.15 {c |}{res}          1        0.48        0.48
+{txt}                                   0.67 {c |}{res}          1        0.48        0.96
+{txt}                                     10 {c |}{res}          1        0.48        1.44
+{txt}                                    10% {c |}{res}          5        2.40        3.85
+{txt}                                    15% {c |}{res}          4        1.92        5.77
+{txt}                                    18% {c |}{res}          1        0.48        6.25
+{txt}                                    20% {c |}{res}          6        2.88        9.13
+{txt}                                     25 {c |}{res}          3        1.44       10.58
+{txt}                                    25% {c |}{res}          3        1.44       12.02
+{txt}                                  3-Feb {c |}{res}          2        0.96       12.98
+{txt}                                     30 {c |}{res}          7        3.37       16.35
+{txt}                                    30% {c |}{res}         21       10.10       26.44
+{txt}                                     33 {c |}{res}          1        0.48       26.92
+{txt}                                    33% {c |}{res}          1        0.48       27.40
+{txt}                                    35% {c |}{res}          2        0.96       28.37
+{txt}                                     40 {c |}{res}          5        2.40       30.77
+{txt}                                    40% {c |}{res}          9        4.33       35.10
+{txt}                                     45 {c |}{res}          1        0.48       35.58
+{txt}                                      5 {c |}{res}          1        0.48       36.06
+{txt}                                     5% {c |}{res}          2        0.96       37.02
+{txt}                                     50 {c |}{res}          8        3.85       40.87
+{txt}                                    50% {c |}{res}          8        3.85       44.71
+{txt}                                     55 {c |}{res}          2        0.96       45.67
+{txt}                                     60 {c |}{res}         13        6.25       51.92
+{txt}                                    60% {c |}{res}         16        7.69       59.62
+{txt}                                     63 {c |}{res}          1        0.48       60.10
+{txt}                                     65 {c |}{res}          1        0.48       60.58
+{txt}                                    65% {c |}{res}          7        3.37       63.94
+{txt}                                    66% {c |}{res}          8        3.85       67.79
+{txt}66-70% because I know we said that in.. {c |}{res}          1        0.48       68.27
+{txt}                                    67% {c |}{res}          5        2.40       70.67
+{txt}                                    68% {c |}{res}          2        0.96       71.63
+{txt}                                     69 {c |}{res}          1        0.48       72.12
+{txt}                                     70 {c |}{res}         15        7.21       79.33
+{txt}                                    70% {c |}{res}         28       13.46       92.79
+{txt}                                     75 {c |}{res}          2        0.96       93.75
+{txt}                                    75% {c |}{res}          4        1.92       95.67
+{txt}                                     80 {c |}{res}          1        0.48       96.15
+{txt}                                    80% {c |}{res}          3        1.44       97.60
+{txt}                                    85% {c |}{res}          1        0.48       98.08
+{txt}                                    90% {c |}{res}          2        0.96       99.04
+{txt}                                     95 {c |}{res}          1        0.48       99.52
+{txt}                                    Low {c |}{res}          1        0.48      100.00
+{txt}{hline 40}{c +}{hline 35}
+                                  Total {c |}{res}        208      100.00
+{txt}
+{com}. replace response7 = subinstr(response7, "%", "",.)
+{txt}(139 real changes made)
+
+{com}. replace response7 = subinstr(response7, " ", "",.)
+{txt}(1 real change made)
+
+{com}. replace response7 = subinstr(response7, "3-Feb", "",.)
+{txt}(2 real changes made)
+
+{com}. replace response7 = subinstr(response7, "Low", "",.)
+{txt}(1 real change made)
+
+{com}. replace response7="" if participantid==543645
+{txt}(1 real change made)
+
+{com}. tab response7
+
+                             {txt}7 response {c |}      Freq.     Percent        Cum.
+{hline 40}{c +}{hline 35}
+                                   0.15 {c |}{res}          1        0.49        0.49
+{txt}                                   0.67 {c |}{res}          1        0.49        0.98
+{txt}                                     10 {c |}{res}          6        2.94        3.92
+{txt}                                     15 {c |}{res}          4        1.96        5.88
+{txt}                                     18 {c |}{res}          1        0.49        6.37
+{txt}                                     20 {c |}{res}          6        2.94        9.31
+{txt}                                     25 {c |}{res}          6        2.94       12.25
+{txt}                                     30 {c |}{res}         28       13.73       25.98
+{txt}                                     33 {c |}{res}          2        0.98       26.96
+{txt}                                     35 {c |}{res}          2        0.98       27.94
+{txt}                                     40 {c |}{res}         14        6.86       34.80
+{txt}                                     45 {c |}{res}          1        0.49       35.29
+{txt}                                      5 {c |}{res}          3        1.47       36.76
+{txt}                                     50 {c |}{res}         16        7.84       44.61
+{txt}                                     55 {c |}{res}          2        0.98       45.59
+{txt}                                     60 {c |}{res}         29       14.22       59.80
+{txt}                                     63 {c |}{res}          1        0.49       60.29
+{txt}                                     65 {c |}{res}          8        3.92       64.22
+{txt}                                     66 {c |}{res}          8        3.92       68.14
+{txt}                                     67 {c |}{res}          5        2.45       70.59
+{txt}                                     68 {c |}{res}          2        0.98       71.57
+{txt}                                     69 {c |}{res}          1        0.49       72.06
+{txt}                                     70 {c |}{res}         43       21.08       93.14
+{txt}                                     75 {c |}{res}          6        2.94       96.08
+{txt}                                     80 {c |}{res}          4        1.96       98.04
+{txt}                                     85 {c |}{res}          1        0.49       98.53
+{txt}                                     90 {c |}{res}          2        0.98       99.51
+{txt}                                     95 {c |}{res}          1        0.49      100.00
+{txt}{hline 40}{c +}{hline 35}
+                                  Total {c |}{res}        204      100.00
+{txt}
+{com}. 
+. destring response7, gen(response7_new)
+{txt}response7: all characters numeric; response7_new {res}generated {txt}as {res}double
+{txt}(23 missing values generated)
+{res}{txt}
+{com}. tab response7
+
+                             {txt}7 response {c |}      Freq.     Percent        Cum.
+{hline 40}{c +}{hline 35}
+                                   0.15 {c |}{res}          1        0.49        0.49
+{txt}                                   0.67 {c |}{res}          1        0.49        0.98
+{txt}                                     10 {c |}{res}          6        2.94        3.92
+{txt}                                     15 {c |}{res}          4        1.96        5.88
+{txt}                                     18 {c |}{res}          1        0.49        6.37
+{txt}                                     20 {c |}{res}          6        2.94        9.31
+{txt}                                     25 {c |}{res}          6        2.94       12.25
+{txt}                                     30 {c |}{res}         28       13.73       25.98
+{txt}                                     33 {c |}{res}          2        0.98       26.96
+{txt}                                     35 {c |}{res}          2        0.98       27.94
+{txt}                                     40 {c |}{res}         14        6.86       34.80
+{txt}                                     45 {c |}{res}          1        0.49       35.29
+{txt}                                      5 {c |}{res}          3        1.47       36.76
+{txt}                                     50 {c |}{res}         16        7.84       44.61
+{txt}                                     55 {c |}{res}          2        0.98       45.59
+{txt}                                     60 {c |}{res}         29       14.22       59.80
+{txt}                                     63 {c |}{res}          1        0.49       60.29
+{txt}                                     65 {c |}{res}          8        3.92       64.22
+{txt}                                     66 {c |}{res}          8        3.92       68.14
+{txt}                                     67 {c |}{res}          5        2.45       70.59
+{txt}                                     68 {c |}{res}          2        0.98       71.57
+{txt}                                     69 {c |}{res}          1        0.49       72.06
+{txt}                                     70 {c |}{res}         43       21.08       93.14
+{txt}                                     75 {c |}{res}          6        2.94       96.08
+{txt}                                     80 {c |}{res}          4        1.96       98.04
+{txt}                                     85 {c |}{res}          1        0.49       98.53
+{txt}                                     90 {c |}{res}          2        0.98       99.51
+{txt}                                     95 {c |}{res}          1        0.49      100.00
+{txt}{hline 40}{c +}{hline 35}
+                                  Total {c |}{res}        204      100.00
+{txt}
+{com}. 
+. sum response2_new,d
+
+                         {txt}2 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}      1.5           1.25
+{txt} 5%    {res}        2            1.4
+{txt}10%    {res}      2.5            1.5       {txt}Obs         {res}        215
+{txt}25%    {res}        3            1.5       {txt}Sum of Wgt. {res}        215
+
+{txt}50%    {res}        7                      {txt}Mean          {res} 29.77512
+                        {txt}Largest       Std. Dev.     {res} 127.4064
+{txt}75%    {res}       10            700
+{txt}90%    {res}       25           1000       {txt}Variance      {res}  16232.4
+{txt}95%    {res}       50           1000       {txt}Skewness      {res} 6.929746
+{txt}99%    {res}     1000           1000       {txt}Kurtosis      {res}  51.0581
+{txt}
+{com}. hist response2_new if response2_new <= 100
+{txt}(bin={res}14{txt}, start={res}1.25{txt}, width={res}7.0535714{txt})
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. * encoding responses
+. foreach response in response1 response2 response3 response4 response5 ///
+>                     response6 response7 response8 response9 response10{c -(}
+{txt}  2{com}. 
+.                                         encode `response', gen(`response'_num)          
+{txt}  3{com}. 
+. {c )-}
+{txt}
+{com}. 
+. 
+. * summarizing data
+. foreach response in response1_num response2_num response3_num response4_num response5_num ///
+>                     response6_num response7_num response8_num response9_num response10_num{c -(}
+{txt}  2{com}. 
+.                                         summarize `response', d
+{txt}  3{com}.                 
+. 
+. {c )-}
+
+                         {txt}1 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        2              1
+{txt} 5%    {res}        2              2
+{txt}10%    {res}        3              2       {txt}Obs         {res}        204
+{txt}25%    {res}        9              2       {txt}Sum of Wgt. {res}        204
+
+{txt}50%    {res}       15                      {txt}Mean          {res} 12.11275
+                        {txt}Largest       Std. Dev.     {res} 6.107577
+{txt}75%    {res}       16             23
+{txt}90%    {res}       19             24       {txt}Variance      {res}  37.3025
+{txt}95%    {res}       19             25       {txt}Skewness      {res}-.3025117
+{txt}99%    {res}       24             26       {txt}Kurtosis      {res} 2.107717
+
+                         {txt}2 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        3              1
+{txt} 5%    {res}        4              2
+{txt}10%    {res}        4              3       {txt}Obs         {res}        215
+{txt}25%    {res}        5              3       {txt}Sum of Wgt. {res}        215
+
+{txt}50%    {res}       13                      {txt}Mean          {res}  12.5907
+                        {txt}Largest       Std. Dev.     {res} 6.537448
+{txt}75%    {res}       19             25
+{txt}90%    {res}       20             25       {txt}Variance      {res} 42.73823
+{txt}95%    {res}       24             25       {txt}Skewness      {res} .0500427
+{txt}99%    {res}       25             26       {txt}Kurtosis      {res} 1.912765
+
+                         {txt}3 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}        226
+{txt}25%    {res}        1              1       {txt}Sum of Wgt. {res}        226
+
+{txt}50%    {res}        1                      {txt}Mean          {res} 1.367257
+                        {txt}Largest       Std. Dev.     {res} .4831273
+{txt}75%    {res}        2              2
+{txt}90%    {res}        2              2       {txt}Variance      {res}  .233412
+{txt}95%    {res}        2              2       {txt}Skewness      {res} .5507369
+{txt}99%    {res}        2              2       {txt}Kurtosis      {res} 1.303311
+
+                         {txt}4 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        2              1       {txt}Obs         {res}        225
+{txt}25%    {res}        2              1       {txt}Sum of Wgt. {res}        225
+
+{txt}50%    {res}        2                      {txt}Mean          {res} 2.217778
+                        {txt}Largest       Std. Dev.     {res} .5837414
+{txt}75%    {res}        3              3
+{txt}90%    {res}        3              3       {txt}Variance      {res}  .340754
+{txt}95%    {res}        3              3       {txt}Skewness      {res}-.0718025
+{txt}99%    {res}        3              3       {txt}Kurtosis      {res} 2.608899
+
+                         {txt}5 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        2              1       {txt}Obs         {res}        226
+{txt}25%    {res}        2              1       {txt}Sum of Wgt. {res}        226
+
+{txt}50%    {res}        2                      {txt}Mean          {res} 2.057522
+                        {txt}Largest       Std. Dev.     {res}  .472592
+{txt}75%    {res}        2              3
+{txt}90%    {res}        3              3       {txt}Variance      {res} .2233432
+{txt}95%    {res}        3              3       {txt}Skewness      {res} .1808368
+{txt}99%    {res}        3              3       {txt}Kurtosis      {res} 4.386493
+
+                         {txt}6 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}        226
+{txt}25%    {res}        2              1       {txt}Sum of Wgt. {res}        226
+
+{txt}50%    {res}        2                      {txt}Mean          {res} 1.823009
+                        {txt}Largest       Std. Dev.     {res} .3825084
+{txt}75%    {res}        2              2
+{txt}90%    {res}        2              2       {txt}Variance      {res} .1463127
+{txt}95%    {res}        2              2       {txt}Skewness      {res}-1.692647
+{txt}99%    {res}        2              2       {txt}Kurtosis      {res} 3.865054
+
+                         {txt}7 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        3              1
+{txt} 5%    {res}        4              2
+{txt}10%    {res}        7              3       {txt}Obs         {res}        204
+{txt}25%    {res}        8              3       {txt}Sum of Wgt. {res}        204
+
+{txt}50%    {res}       16                      {txt}Mean          {res} 15.30882
+                        {txt}Largest       Std. Dev.     {res} 6.700321
+{txt}75%    {res}       23             26
+{txt}90%    {res}       23             27       {txt}Variance      {res} 44.89431
+{txt}95%    {res}       24             27       {txt}Skewness      {res}-.1516641
+{txt}99%    {res}       27             28       {txt}Kurtosis      {res} 1.856656
+
+                         {txt}8 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}        226
+{txt}25%    {res}        1              1       {txt}Sum of Wgt. {res}        226
+
+{txt}50%    {res}        2                      {txt}Mean          {res} 1.690265
+                        {txt}Largest       Std. Dev.     {res} .5346591
+{txt}75%    {res}        2              3
+{txt}90%    {res}        2              3       {txt}Variance      {res} .2858604
+{txt}95%    {res}        2              3       {txt}Skewness      {res}-.1025713
+{txt}99%    {res}        3              3       {txt}Kurtosis      {res} 2.323819
+
+                         {txt}9 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}        225
+{txt}25%    {res}        1              1       {txt}Sum of Wgt. {res}        225
+
+{txt}50%    {res}        1                      {txt}Mean          {res} 1.248889
+                        {txt}Largest       Std. Dev.     {res} .4333333
+{txt}75%    {res}        1              2
+{txt}90%    {res}        2              2       {txt}Variance      {res} .1877778
+{txt}95%    {res}        2              2       {txt}Skewness      {res} 1.161558
+{txt}99%    {res}        2              2       {txt}Kurtosis      {res} 2.349218
+
+                         {txt}10 response
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}        226
+{txt}25%    {res}        1              1       {txt}Sum of Wgt. {res}        226
+
+{txt}50%    {res}        1                      {txt}Mean          {res} 1.464602
+                        {txt}Largest       Std. Dev.     {res} .4998525
+{txt}75%    {res}        2              2
+{txt}90%    {res}        2              2       {txt}Variance      {res} .2498525
+{txt}95%    {res}        2              2       {txt}Skewness      {res} .1419491
+{txt}99%    {res}        2              2       {txt}Kurtosis      {res}  1.02015
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. ********************************************************************************
+. * Question 2: summarizing using histograms
+. ********************************************************************************
+. * plotting histograms
+. foreach response in response1_num response2_num response3_num response4_num response5_num ///
+>                     response6_num response7_num response8_num response9_num response10_num{c -(}
+{txt}  2{com}. 
+.                                         hist `response'
+{txt}  3{com}.                                         graph export "`response'.png"
+{txt}  4{com}.                 
+. 
+. {c )-}
+{txt}(bin={res}14{txt}, start={res}1{txt}, width={res}1.7857143{txt})
+{res}{txt}(file response1_num.png written in PNG format)
+(bin={res}14{txt}, start={res}1{txt}, width={res}1.7857143{txt})
+{res}{txt}(file response2_num.png written in PNG format)
+(bin={res}15{txt}, start={res}1{txt}, width={res}.06666667{txt})
+{res}{txt}(file response3_num.png written in PNG format)
+(bin={res}15{txt}, start={res}1{txt}, width={res}.13333333{txt})
+{res}{txt}(file response4_num.png written in PNG format)
+(bin={res}15{txt}, start={res}1{txt}, width={res}.13333333{txt})
+{res}{txt}(file response5_num.png written in PNG format)
+(bin={res}15{txt}, start={res}1{txt}, width={res}.06666667{txt})
+{res}{txt}(file response6_num.png written in PNG format)
+(bin={res}14{txt}, start={res}1{txt}, width={res}1.9285714{txt})
+{res}{txt}(file response7_num.png written in PNG format)
+(bin={res}15{txt}, start={res}1{txt}, width={res}.13333333{txt})
+{res}{txt}(file response8_num.png written in PNG format)
+(bin={res}15{txt}, start={res}1{txt}, width={res}.06666667{txt})
+{res}{txt}(file response9_num.png written in PNG format)
+(bin={res}15{txt}, start={res}1{txt}, width={res}.06666667{txt})
+{res}{txt}(file response10_num.png written in PNG format)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. tab response9_num response3_num
+
+                      {txt}{c |}      3 response
+           9 response {c |}        No        Yes {c |}     Total
+{hline 22}{c +}{hline 22}{c +}{hline 10}
+Mostly in favor of fr {c |}{res}       113         56 {txt}{c |}{res}       169 
+{txt}Mostly in favor of go {c |}{res}        30         26 {txt}{c |}{res}        56 
+{txt}{hline 22}{c +}{hline 22}{c +}{hline 10}
+                Total {c |}{res}       143         82 {txt}{c |}{res}       225 
+{txt}
+{com}. tab response9_num response4_num
+
+                      {txt}{c |}            4 response
+           9 response {c |} Inequalit  Inequalit  Inequalit {c |}     Total
+{hline 22}{c +}{hline 33}{c +}{hline 10}
+Mostly in favor of fr {c |}{res}        12        102         54 {txt}{c |}{res}       168 
+{txt}Mostly in favor of go {c |}{res}         7         35         14 {txt}{c |}{res}        56 
+{txt}{hline 22}{c +}{hline 33}{c +}{hline 10}
+                Total {c |}{res}        19        137         68 {txt}{c |}{res}       224 
+{txt}
+{com}. tab response9_num response5_num
+
+                      {txt}{c |}            5 response
+           9 response {c |} Inequalit  Inequalit  Inequalit {c |}     Total
+{hline 22}{c +}{hline 33}{c +}{hline 10}
+Mostly in favor of fr {c |}{res}        17        129         23 {txt}{c |}{res}       169 
+{txt}Mostly in favor of go {c |}{res}         2         45          9 {txt}{c |}{res}        56 
+{txt}{hline 22}{c +}{hline 33}{c +}{hline 10}
+                Total {c |}{res}        19        174         32 {txt}{c |}{res}       225 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. tab response9_num response4_num
+
+                      {txt}{c |}            4 response
+           9 response {c |} Inequalit  Inequalit  Inequalit {c |}     Total
+{hline 22}{c +}{hline 33}{c +}{hline 10}
+Mostly in favor of fr {c |}{res}        12        102         54 {txt}{c |}{res}       168 
+{txt}Mostly in favor of go {c |}{res}         7         35         14 {txt}{c |}{res}        56 
+{txt}{hline 22}{c +}{hline 33}{c +}{hline 10}
+                Total {c |}{res}        19        137         68 {txt}{c |}{res}       224 
+{txt}
+{com}. tab response9_num response5_num
+
+                      {txt}{c |}            5 response
+           9 response {c |} Inequalit  Inequalit  Inequalit {c |}     Total
+{hline 22}{c +}{hline 33}{c +}{hline 10}
+Mostly in favor of fr {c |}{res}        17        129         23 {txt}{c |}{res}       169 
+{txt}Mostly in favor of go {c |}{res}         2         45          9 {txt}{c |}{res}        56 
+{txt}{hline 22}{c +}{hline 33}{c +}{hline 10}
+                Total {c |}{res}        19        174         32 {txt}{c |}{res}       225 
+{txt}
+{com}. tab response9_num response6_num
+
+                      {txt}{c |}      6 response
+           9 response {c |}        No        Yes {c |}     Total
+{hline 22}{c +}{hline 22}{c +}{hline 10}
+Mostly in favor of fr {c |}{res}        32        137 {txt}{c |}{res}       169 
+{txt}Mostly in favor of go {c |}{res}         8         48 {txt}{c |}{res}        56 
+{txt}{hline 22}{c +}{hline 22}{c +}{hline 10}
+                Total {c |}{res}        40        185 {txt}{c |}{res}       225 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\dsingh\AppData\Local\Temp\STD129c0_000000.tmp"
+{txt}
+{com}. pwcorr
+{txt}(response1 ignored because string variable)
+(polltype1 ignored because string variable)
+(response2 ignored because string variable)
+(polltype2 ignored because string variable)
+(response3 ignored because string variable)
+(polltype3 ignored because string variable)
+(response4 ignored because string variable)
+(polltype4 ignored because string variable)
+(response5 ignored because string variable)
+(polltype5 ignored because string variable)
+(response6 ignored because string variable)
+(polltype6 ignored because string variable)
+(response7 ignored because string variable)
+(polltype7 ignored because string variable)
+(response8 ignored because string variable)
+(polltype8 ignored because string variable)
+(response9 ignored because string variable)
+(polltype9 ignored because string variable)
+(response10 ignored because string variable)
+(polltype10 ignored because string variable)
+(classname ignored because string variable)
+(priorruntimecst ignored because string variable)
+
+             {c |} partic~d re~1_new re~2_new re~7_new re~1_num re~2_num re~3_num
+{hline 13}{c +}{hline 63}
+participan~d {c |} {res}  1.0000 
+{txt}response1_~w {c |} {res} -0.1042   1.0000 
+{txt}response2_~w {c |} {res} -0.0986   0.5558   1.0000 
+{txt}response7_~w {c |} {res} -0.0694   0.0623   0.0078   1.0000 
+{txt}response1_~m {c |} {res} -0.0857  -0.0750  -0.0416  -0.0258   1.0000 
+{txt}response2_~m {c |} {res} -0.1038  -0.0577  -0.0657   0.0099  -0.0143   1.0000 
+{txt}response3_~m {c |} {res}  0.0328  -0.0626  -0.1027   0.2950  -0.1043  -0.0587   1.0000 
+{txt}response4_~m {c |} {res}  0.0600   0.1063   0.1137  -0.0445   0.0794  -0.0263  -0.0770 
+{txt}response5_~m {c |} {res}  0.0258  -0.0050   0.0476  -0.0249  -0.0440   0.0416   0.0044 
+{txt}response6_~m {c |} {res}  0.0603  -0.1594  -0.0333  -0.0914   0.0063   0.0756  -0.0074 
+{txt}response7_~m {c |} {res} -0.0570   0.0462   0.0323   0.9549  -0.0180   0.0552   0.3003 
+{txt}response8_~m {c |} {res} -0.0398   0.0382   0.0786   0.1515   0.0229  -0.0125   0.0466 
+{txt}response9_~m {c |} {res}  0.0414   0.1353   0.1400   0.0558   0.0215   0.0444   0.1194 
+{txt}response10~m {c |} {res}  0.0389  -0.0790  -0.0697   0.0445   0.0192   0.0085   0.1369 
+
+             {txt}{c |} re~4_num re~5_num re~6_num re~7_num re~8_num re~9_num re~0_num
+{hline 13}{c +}{hline 63}
+response4_~m {c |} {res}  1.0000 
+{txt}response5_~m {c |} {res}  0.1481   1.0000 
+{txt}response6_~m {c |} {res} -0.0257  -0.0172   1.0000 
+{txt}response7_~m {c |} {res} -0.0525  -0.0303  -0.0931   1.0000 
+{txt}response8_~m {c |} {res}  0.0463   0.0884   0.1871   0.1422   1.0000 
+{txt}response9_~m {c |} {res} -0.0928   0.0819   0.0526   0.0431   0.1813   1.0000 
+{txt}response10~m {c |} {res} -0.0712   0.0933  -0.1026   0.0295   0.0586   0.1261   1.0000 
+{txt}
+{com}. 
+. reg response9_num response1_num response2_num response3_num response4_num ///
+>                                         response5_num response6_num response7_num response8_num 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       189
+{txt}{hline 13}{c +}{hline 34}   F(8, 180)       = {res}     2.16
+{txt}       Model {c |} {res} 3.08853195         8  .386066494   {txt}Prob > F        ={res}    0.0329
+{txt}    Residual {c |} {res} 32.2236374       180  .179020208   {txt}R-squared       ={res}    0.0875
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0469
+{txt}       Total {c |} {res} 35.3121693       188  .187830688   {txt}Root MSE        =   {res} .42311
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}response9_num{col 15}{c |}      Coef.{col 27}   Std. Err.{col 39}      t{col 47}   P>|t|{col 55}     [95% Con{col 68}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+response1_num {c |}{col 15}{res}{space 2} .0049698{col 27}{space 2} .0051929{col 38}{space 1}    0.96{col 47}{space 3}0.340{col 55}{space 4} -.005277{col 68}{space 3} .0152166
+{txt}response2_num {c |}{col 15}{res}{space 2} .0055689{col 27}{space 2} .0047143{col 38}{space 1}    1.18{col 47}{space 3}0.239{col 55}{space 4}-.0037336{col 68}{space 3} .0148713
+{txt}response3_num {c |}{col 15}{res}{space 2} .1039295{col 27}{space 2}  .067598{col 38}{space 1}    1.54{col 47}{space 3}0.126{col 55}{space 4}-.0294569{col 68}{space 3}  .237316
+{txt}response4_num {c |}{col 15}{res}{space 2}-.0900778{col 27}{space 2} .0526118{col 38}{space 1}   -1.71{col 47}{space 3}0.089{col 55}{space 4}-.1938931{col 68}{space 3} .0137375
+{txt}response5_num {c |}{col 15}{res}{space 2} .1137558{col 27}{space 2} .0669461{col 38}{space 1}    1.70{col 47}{space 3}0.091{col 55}{space 4}-.0183442{col 68}{space 3} .2458558
+{txt}response6_num {c |}{col 15}{res}{space 2}-.0057264{col 27}{space 2}  .085496{col 38}{space 1}   -0.07{col 47}{space 3}0.947{col 55}{space 4}-.1744297{col 68}{space 3}  .162977
+{txt}response7_num {c |}{col 15}{res}{space 2}-.0011989{col 27}{space 2} .0048954{col 38}{space 1}   -0.24{col 47}{space 3}0.807{col 55}{space 4}-.0108586{col 68}{space 3} .0084609
+{txt}response8_num {c |}{col 15}{res}{space 2} .1510442{col 27}{space 2} .0608669{col 38}{space 1}    2.48{col 47}{space 3}0.014{col 55}{space 4} .0309397{col 68}{space 3} .2711487
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2} .7126274{col 27}{space 2} .2779205{col 38}{space 1}    2.56{col 47}{space 3}0.011{col 55}{space 4} .1642261{col 68}{space 3} 1.261029
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. reg response10_num response1_num response2_num response3_num response4_num ///
+>                                         response5_num response6_num response7_num response8_num 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       189
+{txt}{hline 13}{c +}{hline 34}   F(8, 180)       = {res}     1.08
+{txt}       Model {c |} {res} 2.15791545         8  .269739431   {txt}Prob > F        ={res}    0.3776
+{txt}    Residual {c |} {res} 44.8685396       180  .249269664   {txt}R-squared       ={res}    0.0459
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0035
+{txt}       Total {c |} {res}  47.026455       188  .250140718   {txt}Root MSE        =   {res} .49927
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}response10_~m{col 15}{c |}      Coef.{col 27}   Std. Err.{col 39}      t{col 47}   P>|t|{col 55}     [95% Con{col 68}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+response1_num {c |}{col 15}{res}{space 2} .0013504{col 27}{space 2} .0061277{col 38}{space 1}    0.22{col 47}{space 3}0.826{col 55}{space 4}-.0107409{col 68}{space 3} .0134417
+{txt}response2_num {c |}{col 15}{res}{space 2} .0007002{col 27}{space 2} .0055629{col 38}{space 1}    0.13{col 47}{space 3}0.900{col 55}{space 4}-.0102768{col 68}{space 3} .0116771
+{txt}response3_num {c |}{col 15}{res}{space 2} .1105598{col 27}{space 2} .0797659{col 38}{space 1}    1.39{col 47}{space 3}0.167{col 55}{space 4}-.0468368{col 68}{space 3} .2679564
+{txt}response4_num {c |}{col 15}{res}{space 2} -.064669{col 27}{space 2} .0620822{col 38}{space 1}   -1.04{col 47}{space 3}0.299{col 55}{space 4}-.1871715{col 68}{space 3} .0578335
+{txt}response5_num {c |}{col 15}{res}{space 2} .1073413{col 27}{space 2} .0789967{col 38}{space 1}    1.36{col 47}{space 3}0.176{col 55}{space 4}-.0485373{col 68}{space 3}   .26322
+{txt}response6_num {c |}{col 15}{res}{space 2}-.1633701{col 27}{space 2} .1008857{col 38}{space 1}   -1.62{col 47}{space 3}0.107{col 55}{space 4}-.3624408{col 68}{space 3} .0357006
+{txt}response7_num {c |}{col 15}{res}{space 2}-.0006864{col 27}{space 2} .0057766{col 38}{space 1}   -0.12{col 47}{space 3}0.906{col 55}{space 4} -.012085{col 68}{space 3} .0107122
+{txt}response8_num {c |}{col 15}{res}{space 2} .0695286{col 27}{space 2} .0718233{col 38}{space 1}    0.97{col 47}{space 3}0.334{col 55}{space 4}-.0721952{col 68}{space 3} .2112525
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2} 1.402577{col 27}{space 2} .3279474{col 38}{space 1}    4.28{col 47}{space 3}0.000{col 55}{space 4} .7554607{col 68}{space 3} 2.049693
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Dhruv\misc\data\misc\Stata_Trainings\Stata test\statatest.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 2 Apr 2020, 19:55:04
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

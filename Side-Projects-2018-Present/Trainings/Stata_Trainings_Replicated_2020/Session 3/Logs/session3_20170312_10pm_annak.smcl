@@ -1,0 +1,307 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\annak\Box Sync\gui2de STATA Tutorials/Session 3/Logs/session3_20170312_10pm_annak.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}12 Mar 2017, 22:41:39
+{com}. {c )-}
+{txt}
+{com}. *
+. 
+. 
+. *******************************************************************************
+. *Important resources on how to deal with date/time:
+. {c -(}
+. /*
+> http://www.stata.com/manuals13/u24.pdf
+> http://www.stata.com/manuals13/ddatetimetranslation.pdf#ddatetimetranslation
+> http://www.stata.com/manuals13/ddatetime.pdf#ddatetime
+> http://www.stata.com/manuals13/ddatetimebusinesscalendars.pdf#ddatetimebusinesscalendars
+> */
+. {c )-}
+{txt}
+{com}. *
+. 
+. ********************************************************************************
+. *2 STRING VARIABLES: Fuzzy Matching (and regexm)
+. ********************************************************************************
+. 
+. /*
+> regexm(s,re)
+> performs a match of a regular expression and evaluates to 1 if regular 
+> expression re is satisfied by the ASCII string s; otherwise, 0
+> */
+. 
+. 
+. *Example1:
+. global project_e "gui2de STATA Tutorials/Session 3/Data/project_u.dta"
+{txt}
+{com}. 
+. use "$project_e", clear
+{txt}
+{com}. 
+. *correct answer is 7:25 am for mq10
+. 
+. gen mq10_new =""
+{txt}(29,869 missing values generated)
+
+{com}. replace mq10_new = "7:25am" if regexm(mq10,"7:25")
+{txt}variable {bf}mq10_new{sf} was {bf}{res}str1{sf}{txt} now {bf}{res}str6{sf}
+{txt}(5,252 real changes made)
+
+{com}. replace mq10_new = "7:25am" if regexm(mq10,"7hrs")
+{txt}(3 real changes made)
+
+{com}. replace mq10_new = "7:25am" if regexm(mq10,"7.25") | regexm(mq10,"725")
+{txt}(663 real changes made)
+
+{com}. replace mq10_new = "" if regexm(mq10,"pm")
+{txt}(366 real changes made)
+
+{com}. replace mq10_new = "" if regexm(mq10,"p.m")
+{txt}(4 real changes made)
+
+{com}. *example:
+. 
+. 
+. *Example2:
+. global project_t "gui2de STATA Tutorials/Session 3/Data/project_t.dta" 
+{txt}
+{com}. use "$project_t", clear
+{txt}
+{com}. 
+. *registration number for vehicles registered in Tanzania should look like:
+. * regnum = T123ABC
+. gen correct_regnum = regexm(regnum,"^T[0-9][0-9][0-9][A-Z][A-Z][A-Z]$")
+{txt}
+{com}. 
+. 
+. *****************************
+. *Approximate String Matching: 
+. *****************************
+. 
+. 
+. /*
+> Approximate String Matching: 
+> Fuzzy String Matching is basically rephrasing the YES/NO “Are string A and 
+> string B the same?” as “How similar are string A and string B?”
+> */
+. 
+. *there are a lot of STATA commands for it: matchit, reclink, reclink2
+. *but you can get better results by some data cleaning + merge
+. 
+. *Example:
+. 
+.                 global popdensity "gui2de STATA Tutorials/Session 3/Data/CIV_populationdensity.dta"
+{txt}
+{com}.                 global section0  "gui2de STATA Tutorials/Session 3/Data/Section 0.dta" 
+{txt}
+{com}.                 global temp1 "gui2de STATA Tutorials/Session 3/Data/temp1.dta"
+{txt}
+{com}.                 
+.                 use "$popdensity", clear
+{txt}
+{com}. 
+.                 keep if regexm(NOMCIRCONSCRIPTION, "DEPARTEMENT")==1
+{txt}(556 observations deleted)
+
+{com}.                 //keeping only "Departement" names. I am assuming that all departments have 
+.                 //"departement" in their names. We have 108 such observations
+. 
+.                 local removechars " " " "DEPARTEMENT" "DE" "D'" " " "
+{txt}
+{com}.                 foreach i of local removechars  {c -(}
+{txt}  2{com}.                         replace NOMCIRCONSCRIPTION = subinstr(NOMCIRCONSCRIPTION,"`i'","",.)
+{txt}  3{com}.                 {c )-}
+{txt}(108 real changes made)
+(108 real changes made)
+(93 real changes made)
+(14 real changes made)
+(0 real changes made)
+
+{com}.                 //removing "departement, de, d' and spaces from departement's names
+. 
+.                 replace NOMCIRCONSCRIPTION=lower(NOMCIRCONSCRIPTION)
+{txt}(108 real changes made)
+
+{com}.                 //lower case to match ENV format
+.                 rename NOMCIRCONSCRIPTION departement
+{res}{txt}
+{com}. 
+.                 /*
+>                 NOTE: There are 108 distinct departements in pop_density files and 107 in 
+>                 ENV. Even after cleaning departement names, we can only match 104 names.
+> 
+>                 unmatched departements are due to different spellings, see below:
+> 
+>                 departement(ENV)    department (Pop_denssity)
+>                 arrha                           arrah
+>                 sandegue                        sangue
+>                 sassandra                       dusassandra
+>                                                         gbeleban    (NOT in ENV dataset, ignore it)
+> 
+>                 Changing the names of departements in pop-density file as we don't want to
+>                 make any changes in ENV dataset
+>                 */
+. 
+.                 replace departement="arrha" if departement=="arrah"
+{txt}(1 real change made)
+
+{com}.                 replace departement="sandegue" if departement=="sangue"
+{txt}(1 real change made)
+
+{com}.                 replace departement="sassandra" if departement=="dusassandra"
+{txt}(1 real change made)
+
+{com}. 
+.                 rename POPULATION population
+{res}{txt}
+{com}.                 rename SUPERFICIEKM2 areasqkm
+{res}{txt}
+{com}.                 rename DENSITEAUKM pop_density
+{res}{txt}
+{com}. 
+.                 save "$temp1", replace
+{txt}file gui2de STATA Tutorials/Session 3/Data/temp1.dta saved
+
+{com}. 
+.                 use "$section0", clear
+{txt}
+{com}. 
+.                 decode b06_departemen, gen(departement)
+{txt}
+{com}. 
+.                 merge m:1 departement using "$temp1"
+{res}{txt}{p 0 7 2}
+(note: variable
+departement was 
+str18, now str33 to accommodate using data's values)
+{p_end}
+
+{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               1
+{txt}{col 9}from master{col 30}{res}               0{txt}  (_merge==1)
+{col 9}from using{col 30}{res}               1{txt}  (_merge==2)
+
+{col 5}matched{col 30}{res}          12,899{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}.                 /*
+>                         Result                           # of obs.
+>                         -----------------------------------------
+>                         not matched                             1
+>                                 from master                         0  (_merge==1)
+>                                 from using                          1  (_merge==2)
+> 
+>                         matched                            12,899  (_merge==3)
+>                         -----------------------------------------
+>                 */
+.                 drop if _merge==2 //dropping the extra department from pop_density file
+{txt}(1 observation deleted)
+
+{com}. 
+.                 summ _merge
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}_merge {c |}{res}     12,899           3           0          3          3
+{txt}
+{com}.                 assert `r(N)'==12899 //Just to make sure we have the entire ENV dataset.
+{txt}
+{com}. 
+. *************
+. 
+. /*
+> Assert:
+> It verifies that exp is true.  If it is true, the command produces no output.  
+> If it is not true, assert informs you that the "assertion is false" and issues a
+> return code of 9
+> */
+. 
+. 
+. *****************************
+. *Approximate String Matching:
+. *****************************
+. *In a lot of cases we can't use merge/data cleaning and have to rely on 
+. *fuzzy matching.
+. 
+. *Example: Tanzania Election data:
+. *Issue: We have election data from 1995, 2000, 2005, 2010 and 2015. We want to 
+. *match politicians who ran in multiple elections.
+. 
+. global election "gui2de STATA Tutorials/Session 3/Data/Tanzania_Election.dta"
+{txt}
+{com}. global temp_95 "gui2de STATA Tutorials/Session 3/Data/temp_1995.dta"
+{txt}
+{com}. global temp_00 "gui2de STATA Tutorials/Session 3/Data/temp_2000.dta"
+{txt}
+{com}. 
+. use "$election", clear
+{txt}
+{com}. rename *, lower
+{res}{txt}
+{com}. gen serial=_n
+{txt}
+{com}. 
+. preserve
+{txt}
+{com}.         keep if year==1995
+{txt}(855 observations deleted)
+
+{com}.         keep serial candidate
+{txt}
+{com}.         save "$temp_95", replace //1222 obs
+{txt}file gui2de STATA Tutorials/Session 3/Data/temp_1995.dta saved
+
+{com}. restore
+{txt}
+{com}. 
+. preserve
+{txt}
+{com}.         keep if year==2000
+{txt}(1,222 observations deleted)
+
+{com}.         keep serial candidate
+{txt}
+{com}.         save "$temp_00", replace //1222 obs
+{txt}file gui2de STATA Tutorials/Session 3/Data/temp_2000.dta saved
+
+{com}. restore
+{txt}
+{com}. 
+. 
+. use "$temp_95", clear
+{txt}
+{com}. 
+. cap ssc install matchit
+{txt}
+{com}. cap ssc install freqindex
+{txt}
+{com}. 
+. 
+. *match 2000 to 1995 data set
+. matchit serial candidate using "$temp_00", idusing(serial) txtusing(candidate)
+Matching current dataset with gui2de STATA Tutorials/Session 3/Data/temp_2000.dta
+Similarity function: bigram
+{res}Loading USING file: gui2de STATA Tutorials/Session 3/Data/temp_2000.dta
+Indexing USING file.
+0%
+20%
+40%
+60%
+80%
+Done!
+Computing results
+{tab}Percent completed ...{tab}(search space saved by index so far)
+{err}{hline 2}Break{hline 2}
+{txt}{search r(1), local:r(1);}
+
+end of do-file
+
+{err}{hline 2}Break{hline 2}
+{txt}{search r(1), local:r(1);}
+
+{com}. help preserve
+
+. exit, clear

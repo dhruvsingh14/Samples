@@ -1,0 +1,20 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ah1152\Box Sync\gui2de STATA Tutorials/Session 3/Logs/session3_20170407_AH.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 7 Apr 2017, 10:58:40
+{txt}
+{com}.         
+.         display "Hello, World"
+{res}Hello, World
+{txt}
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ah1152\Box Sync\gui2de STATA Tutorials/Session 3/Logs/session3_20170407_AH.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 7 Apr 2017, 10:58:40
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

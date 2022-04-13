@@ -1,0 +1,21 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ah1152\Box Sync\gui2de STATA Tutorials/Session 3/Logs/session3_20170208_5pm_ah1152.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 8 Feb 2017, 17:35:11
+{com}. {c )-}
+{txt}
+{com}. end
+{err}command {bf}end{sf} is unrecognized
+{txt}{search r(199), local:r(199);}
+
+end of do-file
+
+{search r(199), local:r(199);}
+
+{com}. do "C:\Users\ah1152\AppData\Local\Temp\STD14000000.tmp"
+{txt}
+{com}. capture log close //in case log is already open
+{smcl}
+{com}{sf}{ul off}

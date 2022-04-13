@@ -1,0 +1,62 @@
+---
+title: "MtCars"
+author: "Dhruv Singh"
+date: "April 9, 2021"
+output: pdf_document
+---
+
+## PART 0: SETUP
+echo settings for embedding code
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Setting Directory
+```{r dir}
+getwd()
+setwd("C:/Dhruv/Applying/3_interviewing/2021/4_April/wk1/Morning Consult/Assessment/DATA_ANALYST_EXERCISE")
+
+# loading packages
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+## PART I: PREPROCESSING DATA
+Reading in mtcars data:
+```{r data}
+data("mtcars")
+head(mtcars)
+
+
+```
+
+
+String extraction:
+make column
+```{r total daily steps}
+# converting row names to column
+mtcars$make_model <- row.names(mtcars)   
+
+# extracting car make from make_model
+mtcars$make <- gsub("([A-Za-z]+).*", "\\1", mtcars$make_model)
+```
+
+
+## PART II: TABULATING
+Summarizing mpg using tapply:
+```{r mpg by make}
+# creating summarizing by each make
+tapply(mtcars$mpg, mtcars$make, mean)
+```
+
+## PART III: CONCLUSION
+```{r kintting}
+# knitting results to pdf  
+install.packages('tinytex', repos='http://cran.us.r-project.org')
+
+tinytex::install_tinytex()
+
+tinytex:::is_tinytex()
+
+```

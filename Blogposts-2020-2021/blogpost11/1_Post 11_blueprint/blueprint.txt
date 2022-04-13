@@ -1,0 +1,95 @@
+So, here are my ideas for this next blog post ahead.
+
+It's central theme is going to be around transportation. 
+
+However, if we don't know where we're going - we may just end up downloading a bunch of data, and dithering a bunch.
+
+So here are some questions i'm raising at the outset. that can be refined as we go along.
+
+
+- how many cars are on the road
+
+- how have they decreased over a period of time?
+
+- who are the primary manufacturers of cars? where?
+
+- how do trucks and buses compare to regular cars for moving people?
+
+- how has public transportation evolved over the years?
+
+In this post we won't examine airplanes, aircrafts, or freight trains / freight ships.
+
+Neither will we look at military vehicles. 
+
+What we will however try to identify is this. 
+
+--------------------------------------------
+
+Let's restrict our analysis to private vehicles, and public transit, and compare the two.
+
+But also including some freight trucks in there. Since there is a certain romanticism to it.
+
+Possibly by region. Ideally including some geographic maps.
+
+--------------------------------------------
+
+adding a section on consumer expenditure here
+
+--------------------------------------------
+
+
+For instance, chloropleths of private vehicles, and public transit. 
+
+But also of truck routes if possible.
+
+
+----------------------------------------------
+
+Lastly, we may wanna briefly touch on motor vehicle accidents. Since that is always a pressing concern. 
+
+And handle the matter sensitively. 
+
+----------------------------------------------
+
+And in closing talk about the issue of self driving cars. 
+
+and manufacturing data. 
+
+----------------------------------------------
+
+price data seems to be very hard to find.
+
+----------------------------------------------
+
+let us begin by cleaning some of the datasets tomorrow, 
+
+finding some metrics to measure. then narrowing down our focus.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

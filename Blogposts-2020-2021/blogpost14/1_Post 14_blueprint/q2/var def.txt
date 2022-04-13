@@ -1,0 +1,7 @@
+Not covered at any time during the year	
+Covered by some type of health insurance during the year	
+Covered by private insurance	
+Covered by Employment based	
+Covered by Own Employment based	
+Covered by Direct-purchase insurance	
+Covered by government health plan

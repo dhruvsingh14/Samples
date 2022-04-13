@@ -1,0 +1,56 @@
+File Manifest for ICPSR 35596
+
+National Endowment for the Arts. Survey of Public Participation in the Arts
+1982-2012 Combined File [United States]. ICPSR35596-v1. Ann Arbor, MI:
+Inter-university Consortium for Political and Social Research
+[distributor], 2014-12-22. http://doi.org/10.3886/ICPSR35596.v1
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    35596-descriptioncitation.pdf       -       -         -       2015-08-06  -
+
+    35596-related_literature.txt        -       -         -       daily       -
+
+    35596-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 Survey of Public Participation in the Arts 1982-2012 Combined File
+[United States]
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    35596-0001-Codebook.pdf             -       -         -       2014-12-22  72c0552216fd696d34d4b870688eadae
+
+    35596-0001-Data.dta                 -       97,295    85      2014-12-22  2e4c37494e33e0e819ad5ec0850d72df
+
+    35596-0001-Data.rda                 -       97,295    85      2014-12-22  f497cbebdc4b7d6c28e970836885276d
+
+    35596-0001-Data.sav                 -       97,295    85      2014-12-22  907d36a6bd70c9e6b1028677d1f40198
+
+    35596-0001-Data.stc                 -       97,295    85      2014-12-22  e440ddf97202adc86cdc6caffbf86df6
+
+    35596-0001-Data.tsv                 -       97,295    85      2014-12-22  c14cbb55de35e2e07b4e78d9c3e21aca
+
+    35596-0001-Data.txt                 202     97,295    85      2014-12-22  d9affe146f91e611c1bb9c215d5f2b6f
+
+    35596-0001-Data.xlsx                -       97,295    85      2014-12-22  3767a8c96a915805534543b645ed7934
+
+    35596-0001-Data_dictionary.pdf      -       -         -       2014-12-22  1ec2ba91b0793a3d53836635571ba393
+
+    35596-0001-Setup.dct                -       -         -       2014-12-22  9efbacd72f4504347f814b811f26998a
+
+    35596-0001-Setup.do                 -       -         -       2014-12-22  7aa36d712fa288e06d4443514aa3dab8
+
+    35596-0001-Setup.sas                -       -         -       2014-12-22  f5c70bf319a703fc52b4e67e997c97ae
+
+    35596-0001-Setup.sps                -       -         -       2014-12-22  5b2bcd8308a25f771be8d5b73a8ec686
+
+    35596-0001-Supplemental_syntax.do   -       -         -       2014-12-22  985741df4e403dcfdb3710bb4406608a
+
+    35596-0001-Supplemental_syntax.sas  -       -         -       2014-12-22  619b56f13e2dc5f528406b2820b8feba
+

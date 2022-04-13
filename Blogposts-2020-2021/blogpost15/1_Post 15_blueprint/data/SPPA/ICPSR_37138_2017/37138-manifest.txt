@@ -1,0 +1,68 @@
+File Manifest for ICPSR 37138
+
+National Endowment for the Arts, and United States. Bureau of the Census.
+Survey of Public Participation in the Arts (SPPA), United States, 2017.
+ICPSR37138-v3. Ann Arbor, MI: Inter-university Consortium for Political and
+Social Research [distributor], 2019-02-04.
+http://doi.org/10.3886/ICPSR37138.v3
+
+Details on the version history can be found below the file listings.
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37138-descriptioncitation.pdf       -       -         -       2019-05-22  -
+
+    37138-related_literature.txt        -       -         -       daily       -
+
+    37138-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 Survey of Public Participation in the Arts (SPPA), United States,
+2017
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37138-0001-Codebook.pdf             -       -         -       2018-10-03  2af0218930ba6701feab12fea7260be7
+
+    37138-0001-Data.dta                 -       147,629   639     2018-10-03  6c962c77bfe7584251ef167166ba90ec
+
+    37138-0001-Data.rda                 -       147,629   639     2018-10-03  801757ef12e98077a12a3c5204a9917a
+
+    37138-0001-Data.sav                 -       147,629   639     2018-10-03  484c31e77759cbc2b710636bdbcfb4e2
+
+    37138-0001-Data.stc                 -       147,629   639     2018-10-03  1babb9c56847621fba5d68c9370967e8
+
+    37138-0001-Data.tsv                 -       147,629   639     2018-10-03  b773bec26215a8d8c46040c28a9da179
+
+    37138-0001-Data.txt                 1380    147,629   639     2018-10-03  388b7b015086abe6a2fb17c405e3b971
+
+    37138-0001-Data.xlsx                -       147,629   639     2018-10-03  d0b6b624162a7d1c1c642b77e377cecb
+
+    37138-0001-Questionnaire.pdf        -       -         -       2018-09-12  eadcc8c23db75d03f8fdd010b322844f
+
+    37138-0001-Setup.dct                -       -         -       2018-10-03  11faa16ebd1e0cda9ae08a3a842ede17
+
+    37138-0001-Setup.do                 -       -         -       2018-10-03  fbcbfcef514cf7abdda4f9e5c0589d72
+
+    37138-0001-Setup.sas                -       -         -       2018-10-03  fc0ca7e404b51e86a56c59e7e6057fba
+
+    37138-0001-Setup.sps                -       -         -       2018-10-03  e4ddafd609c86cbb0ecd455768c4afde
+
+    37138-0001-Supplemental_syntax.do   -       -         -       2018-10-03  e11fd5f231de3cada123839609219ad3
+
+    37138-0001-Supplemental_syntax.sas  -       -         -       2018-10-03  f30e87876138a5df3caea2a16a8ae9de
+
+    37138-0001-User_guide.pdf           -       -         -       2019-02-04  d3c35155274db4db4d5305623c893bc4
+
+
+Version History
+
+2019-02-04 This collection has been updated to include the complete
+technical documentation.  2018-10-03 This collection was updated to include
+online analysis tools and fully processed data files which have
+standardized labels and codes.

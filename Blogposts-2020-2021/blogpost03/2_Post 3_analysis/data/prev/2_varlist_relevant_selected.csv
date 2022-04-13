@@ -1,0 +1,71 @@
+﻿Variable Type,Indicator.Name
+% educated at level,Barro-Lee: Percentage of population age 15+ with no education
+% educated at level,Barro-Lee: Percentage of population age 15+ with primary schooling. Completed Primary
+% educated at level,Barro-Lee: Percentage of population age 15+ with secondary schooling. Completed Secondary
+% educated at level,Barro-Lee: Percentage of population age 15+ with tertiary schooling. Completed Tertiary
+% enrolled,"Percentage of all students in tertiary education enrolled in ISCED 6, both sexes (%)"
+% enrolled,"Percentage of all students in tertiary education enrolled in ISCED 7, both sexes (%)"
+% enrolled,"Percentage of all students in tertiary education enrolled in ISCED 8, both sexes (%)"
+% enrolled,Percentage of enrolment in early childhood education programmes in private institutions (%)
+Compensation,All staff compensation as % of total expenditure in pre-primary public institutions (%)
+Compensation,All staff compensation as % of total expenditure in primary public institutions (%)
+Compensation,All staff compensation as % of total expenditure in public institutions (%)
+Compensation,All staff compensation as % of total expenditure in secondary public institutions (%)
+Compensation,All staff compensation as % of total expenditure in tertiary public institutions (%)
+Compulsory Education,Duration of compulsory education (years)
+Compulsory Education,"Population of compulsory school age, both sexes (number)"
+Computers,Personal computers (per 100 people)
+Duration,Theoretical duration of lower secondary education (years)
+Duration,Theoretical duration of post-secondary non-tertiary education (years)
+Duration,Theoretical duration of pre-primary education (years)
+Duration,Theoretical duration of primary education (years)
+Duration,Theoretical duration of secondary education (years)
+Duration,Theoretical duration of upper secondary education (years)
+Enrolment,"Adjusted net enrolment rate, primary, gender parity index (GPI)"
+Enrolment,"Net enrolment rate, primary, gender parity index (GPI)"
+Enrolment Ratio,"Gross enrolment ratio, primary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, secondary, both sexes (%)"
+Enrolment Ratio,"Gross enrolment ratio, tertiary, both sexes (%)"
+Expenditure,Capital expenditure as % of total expenditure in pre-primary public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in primary public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in secondary public institutions (%)
+Expenditure,Capital expenditure as % of total expenditure in tertiary public institutions (%)
+"GDP, GNI",GDP at market prices (current US$)
+"GDP, GNI",GDP per capita (current US$)
+"GDP, GNI",GNI (current US$)
+Government Expenditure,Expenditure on education as % of total government expenditure (%)
+Government Expenditure,Government expenditure in educational institutions as % of GDP (%)
+Government Expenditure,Government expenditure on education as % of GDP (%)
+Graduates,"Graduates from tertiary education, both sexes (number)"
+Graduates,"Graduates from tertiary education, female (number)"
+Internet Users,Internet users (per 100 people)
+Labor,"Labor force, female (% of total labor force)"
+Labor,"Labor force, total"
+Mobility,"Inbound mobility rate, both sexes (%)"
+Mobility,"Net flow ratio of internationally mobile students (inbound - outbound), both sexes (%)"
+Mobility,"Outbound mobility ratio, all regions, both sexes (%)"
+Mobility,"Total inbound internationally mobile students, both sexes (number)"
+Mortality,"Mortality rate, under-5 (per 1,000)"
+Net Enrolment Rate,"Total net enrolment rate, primary, both sexes (%)"
+Net Enrolment Rate,"Total net enrolment rate, primary, gender parity index (GPI)"
+Over-Age Primary,"Over-age enrolment ratio in primary education, both sexes (%)"
+Population,Population growth (annual %)
+Population,"Population, total"
+School Life Expectancy,"School life expectancy, primary, both sexes (years)"
+School Life Expectancy,"School life expectancy, secondary, both sexes (years)"
+School Life Expectancy,"School life expectancy, tertiary, both sexes (years)"
+Starting Age,Official entrance age to compulsory education (years)
+Student Teacher Ratio,Pupil-teacher ratio in pre-primary education (headcount basis)
+Student Teacher Ratio,Pupil-teacher ratio in primary education (headcount basis)
+Student Teacher Ratio,Pupil-teacher ratio in secondary education (headcount basis)
+Student Teacher Ratio,Pupil-teacher ratio in tertiary education (headcount basis)
+Unemployment,"Unemployment, female (% of female labor force)"
+Unemployment,"Unemployment, male (% of male labor force)"
+Unemployment,"Unemployment, total (% of total labor force)"
+Unschooled,"Out-of-school children of primary school age, both sexes (number)"
+Unschooled,"Rate of out-of-school children of primary school age, both sexes (%)"
+Years of Schooling,"Barro-Lee: Average years of primary schooling, age 15+, total"
+Years of Schooling,"Barro-Lee: Average years of secondary schooling, age 15+, total"
+Years of Schooling,"Barro-Lee: Average years of tertiary schooling, age 15+, total"
+Years of Schooling,"Barro-Lee: Average years of total schooling, age 15+, total"

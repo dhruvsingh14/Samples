@@ -1,0 +1,17 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ah1152\Box Sync\gui2de STATA Tutorials/Session 3/Logs/session3_20170210_2pm_ah1152.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}10 Feb 2017, 14:14:06
+{com}. {c )-}
+{txt}
+{com}. *
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ah1152\Box Sync\gui2de STATA Tutorials/Session 3/Logs/session3_20170210_2pm_ah1152.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}10 Feb 2017, 14:14:06
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

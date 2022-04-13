@@ -1,0 +1,12 @@
+------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\HP\Box Sync\gui2de STATA Tutorials\Session 1\Data\long_{today's date}.log
+  log type:  text
+ opened on:  22 Jan 2019, 14:03:37
+
+. 
+end of do-file
+
+. help cap
+
+. exit, clear

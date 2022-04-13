@@ -1,0 +1,11 @@
+from here on out, let's focus on doing either case studies, policy briefs, or straight up coding tutorials
+
+purpose for this weeks post--
+
+weave together code from various snippets into one coherent whole
+
+address core concepts of portofolio allocation/ optimization
+
+give visual examples
+
+and leave them with a few how to's, tips to look out for when picking etfs.

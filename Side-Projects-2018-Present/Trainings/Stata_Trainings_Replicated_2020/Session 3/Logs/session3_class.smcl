@@ -1,0 +1,54 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/shashankrai/Box Sync/gui2de STATA Tutorials/Session 3/Logs/session3_class.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}10 Feb 2017, 15:15:55
+{txt}
+{com}. log using "$log", replace
+{err}invalid file specification
+{txt}{search r(198), local:r(198);}
+
+end of do-file
+
+{search r(198), local:r(198);}
+
+{com}. do "/var/folders/ww/s0n31q512kj8xnytcf_b6z0m0000gn/T//SD04397.000000"
+{txt}
+{com}. log using "gui2de STATA Tutorials/Session 3/Logs/session3_20170210_AH", replace
+{err}log file already open
+{txt}{search r(604), local:r(604);}
+
+end of do-file
+
+{search r(604), local:r(604);}
+
+{com}. do "/var/folders/ww/s0n31q512kj8xnytcf_b6z0m0000gn/T//SD04397.000000"
+{txt}
+{com}. log using "gui2de STATA Tutorials/Session 3/Logs/session3_20170210_AH", replace
+{err}log file already open
+{txt}{search r(604), local:r(604);}
+
+end of do-file
+
+{search r(604), local:r(604);}
+
+{com}. do "/var/folders/ww/s0n31q512kj8xnytcf_b6z0m0000gn/T//SD04397.000000"
+{txt}
+{com}. log using "gui2de STATA Tutorials/Session 3/Logs/session3_20170210_AH", replace
+{err}log file already open
+{txt}{search r(604), local:r(604);}
+
+end of do-file
+
+{search r(604), local:r(604);}
+
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/shashankrai/Box Sync/gui2de STATA Tutorials/Session 3/Logs/session3_class.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}10 Feb 2017, 15:18:39
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

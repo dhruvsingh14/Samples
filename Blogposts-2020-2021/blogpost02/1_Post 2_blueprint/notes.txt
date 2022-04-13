@@ -1,0 +1,64 @@
+here we're going to examine the concept of innovation
+
+what is it that determines a societies innovation?
+
+what reflects it?
+
+----------------
+
+literature to be drawn upon will include: small is beautiful, even if you don't want to credit it.
+
+possibly the haltiwanger business formation research
+
+cite at least 3 sources.
+
+-------------------
+
+datasets and streams of research to reflect:
+
+- ease of doing business
+
+- capital inflows
+
+- aid flows
+
+- business formation, and possibly job formation
+
+- distribution of workforce and economy by sector (don't do pie - opt for newer vizzes)
+
+remember to always scale by population
+
+-----------------------
+
+
+feel free to run a few regressions where appropriate. 
+
+to determine target variables.
+
+but the focus should be on 80% descriptive statistics, 20% inferential, where appropriate. 
+
+correlation and cross tabs counts too.
+
+
+-----------------------
+
+lastly, end with a narrative, a future projection of growth. 
+
+trends. and contexts - where appropriate. 
+
+also select a timeframe, and define the scope of your study appropriately.
+
+-----------------------
+
+let this be a long form piece - 1000 words, written by saturday.
+
+and structure it like a paper
+
+-----------------------
+
+
+
+
+
+
+
