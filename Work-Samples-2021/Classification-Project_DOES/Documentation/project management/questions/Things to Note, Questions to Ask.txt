@@ -1,0 +1,56 @@
+This document includes things to note in the data, questions to ask, as well as assumptions made to move the process forward
+
+---------------------------------------------------------------------------------------------------------------
+THINGS TO NOTE:
+
+- The reading and writing level scores are very all over the place. I will be dropping these columns. They cannot be used.
+
+- There are 2-3 inconsistencies in the date variables, already noted previously
+
+- If any of the sifting through raw data affected the data itself, we can always pull a fresh dataset from 2011-2021
+
+---------------------------------------------------------------------------------------------------------------
+QUESTIONS: 
+
+- What do the various tiers of the citizenship variable mean?
+
+	- I'm guessing 1 means citizen, all others mean non citizen
+
+- What does the 0 value for citizen mean?
+
+- More importantly - what does 89 for education level mean? [I've categorized it as GED]
+
+---------------------------------------------------------------------------------------------------------------
+RULES FOR RECODING VARIABLES:
+
+- For reading and writing scores
+
+	- for alphanumeric entries, eg: 3rd, 4th, 5th, extract the number. 
+	
+		- convert from string to numeric
+
+	- leave all decimal numbers less than and including 12.9 as is
+
+	- recode anything between 180 and 250 according to the rules listed
+
+	- recode anything 13 and above, remaining, to 12
+
+	- recode blanks to 0
+
+- Recode all 9's in race, disability, and gender variables to 0's
+
+- Recode all non 1's in citizenship variable to 0 
+
+- Binarize Program Variable: Possibly renaming it as well
+
+---------------------------------------------------------------------------------------------------------------
+
+CONSIDER DEALING WITH DUPLICATES 
+
+- by retaining only 1 or a few rows of each	
+
+	- look into it. into which cases to retain
+
+- deciding to leave in duplicates stateids after all, since individual rows seem to be unique. note this in documentation
+
+

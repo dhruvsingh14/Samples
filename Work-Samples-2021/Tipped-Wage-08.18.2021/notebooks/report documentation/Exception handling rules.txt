@@ -1,0 +1,81 @@
+#################
+# Gold Standard # 
+#################
+
+Total Wages = Calculated Salary [hours * wage rate]
+
+Whenever there is a large delta, we know there is a problem
+
+-----------------------------------------------------------------------------------------------------------
+
+####################
+# Checks for Wages #
+####################
+
+
+a. Hard Check: total wages < wage rate
+
+If hours is a number greater than 1. Then technically: [hours * rate = total wages] should always be true!
+
+It follows, that total wages > wage rate should also always be true. 
+
+However, due to human error in reporting, often the data show that wage rate > total wages. 
+
+We want to correct for this by scaling down any wage rates causing this problem by 100. 
+
+(note: it is more likely that wage rates are misreported, and that total wages are accurately reported)
+
+
+b. Soft check: Calculated Salary > 100 * Total Wages
+
+If the Calculated Salary is more than 100 times the Total Wage, it is likely we have a problem. 
+
+In such instances, we can assume it is the wage rate driving the error. Since exploratory analysis reveals it
+
+to be the most frequently inflated source of error.
+
+To bridge the delta, we can scale the wage rate down by 100, for rows with Calculated Salary > 100 * Total Wages.
+
+
+c. Trimming calculated salary down to the level of total wages
+
+While this rule encompasses rule b. above, it helps to have rule b to identify more granular details.
+
+If calculated salary exceeds the maximum total wages values, divide wage rate/100
+
+
+d. For a delta of more than 1000, and wage rate > 100
+
+Create the calculated column, delta = total wage - calculated salary 
+
+Objective: to narrow the delta, as near 0 as possible. 
+
+Actions: if delta is greater than 1000, and wage rate > 100, divide wage rate/100
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+####################
+# Checks for Hours #
+####################
+
+a. Hard Rule: Total possible hours = 2,016
+
+The total number of human hours in a quarter, 3 months is about 2,016. Any hours reported above that are not humanly possible. 
+
+Solution: for any rows exceeding 2,000, divide hours by 10.
+
+
+b. Soft Rule: Total probable hours
+
+For someone's reported hours to be 1000, they'd have to be working 12 hour shifts at one place, 7 days a week. 
+
+The 40 hour work week, equates to 480 hours in a quarter. Assuming 8 hour shifts 7 days a week, hours worked equals 672. 
+
+To correct inflated hours causing error, we first identify the rows with a delta in total wages and calculated salary of more than 1000, 
+
+and with hours worked > 60. Then, we can scale the hours down by 10, hours/10.
+-----------------------------------------------------------------------------------------------------
+
+

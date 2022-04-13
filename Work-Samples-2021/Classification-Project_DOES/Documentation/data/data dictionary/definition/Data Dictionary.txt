@@ -1,0 +1,63 @@
+For race variables:
+
+	1: Yes
+	0: No
+	9: Prefer not to disclose
+
+
+For Gender variable: 
+
+	1: Male
+	2: Female
+	9: Prefer not to disclose
+
+
+Citizenship Variable (original):
+
+	1: Citizen of U.S. or Territory
+	2: Alien/Refugee Lawfully Admitted to US
+	3: US Permanent Resident
+	4: None of the Above
+
+
+Education Level (original):
+
+	9: 9th Grade
+	10: 10th Grade
+	11: 11th grade
+	12: 12th grade no Diploma
+	13: HS Grad and 1 year of College or a Technical or Vocational School
+	14: HS Grad and 2 years of College or a Technical or Vocational School
+	15: HS Grad and 3 years of College or a Technical or Vocational School
+	16: Bachelor’s Degree or equivalent
+	17: Attained degree beyond a Bachelor’s degree
+	87: Attained High School Diploma
+	88: Attained GED or Equivalent
+	90: Attained a postsecondary technical or vocational certificate (non-degree)
+	91: Associate’s Degree
+
+Education Level (recoded):
+
+	0: No schooling
+	1: 1st Grade
+	2: 2nd Grade
+	3: 3rd Grade
+	4: 4th Grade
+	5: 5th Grade
+	6: 6th Grade
+	7: 7th Grade
+	8: 8th Grade
+	9: 9th Grade
+	10: 10th Grade
+	11: 11th grade
+	12: 12th grade no Diploma
+	13: Attained GED or Equivalent
+	14: Attained High School Diploma
+	15: HS Grad and 1 year of College or a Technical or Vocational School
+	16: HS Grad and 2 years of College or a Technical or Vocational School
+	17: HS Grad and 3 years of College or a Technical or Vocational School
+	18: Attained a postsecondary technical or vocational certificate (non-degree)
+	19: Associate’s Degree
+	20: Bachelor’s Degree or equivalent
+	21: Attained degree beyond a Bachelor’s degree
+

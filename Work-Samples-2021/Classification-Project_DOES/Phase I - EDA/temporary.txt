@@ -1,0 +1,5 @@
+1. Starting with more columns rather than less. 
+
+2. use start month and year in predictive model rather than end month and end year
+
+	- same with demographic charts. no need to go through both sets of dates

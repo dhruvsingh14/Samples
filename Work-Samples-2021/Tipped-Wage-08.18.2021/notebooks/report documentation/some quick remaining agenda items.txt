@@ -1,0 +1,8 @@
+- try to set a global 'year' and 'quarter' var in notebooks 1 and 2. 
+
+	- use the vars to read in the data, and to label your graphs, and ideally to create the relevant folders for output
+
+- lastly, see if you can write the exactly replicated data cleaning steps in a function. 
+
+	- and apply that to the cleaned datasets x 2, before appending them. 
+

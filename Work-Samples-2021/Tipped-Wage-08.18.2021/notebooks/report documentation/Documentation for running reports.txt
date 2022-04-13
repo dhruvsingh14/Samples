@@ -1,0 +1,59 @@
+####################################################
+# Instructions for Running the Tipped Wage Reports #
+####################################################
+
+# Notebook 1: Data Cleaning
+
+i. pull data from essp portal, and manual data. save both to data folder, as a csv file
+
+ii. open anaconda prompt, by searching in your pc search bar. navigate to the folder where your notebooks are stored, using the command
+
+	cd 'your/folder/name'
+
+ii.5 note, the data folder should be a subfolder of where the notebooks are saved. (optional)
+
+iii. launch jupyter notebooks using the 'jupyter notebook' command
+
+iv. leave anaconda prompt running, and open up notebook number 1 for data cleaning
+
+v. update only the file paths for the current data files, for the present quarter and year
+
+vi. save. and start stepping through the notebook one cell at a time to identify errors along the way. 
+
+	alternatively you may run all cells at once
+
+vii. output cleaned and combined data
+
+-----------------------------------------------------------------------------------------
+
+# Notebook 2: Outlier Detection
+
+i. no need to change any filepaths here. syntax reads in cleaned data
+
+ii. simply develop an intuition for the output
+
+iii. rule of thumb: anything 1.5*IQR below Q1 is an outlier, anything 1.5*IQR above Q3 is an outlier
+
+iv. use subject matter to identify outliers. what makes sense as an hourly wage based on your understanding of the hospitality industry?
+
+v. discuss any exceptions and outliers on a case by case basis before finalizing reports
+
+vi. investigate if necessary
+
+vii. output data is edited, with outliers adjusted for
+
+-----------------------------------------------------------------------------------------
+
+# Notebook 3: Final Reporting
+
+i. read in edited data 
+
+ii. update: supply cell range for writing data to
+
+iii. step through analysis steps
+
+iv. output summary table in excel
+
+v. write data to template
+
+-----------------------------------------------------------------------------------------

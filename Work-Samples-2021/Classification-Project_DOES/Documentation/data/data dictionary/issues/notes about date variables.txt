@@ -1,0 +1,7 @@
+actual rows that need to be amended
+
+state id 417767: EstimatedStartDate 12/1/2015 > EstimatedEndDate 9/18/2015, AssignedStaff/RegStaffName: Rosie Robinson
+
+state id 423836: EstimatedStartDate 11/2/2018 > EstimatedEndDate 8/6/2018, AssignedStaff/RegStaffName: DEBRA WHEELER
+
+state id 514313: EstimatedStartDate 1/27/2020 > EstimatedEndDate 10/30/2019, AssignedStaff/RegStaffName: William James Jr

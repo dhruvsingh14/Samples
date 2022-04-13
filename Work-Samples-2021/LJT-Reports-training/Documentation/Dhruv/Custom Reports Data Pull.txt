@@ -1,0 +1,25 @@
+custom
+
+local 
+
+maryland
+
+services
+
+
+-----------------------
+
+keep:
+
+stateid (use for deduplication)
+program
+office
+actual start
+actual end
+acitivity code
+completion status
+servive provider
+course description
+credentials
+exit
+employer start

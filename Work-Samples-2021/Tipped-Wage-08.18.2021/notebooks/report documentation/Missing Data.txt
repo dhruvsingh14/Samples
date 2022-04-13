@@ -1,0 +1,10 @@
+Rules for imputing missing values
+
+i. If total wages is missing, and calculated_salary is calculable (i.e. hourly wage rate and hours are present) , 
+replace total wages with calculated_salary
+
+ii. If calculated_salary = 0, and total wages is present, along with another column such as wage rate, or hours, calculate the missing column:
+
+eg. hours = total wages/hourly wage rate. (if hours missing)
+
+or wage rate = total wages/hours (if wage rate missing)
